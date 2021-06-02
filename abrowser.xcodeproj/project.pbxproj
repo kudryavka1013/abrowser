@@ -13,6 +13,11 @@
 		0CA146922664F44600BA805F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA146912664F44600BA805F /* Preview Assets.xcassets */; };
 		0CA1469D2664F44600BA805F /* abrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1469C2664F44600BA805F /* abrowserTests.swift */; };
 		0CA146A82664F44600BA805F /* abrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146A72664F44600BA805F /* abrowserUITests.swift */; };
+		0CA146BA2665CEB500BA805F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146B92665CEB500BA805F /* TabBarView.swift */; };
+		0CA146BC2665D61E00BA805F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146BB2665D61E00BA805F /* WebView.swift */; };
+		0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146BD26664DBF00BA805F /* AddressBarView.swift */; };
+		0CA146C4266725C900BA805F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146C3266725C900BA805F /* MenuView.swift */; };
+		0CA146C62667267800BA805F /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146C52667267800BA805F /* MenuItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		0CA146A32664F44600BA805F /* abrowserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = abrowserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA146A72664F44600BA805F /* abrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abrowserUITests.swift; sourceTree = "<group>"; };
 		0CA146A92664F44600BA805F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CA146B92665CEB500BA805F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		0CA146BB2665D61E00BA805F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		0CA146BD26664DBF00BA805F /* AddressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBarView.swift; sourceTree = "<group>"; };
+		0CA146C3266725C900BA805F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		0CA146C52667267800BA805F /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,11 @@
 				0CA1468E2664F44600BA805F /* Assets.xcassets */,
 				0CA146932664F44600BA805F /* Info.plist */,
 				0CA146902664F44600BA805F /* Preview Content */,
+				0CA146B92665CEB500BA805F /* TabBarView.swift */,
+				0CA146BB2665D61E00BA805F /* WebView.swift */,
+				0CA146BD26664DBF00BA805F /* AddressBarView.swift */,
+				0CA146C3266725C900BA805F /* MenuView.swift */,
+				0CA146C52667267800BA805F /* MenuItemView.swift */,
 			);
 			path = abrowser;
 			sourceTree = "<group>";
@@ -259,7 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
+				0CA146C4266725C900BA805F /* MenuView.swift in Sources */,
 				0CA1468D2664F44500BA805F /* ContentView.swift in Sources */,
+				0CA146BC2665D61E00BA805F /* WebView.swift in Sources */,
+				0CA146C62667267800BA805F /* MenuItemView.swift in Sources */,
+				0CA146BA2665CEB500BA805F /* TabBarView.swift in Sources */,
 				0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

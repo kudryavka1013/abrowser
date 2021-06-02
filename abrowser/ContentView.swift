@@ -10,13 +10,13 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack{
-            Text("Hello, world!")
-                .font(.largeTitle)
-                .foregroundColor(.green)
-            Text("Hello again")
-                .font(.headline)
-                .padding()
-                .foregroundColor(.yellow)
+            AddressBarView()
+                .background(Color.yellow)
+            WebView()
+                .frame(maxWidth: .infinity,maxHeight: .infinity)
+                .background(Color.white)
+            TabBarView()
+                .background(Color.green)
         }
 
     }
