@@ -33,7 +33,7 @@ struct TabBarView: View {
         }
         .foregroundColor(Color.gray)
         .padding()
-        .padding(.horizontal, 20)
+//        .padding(.horizontal, 20)
     }
 }
 

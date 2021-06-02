@@ -20,6 +20,7 @@ struct WebView: UIViewRepresentable {
         //        wk.isOpaque = false
         //        wk.load(requeset)
         //        return wk
+        // qwerty
         let webView = WKWebView()
         return webView
     }
