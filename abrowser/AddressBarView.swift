@@ -14,24 +14,37 @@ struct AddressBarView: View {
         HStack{
             ZStack{
                 TextField("placeholder", text: $inputMessage)
-//                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-//                    .cornerRadius(16.0)
+                    //                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                    //                    .cornerRadius(16.0)
                     .padding(.horizontal)
                     .zIndex(1)
-//                    .background(Color.blue)
-//                    .shadow(radius: 10)
+                //                    .background(Color.blue)
+                //                    .shadow(radius: 10)
                 RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
-                    .fill(Color.gray)
+                    .fill(Color.white)
                     .frame(maxHeight:36)
+                    .shadow(radius: 2)
+                //                    .border(Color.gray)
                 
-                    
+                
             }
-            Button(action: {}, label: {
-                Image(systemName: "arrow.clockwise")
-            })
+            ZStack{
+                Button(action: {}, label: {
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                    //                    Image(systemName:"xmark")
+                })
+                    .zIndex(1.0)
+                Circle()
+                    .fill(Color.white)
+                    .frame(maxWidth: 36, maxHeight:36)
+                    .shadow(radius: 2)
+                
+            }
+            
         }
         .padding(.horizontal)
-
+        .padding(.vertical, 5)
+        
     }
 }
 

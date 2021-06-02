@@ -22,6 +22,7 @@ struct MenuView: View {
                 Spacer()
                 MenuItemView(image:"arrow.triangle.2.circlepath",label:"刷新")
             }.frame(maxWidth:.infinity).padding()
+            
         }
     }
 }

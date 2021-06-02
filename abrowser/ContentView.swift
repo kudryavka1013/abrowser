@@ -9,14 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack{
+        
+        VStack(spacing:0){
             AddressBarView()
-                .background(Color.yellow)
+//                .background(Color.yellow)
+//                .padding()
             WebView()
                 .frame(maxWidth: .infinity,maxHeight: .infinity)
-                .background(Color.white)
-            TabBarView()
-                .background(Color.green)
+//                .background(Color.white)
+            ZStack{
+                TabBarView()
+                    
+            }
         }
 
     }

@@ -18,6 +18,7 @@
 		0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146BD26664DBF00BA805F /* AddressBarView.swift */; };
 		0CA146C4266725C900BA805F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146C3266725C900BA805F /* MenuView.swift */; };
 		0CA146C62667267800BA805F /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146C52667267800BA805F /* MenuItemView.swift */; };
+		0CA146C82667AFBF00BA805F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146C72667AFBF00BA805F /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		0CA146BD26664DBF00BA805F /* AddressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBarView.swift; sourceTree = "<group>"; };
 		0CA146C3266725C900BA805F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		0CA146C52667267800BA805F /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		0CA146C72667AFBF00BA805F /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				0CA146BD26664DBF00BA805F /* AddressBarView.swift */,
 				0CA146C3266725C900BA805F /* MenuView.swift */,
 				0CA146C52667267800BA805F /* MenuItemView.swift */,
+				0CA146C72667AFBF00BA805F /* WebViewController.swift */,
 			);
 			path = abrowser;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				0CA146C62667267800BA805F /* MenuItemView.swift in Sources */,
 				0CA146BA2665CEB500BA805F /* TabBarView.swift in Sources */,
 				0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */,
+				0CA146C82667AFBF00BA805F /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
