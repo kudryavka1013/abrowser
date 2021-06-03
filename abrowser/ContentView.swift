@@ -8,29 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var navigationState = NavigationState()
+    @State var MenuIsPresented = false
     var body: some View {
-        
-        VStack(spacing:0){
-            AddressBarView()
-//                .background(Color.yellow)
-//                .padding()
-            WebView()
-                .frame(maxWidth: .infinity,maxHeight: .infinity)
-//                .background(Color.white)
-            ZStack{
-                TabBarView()
-                    
-            }
-        }
-
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContentView()
+        ZStack{
+            VStack(spacing:0){
+                AddressBarView(navigationState: navigationState)
+    //                .background(Color.yellow)
+    //                .padding()
                 
+                // progressbar needed!!!
+                
+                WebView(navigationState: navigationState)
+                    .frame(maxWidth: .infinity,maxHeight: .infinity)
+    //                .background(Color.white)
+                
+                    
+                    NavBarView(navigationState: navigationState)
+                
+            }
+//            if TabManagementIsPresented{
+//                TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
+////            }
+//            MenuView(MenuIsPresented: $MenuIsPresented)
         }
+        
+
     }
 }
+
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            ContentView()
+//                
+//        }
+//    }
+//}

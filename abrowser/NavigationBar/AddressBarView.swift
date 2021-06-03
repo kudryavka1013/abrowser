@@ -7,13 +7,17 @@
 
 import SwiftUI
 
+// 头部地址栏
 struct AddressBarView: View {
+    @ObservedObject var navigationState : NavigationState
+    
     @State private var inputMessage = ""
     @State private var urlString = ""
     var body: some View {
         HStack{
             ZStack{
-                TextField("placeholder", text: $inputMessage)
+                //                Text(navigationState.currentURL?.absoluteString ?? "(none)")
+                TextField(navigationState.currentURL?.absoluteString ?? "(none)", text: $inputMessage)
                     //                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
                     //                    .cornerRadius(16.0)
                     .padding(.horizontal)
@@ -23,22 +27,23 @@ struct AddressBarView: View {
                 RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
                     .fill(Color.white)
                     .frame(maxHeight:36)
-                    .shadow(radius: 2)
+                    .shadow(radius: 1)
                 //                    .border(Color.gray)
                 
                 
             }
             ZStack{
-                Button(action: {}, label: {
+                Button(action: {
+                    
+                }, label: {
                     Image(systemName: "arrow.triangle.2.circlepath")
                     //                    Image(systemName:"xmark")
                 })
-                    .zIndex(1.0)
+                .zIndex(1.0)
                 Circle()
                     .fill(Color.white)
                     .frame(maxWidth: 36, maxHeight:36)
-                    .shadow(radius: 2)
-                
+                    .shadow(radius: 1)
             }
             
         }
@@ -48,8 +53,8 @@ struct AddressBarView: View {
     }
 }
 
-struct AddressBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddressBarView()
-    }
-}
+//struct AddressBarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddressBarView()
+//    }
+//}
