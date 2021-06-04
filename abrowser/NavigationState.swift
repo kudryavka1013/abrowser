@@ -21,6 +21,18 @@ class NavigationState : NSObject, ObservableObject{
            wv.load(request)
            return wv
     }
+    
+    @discardableResult func deleteWebView(){}
+    
+    @discardableResult func deleteAllWebViews(){}
+    
+    func navGoBack(){
+        self.selectedWebView?.goBack()
+    }
+    
+    func navGoForward(){
+        self.selectedWebView?.goForward()
+    }
 }
 
 extension NavigationState : WKNavigationDelegate {

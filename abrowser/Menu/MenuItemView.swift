@@ -19,9 +19,9 @@ struct MenuItemView: View {
                 Text(label)
             }
         })
-//            .sheet(isPresented: $isPresented, content: {
-//            MenuView() //将创建的自定义视图作为模态窗口的内容
-//        })
+            .sheet(isPresented: $isPresented, content: {
+            HistoryAndBookmarkView(isPresented: $isPresented) //将创建的自定义视图作为模态窗口的内容
+        })
             .frame(maxWidth: .infinity)
     }
 }

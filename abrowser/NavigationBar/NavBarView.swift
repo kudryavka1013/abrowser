@@ -27,14 +27,14 @@ struct NavBarView: View {
             HStack{
                 //            导航后退
                 Button(action: {
-                    //                    navigationState.selectedWebView?.goBack()
+                    navigationState.navGoBack()
                 }, label: {
                     Image(systemName: "chevron.left")
                 }).frame(maxWidth: .infinity)
                 Spacer()
                 //            导航前进
                 Button(action: {
-                    //                    navigationState.selectedWebView?.goForward()
+                    navigationState.navGoForward()
                 }, label: {
                     Image(systemName: "chevron.right")
                 }).frame(maxWidth: .infinity)
