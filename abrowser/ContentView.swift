@@ -14,26 +14,24 @@ struct ContentView: View {
         ZStack{
             VStack(spacing:0){
                 AddressBarView(navigationState: navigationState)
-    //                .background(Color.yellow)
-    //                .padding()
+                //                .background(Color.yellow)
+                //                .padding()
                 
                 // progressbar needed!!!
                 
                 WebView(navigationState: navigationState)
                     .frame(maxWidth: .infinity,maxHeight: .infinity)
-    //                .background(Color.white)
-                
-                    
-                    NavBarView(navigationState: navigationState)
+                //                .background(Color.white)
+                NavBarView(navigationState: navigationState)
                 
             }
-//            if TabManagementIsPresented{
-//                TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
-////            }
-//            MenuView(MenuIsPresented: $MenuIsPresented)
+            //            if TabManagementIsPresented{
+            //                TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
+            ////            }
+            //            MenuView(MenuIsPresented: $MenuIsPresented)
         }
         
-
+        
     }
 }
 

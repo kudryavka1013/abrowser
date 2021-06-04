@@ -20,7 +20,7 @@ struct NavBarView: View {
             
             // 遮盖底部安全区域
             Rectangle()
-                .fill(Color.white)
+                .fill(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
                 .frame(height: 200)
                 .offset(y: 100)
             
@@ -64,8 +64,8 @@ struct NavBarView: View {
             }
             .foregroundColor(Color.gray)
             .padding()
-            .padding(.horizontal, 20)
-            .background(Color.white)
+            .padding(.horizontal)
+            .background(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
             .frame(height:50)
         }
         .frame(maxHeight:50)

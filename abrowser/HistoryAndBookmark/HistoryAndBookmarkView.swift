@@ -50,6 +50,8 @@ struct HistoryAndBookmarkView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 4)
+                .padding(.bottom)
+
             case 2:
                 BookmarkView()
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
@@ -64,6 +66,7 @@ struct HistoryAndBookmarkView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 4)
+                .padding(.bottom)
             default:
                 HistoryView()
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
@@ -78,6 +81,8 @@ struct HistoryAndBookmarkView: View {
                 }
                 .padding(.horizontal)
                 .padding(.top, 4)
+                .padding(.bottom)
+
             }
             
             

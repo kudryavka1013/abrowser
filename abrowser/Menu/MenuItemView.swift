@@ -12,11 +12,17 @@ struct MenuItemView: View {
     @State var label :String
     @State var isPresented = false
     var body: some View {
-        Button(action: { self.isPresented = true
+        Button(action: {
+            self.isPresented = true
         }, label: {
             VStack{
                 Image(systemName: image)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 12)
+                    .padding(.bottom, 1)
                 Text(label)
+                    .font(.subheadline)
             }
         })
             .sheet(isPresented: $isPresented, content: {
