@@ -10,11 +10,12 @@ import SwiftUI
 // 底部导航栏
 struct NavBarView: View {
     @ObservedObject var navigationState : NavigationState
+    @ObservedObject var bookmarkState : BookmarkState
     @State private var MenuIsPresented = false
     @State private var TabManagementIsPresented = false
     var body: some View {
         ZStack{
-            MenuView()
+            MenuView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented)
                 .offset(y: MenuIsPresented ? -50 : 100)
                 .animation(.easeOut(duration: 0.2))
             

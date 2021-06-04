@@ -10,7 +10,6 @@ import SwiftUI
 // 头部地址栏
 struct AddressBarView: View {
     @ObservedObject var navigationState : NavigationState
-    
     @State private var inputMessage = ""
     @State private var urlString = ""
     var body: some View {
@@ -34,7 +33,7 @@ struct AddressBarView: View {
             }
             ZStack{
                 Button(action: {
-                    
+                    navigationState.refresh()
                 }, label: {
                     Image(systemName: "arrow.triangle.2.circlepath")
                     //                    Image(systemName:"xmark")

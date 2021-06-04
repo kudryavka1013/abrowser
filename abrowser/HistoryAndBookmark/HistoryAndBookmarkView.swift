@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HistoryAndBookmarkView: View {
-    @State var viewSelected = 1
+    @Binding var viewSelected : Int
     @Binding var isPresented : Bool
     var body: some View {
         VStack{
@@ -57,6 +57,11 @@ struct HistoryAndBookmarkView: View {
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
                     .background(Color.gray)
                 HStack{
+                    Button(action: {
+                        // 添加
+                    }, label: {
+                        Image(systemName: "plus")
+                    })
                     Spacer()
                     Button(action: {
                         // 编辑
@@ -93,6 +98,6 @@ struct HistoryAndBookmarkView: View {
 
 struct HistoryAndBookmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryAndBookmarkView(isPresented: .constant(false))
+        HistoryAndBookmarkView(viewSelected: .constant(2), isPresented: .constant(false))
     }
 }

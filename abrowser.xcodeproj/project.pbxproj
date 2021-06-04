@@ -23,6 +23,9 @@
 		0CA146D12668869A00BA805F /* HistoryAndBookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146D02668869A00BA805F /* HistoryAndBookmarkView.swift */; };
 		0CA146D42669C6D200BA805F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146D32669C6D200BA805F /* HistoryView.swift */; };
 		0CA146D62669C6DB00BA805F /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146D52669C6DB00BA805F /* BookmarkView.swift */; };
+		0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146D7266A3F8E00BA805F /* NavView.swift */; };
+		0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DB266A586F00BA805F /* BookmarkState.swift */; };
+		0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DD266A5C5C00BA805F /* HistoryState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		0CA146D02668869A00BA805F /* HistoryAndBookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryAndBookmarkView.swift; sourceTree = "<group>"; };
 		0CA146D32669C6D200BA805F /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		0CA146D52669C6DB00BA805F /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		0CA146D7266A3F8E00BA805F /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
+		0CA146DB266A586F00BA805F /* BookmarkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkState.swift; sourceTree = "<group>"; };
+		0CA146DD266A5C5C00BA805F /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,9 +127,9 @@
 				0CA146932664F44600BA805F /* Info.plist */,
 				0CA146902664F44600BA805F /* Preview Content */,
 				0CA146CF2668737600BA805F /* NavigationBar */,
-				0CA146BB2665D61E00BA805F /* WebView.swift */,
+				0CA146D9266A3FD000BA805F /* MainView */,
 				0CA146CE2668735800BA805F /* Menu */,
-				0CA146C9266863C800BA805F /* NavigationState.swift */,
+				0CA146DA266A585800BA805F /* Model */,
 				0CA146CD2668733600BA805F /* TabManagement */,
 				0CA146D22669C6BE00BA805F /* HistoryAndBookmark */,
 			);
@@ -190,6 +196,25 @@
 				0CA146D52669C6DB00BA805F /* BookmarkView.swift */,
 			);
 			path = HistoryAndBookmark;
+			sourceTree = "<group>";
+		};
+		0CA146D9266A3FD000BA805F /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				0CA146BB2665D61E00BA805F /* WebView.swift */,
+				0CA146D7266A3F8E00BA805F /* NavView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		0CA146DA266A585800BA805F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0CA146C9266863C800BA805F /* NavigationState.swift */,
+				0CA146DB266A586F00BA805F /* BookmarkState.swift */,
+				0CA146DD266A5C5C00BA805F /* HistoryState.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,12 +348,15 @@
 			files = (
 				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
 				0CA146CA266863C800BA805F /* NavigationState.swift in Sources */,
+				0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */,
 				0CA146C4266725C900BA805F /* MenuView.swift in Sources */,
+				0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */,
 				0CA1468D2664F44500BA805F /* ContentView.swift in Sources */,
 				0CA146BC2665D61E00BA805F /* WebView.swift in Sources */,
 				0CA146D42669C6D200BA805F /* HistoryView.swift in Sources */,
 				0CA146D62669C6DB00BA805F /* BookmarkView.swift in Sources */,
 				0CA146D12668869A00BA805F /* HistoryAndBookmarkView.swift in Sources */,
+				0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */,
 				0CA146C62667267800BA805F /* MenuItemView.swift in Sources */,
 				0CA146BA2665CEB500BA805F /* NavBarView.swift in Sources */,
 				0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */,

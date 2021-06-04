@@ -11,6 +11,7 @@ struct TabManagementView: View {
     @ObservedObject var navigationState: NavigationState
     @Binding var TabManagementIsPresented : Bool
     var body: some View {
+        // 将list替换为界面
         List {
             ForEach(navigationState.webViews, id: \.self) { tab in
                 Button(action: {
@@ -22,7 +23,11 @@ struct TabManagementView: View {
             }
         }
         HStack{
-            Button(action: {}, label: {
+            Button(action: {
+                navigationState.deleteAllWebViews()
+                // 更改导航页显示
+                TabManagementIsPresented = false
+            }, label: {
                 Text("全部关闭")
             }).frame(minWidth: 80,alignment: .leading)
             Spacer()

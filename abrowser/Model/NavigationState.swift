@@ -22,9 +22,11 @@ class NavigationState : NSObject, ObservableObject{
            return wv
     }
     
-    @discardableResult func deleteWebView(){}
+    func deleteWebView(){}
     
-    @discardableResult func deleteAllWebViews(){}
+    func deleteAllWebViews(){
+        webViews.removeAll()
+    }
     
     func navGoBack(){
         self.selectedWebView?.goBack()
@@ -32,6 +34,10 @@ class NavigationState : NSObject, ObservableObject{
     
     func navGoForward(){
         self.selectedWebView?.goForward()
+    }
+    
+    func refresh(){
+        self.selectedWebView?.reload()
     }
 }
 

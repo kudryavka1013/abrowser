@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var navigationState = NavigationState()
+    @StateObject var bookmarkState = BookmarkState()
     @State var MenuIsPresented = false
     var body: some View {
         ZStack{
@@ -22,13 +23,8 @@ struct ContentView: View {
                 WebView(navigationState: navigationState)
                     .frame(maxWidth: .infinity,maxHeight: .infinity)
                 //                .background(Color.white)
-                NavBarView(navigationState: navigationState)
-                
+                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState)
             }
-            //            if TabManagementIsPresented{
-            //                TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
-            ////            }
-            //            MenuView(MenuIsPresented: $MenuIsPresented)
         }
         
         
