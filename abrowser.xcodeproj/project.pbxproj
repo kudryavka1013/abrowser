@@ -25,6 +25,7 @@
 		0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146D7266A3F8E00BA805F /* NavView.swift */; };
 		0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DB266A586F00BA805F /* BookmarkState.swift */; };
 		0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DD266A5C5C00BA805F /* HistoryState.swift */; };
+		59BD4C30266E4B9700851029 /* HistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD4C2F266E4B9700851029 /* HistoryCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		0CA146D7266A3F8E00BA805F /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 		0CA146DB266A586F00BA805F /* BookmarkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkState.swift; sourceTree = "<group>"; };
 		0CA146DD266A5C5C00BA805F /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
+		59BD4C2F266E4B9700851029 /* HistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				0CA146D02668869A00BA805F /* HistoryAndBookmarkView.swift */,
 				0CA146D32669C6D200BA805F /* HistoryView.swift */,
 				0CA146D52669C6DB00BA805F /* BookmarkView.swift */,
+				59BD4C2F266E4B9700851029 /* HistoryCellView.swift */,
 			);
 			path = HistoryAndBookmark;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				0CA146D62669C6DB00BA805F /* BookmarkView.swift in Sources */,
 				0CA146D12668869A00BA805F /* HistoryAndBookmarkView.swift in Sources */,
 				0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */,
+				59BD4C30266E4B9700851029 /* HistoryCellView.swift in Sources */,
 				0CA146BA2665CEB500BA805F /* NavBarView.swift in Sources */,
 				0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */,
 				0CA146CC26686CBB00BA805F /* TabManagementView.swift in Sources */,
