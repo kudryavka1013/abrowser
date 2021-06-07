@@ -27,6 +27,7 @@ struct MenuView: View {
                 // 添加书签
                 Button(action: {
 //                    bookmarkState.addBookmark(name: <#T##String#>, url: <#T##String#>)
+                    MenuIsPresented = false
                 }, label: {
                     VStack{
                         Image(systemName: "bookmark")
@@ -40,6 +41,7 @@ struct MenuView: View {
                 Button(action: {
                     self.viewSeleted = 2
                     self.HistoryOrBookmarkIsPresented = true
+                    MenuIsPresented = false
                 }, label: {
                     VStack{
                         Image(systemName: "book")
@@ -57,6 +59,7 @@ struct MenuView: View {
                 Button(action: {
                     self.viewSeleted = 1
                     self.HistoryOrBookmarkIsPresented = true
+                    MenuIsPresented = false
                 }, label: {
                     VStack{
                         Image(systemName: "clock.arrow.circlepath")

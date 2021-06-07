@@ -11,8 +11,8 @@ import SwiftUI
 struct NavBarView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
-    @State private var MenuIsPresented = false
-    @State private var TabManagementIsPresented = false
+    @Binding var MenuIsPresented : Bool
+    @Binding var TabManagementIsPresented : Bool
     var body: some View {
         ZStack{
             MenuView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented)
@@ -47,13 +47,13 @@ struct NavBarView: View {
                 Spacer()
                 //            标签页管理
                 Button(action: {
-                    self.TabManagementIsPresented = true
+                    TabManagementIsPresented = true
                 }, label: {
                     Image(systemName: "square.on.square")
                 })
-                .sheet(isPresented: $TabManagementIsPresented, content: {
-                    TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
-                })
+//                .sheet(isPresented: $TabManagementIsPresented, content: {
+//                    TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
+//                })
                 .frame(maxWidth: .infinity)
                 Spacer()
                 //            菜单
