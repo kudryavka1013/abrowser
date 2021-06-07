@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var navigationState = NavigationState()
     @StateObject var bookmarkState = BookmarkState()
+//    @StateObject var histortyState = historyState()
     @State var MenuIsPresented = false
     @State var TabManagementIsPresented = false
     var body: some View {
