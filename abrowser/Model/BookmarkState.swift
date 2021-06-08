@@ -8,10 +8,11 @@ import SwiftUI
 
 class BookmarkState : NSObject, ObservableObject{
    
-    
     func addBookmark(name: String , url: String){
         //
     }
+    
+    
 }
 
 struct bookmark {
