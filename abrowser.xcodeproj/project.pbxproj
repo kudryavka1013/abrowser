@@ -25,6 +25,7 @@
 		0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146D7266A3F8E00BA805F /* NavView.swift */; };
 		0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DB266A586F00BA805F /* BookmarkState.swift */; };
 		0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DD266A5C5C00BA805F /* HistoryState.swift */; };
+		1817B637266F8F8600C7B4FE /* BookmarkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817B636266F8F8600C7B4FE /* BookmarkCellView.swift */; };
 		59BD4C30266E4B9700851029 /* HistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD4C2F266E4B9700851029 /* HistoryCellView.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		0CA146D7266A3F8E00BA805F /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 		0CA146DB266A586F00BA805F /* BookmarkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkState.swift; sourceTree = "<group>"; };
 		0CA146DD266A5C5C00BA805F /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
+		1817B636266F8F8600C7B4FE /* BookmarkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCellView.swift; sourceTree = "<group>"; };
 		59BD4C2F266E4B9700851029 /* HistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +188,7 @@
 				0CA146D32669C6D200BA805F /* HistoryView.swift */,
 				0CA146D52669C6DB00BA805F /* BookmarkView.swift */,
 				59BD4C2F266E4B9700851029 /* HistoryCellView.swift */,
+				1817B636266F8F8600C7B4FE /* BookmarkCellView.swift */,
 			);
 			path = HistoryAndBookmark;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			files = (
 				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
 				0CA146CA266863C800BA805F /* NavigationState.swift in Sources */,
+				1817B637266F8F8600C7B4FE /* BookmarkCellView.swift in Sources */,
 				0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */,
 				0CA146C4266725C900BA805F /* MenuView.swift in Sources */,
 				0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */,

@@ -20,18 +20,23 @@ struct BookmarkRow: View {
     }
 }
 
-struct BookmarkView: View {
-    var body: some View {
-        var model: ListModel
-        var body: some View {
-            HStack{
-                VStack(alignment: .leading) { Text(verbatim: model.title); Text(verbatim: model.subTitle)
-                }
-                Spacer()
-            }.padding() }
-        
+struct ListModel {
+    var title: String;
+    var subTitle: String;
+    
+    init(title: String, subTitle: String) {
+        self.title = title;
+        self.subTitle = subTitle
+    }
+}
 
-        func deleteRow(at offsets:IndexSet) {
+struct BookmarkView: View {
+    var dataSource = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
+        
+        var body: some View {
+        List(dataSource.identified(by: \.title)) { model in BookmarkCellView(model: model) }.padding()
+
+/*        func deleteRow(at offsets:IndexSet) {
             Bookmark.remove(atOffsets:offsets)
                 }
                 
@@ -39,13 +44,13 @@ struct BookmarkView: View {
                     ForEach(Bookmark, id: \.self) { Bookmark in
                         BookmarkRow(bookmark: Bookmark)
                     }.onDelete(perform: deleteRow)
-                }
-        
+                } */
     }
 }
 
 struct BookmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        BookmarkView(model:ListModel(title: "Item Title", subTitle: "Item SubTitle")).previewLayout(.fixed(width: 375, height: 60)
+        BookmarkView()
     }
 }
+
