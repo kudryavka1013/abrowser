@@ -10,41 +10,39 @@ import SwiftUI
 // 头部地址栏
 struct AddressBarView: View {
     @ObservedObject var navigationState : NavigationState
-    @State private var inputMessage = ""
-    @State private var urlString = ""
+    @Binding var SearchIsPresented : Bool
+    let addressbar : Namespace.ID
+    
     var body: some View {
         HStack{
             ZStack{
-                //                Text(navigationState.currentURL?.absoluteString ?? "(none)")
-                TextField(navigationState.currentURL?.absoluteString ?? "(none)", text: $inputMessage)
-                    //                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-                    //                    .cornerRadius(16.0)
+                Text(navigationState.currentURL?.absoluteString ?? "(none)")
                     .padding(.horizontal)
                     .zIndex(1)
-                //                    .background(Color.blue)
-                //                    .shadow(radius: 10)
-                RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
-                    .fill(Color.white)
-                    .frame(maxHeight:36)
-                    .shadow(radius: 1)
-                //                    .border(Color.gray)
-                
-                
+                if(!SearchIsPresented){
+                    RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
+                        .fill(Color.white)
+                        .frame(maxHeight:36)
+                        .shadow(radius: 1)
+                        .matchedGeometryEffect(id: "addressbar", in: addressbar)
+                        .onTapGesture {
+                            SearchIsPresented = true
+                        }
+                }
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        navigationState.refresh()
+                    }, label: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                        
+//                            .transition(.slide)
+                        //                    Image(systemName:"xmark")
+                    })
+                    .zIndex(1.0)
+                }.padding(.horizontal,8)
+                .transition(.slide)
             }
-            ZStack{
-                Button(action: {
-                    navigationState.refresh()
-                }, label: {
-                    Image(systemName: "arrow.triangle.2.circlepath")
-                    //                    Image(systemName:"xmark")
-                })
-                .zIndex(1.0)
-                Circle()
-                    .fill(Color.white)
-                    .frame(maxWidth: 36, maxHeight:36)
-                    .shadow(radius: 1)
-            }
-            
         }
         .padding(.horizontal)
         .padding(.vertical, 5)

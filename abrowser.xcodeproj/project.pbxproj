@@ -25,6 +25,7 @@
 		0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146D7266A3F8E00BA805F /* NavView.swift */; };
 		0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DB266A586F00BA805F /* BookmarkState.swift */; };
 		0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DD266A5C5C00BA805F /* HistoryState.swift */; };
+		0CDB9946266F9B11003A1DCB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB9945266F9B11003A1DCB /* SearchView.swift */; };
 		1817B637266F8F8600C7B4FE /* BookmarkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817B636266F8F8600C7B4FE /* BookmarkCellView.swift */; };
 		59BD4C30266E4B9700851029 /* HistoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BD4C2F266E4B9700851029 /* HistoryCellView.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,7 @@
 		0CA146D7266A3F8E00BA805F /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
 		0CA146DB266A586F00BA805F /* BookmarkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkState.swift; sourceTree = "<group>"; };
 		0CA146DD266A5C5C00BA805F /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
+		0CDB9945266F9B11003A1DCB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		1817B636266F8F8600C7B4FE /* BookmarkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCellView.swift; sourceTree = "<group>"; };
 		59BD4C2F266E4B9700851029 /* HistoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +179,7 @@
 				0CA146B92665CEB500BA805F /* NavBarView.swift */,
 				0CA146BD26664DBF00BA805F /* AddressBarView.swift */,
 				0CA146C3266725C900BA805F /* MenuView.swift */,
+				0CDB9945266F9B11003A1DCB /* SearchView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */,
 				0CA146C4266725C900BA805F /* MenuView.swift in Sources */,
 				0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */,
+				0CDB9946266F9B11003A1DCB /* SearchView.swift in Sources */,
 				0CA1468D2664F44500BA805F /* ContentView.swift in Sources */,
 				0CA146BC2665D61E00BA805F /* WebView.swift in Sources */,
 				0CA146D42669C6D200BA805F /* HistoryView.swift in Sources */,
