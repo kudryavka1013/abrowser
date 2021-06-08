@@ -7,24 +7,22 @@
 
 import SwiftUI
 
-/*struct WebsiteRow: View {
+
+
+struct HistoryView: View {
+    //dataSource:[ListModel] 变量，并使用 map 对其进行初始化
+    var dataSource = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
+//初始化后的 dataSource 中包含了5个 ListModel，接下来将 dataSource 作为数据源，绑定到 List 中：
     
-    var name : String
+    
     
     var body: some View {
-        Text("The website is \(name)")
-    }
-}
-*/
 
-    
-struct HistoryView: View {
-    var dataSource = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
-        var body: some View {
-            List(dataSource) { model in
-                HistoryCellView(model: model)
-            }.padding()
-        }
+
+        List(dataSource) { model in
+            HistoryCellView(model: model)
+        }.padding()
+    }
 }
 
 struct ListModel : Identifiable{
@@ -40,26 +38,28 @@ struct ListModel : Identifiable{
 }
 
 
-
-//
-//struct HistoryView: View {
-////    var model = ListModel(title: <#String#>, subTitle: <#String#>)
-//
-//    var dataSource = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
-//
-////    var body: some View {
-////        List(dataSource.identified(by: \.title)) { model in
-////                ListCellView(model: model)
-////            }.padding()
-////        }
-//
+//struct ListDemo : View{
+//    var dataSource1 = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
+//    var dataSource2 = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
+//    var arr : Array<Any>
+//    arr.append(dataSource1)
+//    var body: some View {
+//        List(dataSource){ group in
+//            // group
+//            Section(header: Text("昨天")){
+//                List(group){ model in
+//                    HistoryCellView(model: model)
+//                }
+//            }
+//        }.listStyle(GroupedListStyle())
+//    }
 //}
-
 
 
 struct HistoryView_Previews: PreviewProvider {
 
     static var previews: some View {
+        //ListDemo()
         HistoryView()
     }
 }
