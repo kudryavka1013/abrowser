@@ -12,16 +12,27 @@ struct SearchView: View {
     @Binding var SearchIsPresented : Bool
     let addressbar: Namespace.ID
     
-    @State var test = ""
-    @State var abc = false
+    @State var addressInput = ""
+    @State var currentURL = ""
     var body: some View {
         VStack{
             HStack{
                 ZStack{
-                    TextField(navigationState.currentURL?.absoluteString ?? "", text: $test)
-                        //            Text(navigationState.currentURL?.absoluteString ?? "(none)")
-                        .padding(.horizontal)
-                        .zIndex(1)
+                    TextField(navigationState.currentURL?.absoluteString ?? "", text: $addressInput,onCommit: {
+                        if(addressInput)
+                        navigationState.navGoTo(addressInput: addressInput)
+                        SearchIsPresented = false
+                    })
+                    .onAppear(){
+                        addressInput = navigationState.currentURL?.absoluteString ?? ""
+                    }
+                    // 关闭自动大小写和自动更正
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    // 更改键盘样式
+                    .keyboardType(.webSearch)
+                    .padding(.horizontal)
+                    .zIndex(1)
                     if(SearchIsPresented){
                         RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
                             .fill(Color.white)
@@ -34,21 +45,15 @@ struct SearchView: View {
                 Button(action: {
                     SearchIsPresented = false
                 }, label: {
-//                    withAnimation(.easeInOut(duration: 1.0)) {
-                        Text("取消")
-//                            .transition(AnyTransition.opacity.combined(with: .slide))
-//                    }
+                    Text("取消")
+                    
                 })
-
+                
+                
             }
             .padding(.horizontal)
             .padding(.vertical, 5)
-            Text(test)
-            Button(action: {
-                self.abc.toggle()
-            }, label: {
-                Text("Button")
-            })
+
             Spacer()
         }
     }

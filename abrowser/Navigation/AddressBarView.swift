@@ -14,38 +14,45 @@ struct AddressBarView: View {
     let addressbar : Namespace.ID
     
     var body: some View {
-        HStack{
-            ZStack{
-                Text(navigationState.currentURL?.absoluteString ?? "(none)")
-                    .padding(.horizontal)
-                    .zIndex(1)
-                if(!SearchIsPresented){
-                    RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
-                        .fill(Color.white)
-                        .frame(maxHeight:36)
-                        .shadow(radius: 1)
-                        .matchedGeometryEffect(id: "addressbar", in: addressbar)
-                        .onTapGesture {
-                            SearchIsPresented = true
-                        }
+        VStack {
+            HStack{
+                ZStack{
+                    
+                    Text((((navigationState.selectedWebView?.isLoading) == true) ? navigationState.currentURL?.absoluteString : navigationState.currentTitle) ?? "none")
+                        .padding(.horizontal,24)
+                        .zIndex(1)
+                        .lineLimit(1)
+                    if(!SearchIsPresented){
+                        RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
+                            .fill(Color.white)
+                            .frame(maxHeight:36)
+                            .shadow(radius: 1)
+                            .matchedGeometryEffect(id: "addressbar", in: addressbar)
+                            .onTapGesture {
+                                SearchIsPresented = true
+                            }
+                    }
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                            navigationState.refresh()
+                        }, label: {
+                            if(navigationState.selectedWebView?.isLoading == true){
+                                Image(systemName:"xmark")
+                                    .matchedGeometryEffect(id: "refreshbtn", in: addressbar)
+                            }else{
+                                Image(systemName: "arrow.triangle.2.circlepath")
+                                    .matchedGeometryEffect(id: "refreshbtn", in: addressbar)
+                            }
+                        })
+                        .zIndex(1.0)
+                        .transition(AnyTransition.opacity.combined(with: .slide))
+                    }.padding(.horizontal,8)
                 }
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        navigationState.refresh()
-                    }, label: {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                        
-//                            .transition(.slide)
-                        //                    Image(systemName:"xmark")
-                    })
-                    .zIndex(1.0)
-                }.padding(.horizontal,8)
-                .transition(.slide)
             }
+            .padding(.horizontal)
+            .padding(.vertical, 5)
         }
-        .padding(.horizontal)
-        .padding(.vertical, 5)
         
     }
 }

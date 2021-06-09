@@ -50,14 +50,18 @@ struct NavBarView: View {
                     navigationState.navGoBack()
                 }, label: {
                     Image(systemName: "chevron.left")
-                }).frame(maxWidth: .infinity)
+                })
+                .frame(maxWidth: .infinity)
+                .disabled(!navigationState.canGoBack)
                 Spacer()
                 //            导航前进
                 Button(action: {
                     navigationState.navGoForward()
                 }, label: {
                     Image(systemName: "chevron.right")
-                }).frame(maxWidth: .infinity)
+                })
+                .frame(maxWidth: .infinity)
+                .disabled(!navigationState.canGoForward)
                 Spacer()
                 //            主页
                 Button(action: {}, label: {

@@ -34,8 +34,32 @@ struct ListModel : Identifiable{
     init(title: String, subTitle: String) {
         self.title = title
         self.subTitle = subTitle
+struct HistoryView: View{
+    var body: some View{
+        Text("history view")
     }
 }
+    
+//struct HistoryView: View {
+//    var dataSource = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
+//        var body: some View {
+//            List(dataSource) { model in
+//                HistoryCellView(model: model)
+//            }.padding()
+//        }
+//}
+//
+//struct ListModel : Identifiable{
+//    var id = UUID()
+//
+//    var title: String
+//    var subTitle: String
+//
+//    init(title: String, subTitle: String) {
+//        self.title = title
+//        self.subTitle = subTitle
+//    }
+//}
 
 
 //struct ListDemo : View{
@@ -57,7 +81,6 @@ struct ListModel : Identifiable{
 
 
 struct HistoryView_Previews: PreviewProvider {
-
     static var previews: some View {
         //ListDemo()
         HistoryView()

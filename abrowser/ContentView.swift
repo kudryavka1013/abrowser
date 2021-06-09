@@ -31,6 +31,7 @@ struct ContentView: View {
                 ZStack{
                     WebView(navigationState: navigationState)
                         .frame(maxWidth: .infinity,maxHeight: .infinity)
+                    
                     Rectangle()
                         .opacity(MenuIsPresented ? 0.4 : 0)
                         .animation(.easeOut(duration: 0.2))
@@ -46,13 +47,14 @@ struct ContentView: View {
             if(TabManagementIsPresented){
                 TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
                     .background(Color.white)
-                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 1.0)))
+                    .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             }
             // 搜索
             if(SearchIsPresented){
                 SearchView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented, addressbar: addressbar)
                     .background(Color.white)
-//                    .transition(.opacity)
+                    .animation(.easeOut(duration: 0.2))
+                    .transition(.opacity)
             }
         }
     }
