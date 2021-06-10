@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HistoryCellView: View {
-    var model: ListModel
+    var model: HistoryModel
     var body: some View {
         HStack {
             VStack(alignment: .leading) {

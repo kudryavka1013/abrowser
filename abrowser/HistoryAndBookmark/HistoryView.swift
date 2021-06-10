@@ -7,25 +7,50 @@
 
 import SwiftUI
 
-
-
 struct HistoryView: View {
-    //dataSource:[ListModel] 变量，并使用 map 对其进行初始化
-    var dataSource = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
-//初始化后的 dataSource 中包含了5个 ListModel，接下来将 dataSource 作为数据源，绑定到 List 中：
     
-    
+    func deleteRow(at offsets:IndexSet) {
+        print("删除");
+    }
     
     var body: some View {
-
-
-        List(dataSource) { model in
-            HistoryCellView(model: model)
-        }.padding()
+        
+        VStack {
+            List {
+                //造数据
+                ForEach(0..<3) {
+                    if ($0 == 0) {
+                        Section(header: Text("昨天晚上")) {
+                            ForEach(0..<2) {
+                                let model = HistoryModel(title: "和生活-畅享移动新生活-和生活", subTitle: "https://www.baicu.com-\($0)")
+                                HistoryCellView(model: model)
+                            }.onDelete(perform: deleteRow)
+                        }
+                    
+                    } else if ($0 == 1) {
+                        Section(header: Text("今天早上")) {
+                            ForEach(0..<5) {
+                                let model = HistoryModel(title: "和生活-畅享移动新生活-和生活", subTitle: "https://www.baicu.com-\($0)")
+                                HistoryCellView(model: model)
+                            }.onDelete(perform: deleteRow)
+                        }
+                    } else {
+                        Section(header: Text("今天中午")) {
+                            ForEach(0..<5) {
+                                let model = HistoryModel(title: "国家医疗保障", subTitle: "https://www.govn.com-\($0)")
+                                HistoryCellView(model: model)
+                            }.onDelete(perform: deleteRow)
+                        }
+                    }
+                }
+            }
+            //.listStyle(GroupedListStyle()) 
+//            .background(Color.white)
+        }
     }
 }
 
-struct ListModel : Identifiable{
+struct HistoryModel : Identifiable{
     var id = UUID()
     
     var title: String
@@ -60,22 +85,7 @@ struct ListModel : Identifiable{
 //}
 
 
-//struct ListDemo : View{
-//    var dataSource1 = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
-//    var dataSource2 = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
-//    var arr : Array<Any>
-//    arr.append(dataSource1)
-//    var body: some View {
-//        List(dataSource){ group in
-//            // group
-//            Section(header: Text("昨天")){
-//                List(group){ model in
-//                    HistoryCellView(model: model)
-//                }
-//            }
-//        }.listStyle(GroupedListStyle())
-//    }
-//}
+
 
 
 struct HistoryView_Previews: PreviewProvider {
