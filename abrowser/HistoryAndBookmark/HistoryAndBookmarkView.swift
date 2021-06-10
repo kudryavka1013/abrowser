@@ -10,6 +10,8 @@ import SwiftUI
 struct HistoryAndBookmarkView: View {
     @Binding var viewSelected : Int
     @Binding var isPresented : Bool
+    
+    @State var clearBtnIsPresented = false
     var body: some View {
         VStack{
             // 顶部标题
@@ -39,20 +41,29 @@ struct HistoryAndBookmarkView: View {
             case 1:
                 HistoryView()
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
-                    .background(Color.green)
                 HStack{
                     Spacer()
                     Button(action: {
                         // 清除
+                        self.clearBtnIsPresented = true
                     }, label: {
                         Text("清除")
                     })
+                    .actionSheet(isPresented: $clearBtnIsPresented) {
+                        ActionSheet(title: Text("清除历史记录"), buttons: [
+                            .default(Text("今天")) { },
+                            .default(Text("今天和昨天")) { },
+                            .default(Text("全部")) { },
+                            .cancel(Text("取消"))
+                        ])
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.top, 4)
                 .padding(.bottom)
-
+                
             case 2:
+                
                 BookmarkView()
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
                     .background(Color.gray)
@@ -72,22 +83,27 @@ struct HistoryAndBookmarkView: View {
                 .padding(.horizontal)
                 .padding(.top, 4)
                 .padding(.bottom)
+                
             default:
-                HistoryView()
+                BookmarkView()
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
-                    .background(Color.green)
+                    .background(Color.gray)
                 HStack{
+                    Button(action: {
+                        // 添加
+                    }, label: {
+                        Image(systemName: "plus")
+                    })
                     Spacer()
                     Button(action: {
-                        // 清除
+                        // 编辑
                     }, label: {
-                        Text("清除")
+                        Text("编辑")
                     })
                 }
                 .padding(.horizontal)
                 .padding(.top, 4)
                 .padding(.bottom)
-
             }
             
             
@@ -98,6 +114,6 @@ struct HistoryAndBookmarkView: View {
 
 struct HistoryAndBookmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryAndBookmarkView(viewSelected: .constant(2), isPresented: .constant(false))
+        HistoryAndBookmarkView(viewSelected: .constant(1), isPresented: .constant(false))
     }
 }

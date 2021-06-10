@@ -19,8 +19,25 @@ struct SearchView: View {
             HStack{
                 ZStack{
                     TextField(navigationState.currentURL?.absoluteString ?? "", text: $addressInput,onCommit: {
-                        if(addressInput)
-                        navigationState.navGoTo(addressInput: addressInput)
+                        // 正则 https/http :// www. 串
+                        let pattern = "((https|http)://)?(www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)([\\w\\d\\-./_]+)?)?"
+                        let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
+                        // 格式化输入
+                        let formatString = addressInput.trimmingCharacters(in: NSCharacterSet.whitespaces)
+                        let range = NSMakeRange(0, formatString.count)
+                        // 正则匹配
+                        let results = regex.numberOfMatches(in: formatString, options: [], range: range)
+                  
+                        if(results == 1){
+                            if(formatString.hasPrefix("https://") || formatString.hasPrefix("http://")){
+                                navigationState.navGoTo(addressInput: formatString)
+                            }
+                            else{
+                                navigationState.navGoTo(addressInput: "https://" + formatString)
+                            }
+                        }else{
+                            navigationState.navGoTo(addressInput: "https://cn.bing.com/search?q=" + formatString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        }
                         SearchIsPresented = false
                     })
                     .onAppear(){
@@ -46,14 +63,13 @@ struct SearchView: View {
                     SearchIsPresented = false
                 }, label: {
                     Text("取消")
-                    
                 })
                 
                 
             }
             .padding(.horizontal)
             .padding(.vertical, 5)
-
+            
             Spacer()
         }
     }
