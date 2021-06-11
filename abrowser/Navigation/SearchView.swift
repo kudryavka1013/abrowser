@@ -18,6 +18,7 @@ struct SearchView: View {
         VStack{
             HStack{
                 ZStack{
+                    
                     TextField(navigationState.currentURL?.absoluteString ?? "", text: $addressInput,onCommit: {
                         // 正则 https/http :// www. 串
                         let pattern = "((https|http)://)?(www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)([\\w\\d\\-./_]+)?)?"
@@ -69,7 +70,12 @@ struct SearchView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 5)
-            
+            if ((navigationState.image) != nil){
+                Image(uiImage: navigationState.image!)
+            }else{
+                Rectangle()
+            }
+
             Spacer()
         }
     }

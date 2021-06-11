@@ -23,11 +23,12 @@ struct TabManagementView: View {
                     }
                 }
             }
-            .frame(height: .infinity)
+//            .frame(height: .infinity)
             HStack{
                 Button(action: {
                     navigationState.deleteAllWebViews()
                     // 更改导航页显示
+//                    navigationState.test()
                     TabManagementIsPresented = false
                 }, label: {
                     Text("全部关闭")

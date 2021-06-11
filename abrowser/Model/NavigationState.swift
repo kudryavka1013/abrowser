@@ -16,6 +16,8 @@ class NavigationState : NSObject, ObservableObject{
     @Published var canGoBack : Bool = false
     @Published var canGoForward : Bool = false
     
+    @Published var image : UIImage?
+    @Published var images : [UIImage] = []
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
         let wv = WKWebView()
         wv.navigationDelegate = self
@@ -29,6 +31,11 @@ class NavigationState : NSObject, ObservableObject{
     
     func deleteAllWebViews(){
         webViews.removeAll()
+        createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
+    }
+    
+    func screenshot(){
+        image = self.selectedWebView?.screenshot()
     }
     
     func navGoBack(){
