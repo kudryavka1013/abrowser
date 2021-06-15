@@ -10,16 +10,60 @@ import WebKit
 
 struct WebView: UIViewRepresentable {
     @ObservedObject var navigationState : NavigationState
+    
+    class Coordinator: NSObject, WKUIDelegate {
+        var parent: WebView
+
+        init(_ parent: WebView) {
+            self.parent = parent
+        }
+
+        // Delegate methods go here
+
+        func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+//                    let alertViewController = UIAlertController(title: "提示", message:message, preferredStyle: UIAlertController.Style.alert)
+//                    alertViewController.addAction(UIAlertAction(title: "确认", style: UIAlertAction.Style.default, handler: { (action) in
+//                        completionHandler()
+//                    }))
+//                    alertViewController.present(alertViewController, animated: true)
+        }
+        
+        func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+            //        let alertVicwController = UIAlertController(title: "提示", message: message, preferredStyle: UIAlertController.Style.alert)
+            //                alertVicwController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: { (alertAction) in
+            //                    completionHandler(false)
+            //                }))
+            //                alertVicwController.addAction(UIAlertAction(title: "确定", style: UIAlertAction.Style.default, handler: { (alertAction) in
+            //                    completionHandler(true)
+            //                }))
+            //                self.present(alertVicwController, animated: true, completion: nil)
+        }
+        
+        func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+            //            let alertViewController = UIAlertController(title: prompt, message: "", preferredStyle: UIAlertController.Style.alert)
+            //                    alertViewController.addTextField { (textField) in
+            //                        textField.text = defaultText
+            //                    }
+            //                    alertViewController.addAction(UIAlertAction(title: "完成", style: UIAlertAction.Style.default, handler: { (alertAction) in
+            //                        completionHandler(alertViewController.textFields![0].text)
+            //                    }))
+            //                    self.present(alertViewController, animated: true, completion: nil)
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
     //实现协议里的makeUIView方法，用来初始化并返回一个WKWebView网页视图对象
     func makeUIView(context: Context) -> WKWebView {
         print("makeUIView")
-        let config = WKWebViewConfiguration()
         let wv = WKWebView()
         return wv
     }
     //实现协议里的updatedUIView方法，用来设置网页视图更新需要的参数
     func updateUIView(_ uiView: WKWebView, context: Context) {
         print("updateUIView")
+        uiView.uiDelegate = context.coordinator
         guard let webView = navigationState.selectedWebView else {
             print("no seleted webview")
             return

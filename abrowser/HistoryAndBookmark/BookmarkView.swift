@@ -45,6 +45,7 @@ struct BookmarkView: View {
     var body: some View {
         NavigationView{
             BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, data: item)
+            
         }
     }
 }

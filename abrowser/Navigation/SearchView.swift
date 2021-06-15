@@ -19,7 +19,7 @@ struct SearchView: View {
             HStack{
                 ZStack{
                     TextField(navigationState.currentURL?.absoluteString ?? "", text: $addressInput,onCommit: {
-                        // 正则 https/http :// www. 串
+                        // 正则
                         let pattern = "((https|http)://)?(www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)([\\w\\d\\-./_]+)?)?"
                         let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
                         // 格式化输入

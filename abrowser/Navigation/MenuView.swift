@@ -16,7 +16,7 @@ struct MenuView: View {
     @State var HistoryOrBookmarkIsPresented = false
     @State var ShareIsPresented = false
     @State var viewSeleted = 1
-            
+    @State var darkMode = false
     
     var body: some View {
         VStack{
@@ -104,11 +104,47 @@ struct MenuView: View {
                     }
                 }).frame(maxWidth:.infinity)
             }
-            .frame(maxWidth:.infinity)
+            .padding()
+            HStack{
+                // 设置
+                Button(action: {
+                    MenuIsPresented = false
+                }, label: {
+                    VStack{
+                        Image(systemName: "gearshape")
+                            .padding(.bottom, 1)
+                        Text("设置")
+                            .font(.subheadline)
+                    }
+                })
+                .frame(maxWidth:.infinity)
+                // 浅色/深色模式
+                Button(action: {
+                    darkMode.toggle()
+                }, label: {
+                    VStack{
+                        if(darkMode){
+                            Image(systemName: "moon")
+                                .padding(.bottom, 1)
+                            Text("深色模式")
+                                .font(.subheadline)
+
+                        }else{
+                            Image(systemName: "sun.max")
+                                .padding(.bottom, 1)
+                            Text("浅色模式")
+                                .font(.subheadline)
+                        }
+                        
+                    }
+                })
+                .frame(maxWidth:.infinity)
+                Spacer()
+            }
             .padding()
             Spacer()
         }
-        .frame(height: 200)
+        .frame(height: 400)
         .background(Color.white)
         .cornerRadius(20)
         .shadow(radius: 20)

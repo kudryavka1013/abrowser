@@ -10,6 +10,8 @@ import SwiftUI
 struct BookmarkCellView : View{
     @ObservedObject var navigationState : NavigationState
     @Binding var isPresented : Bool
+    @State var isEditing = false
+    @State var test = ""
     var data : [Bookmark]
     
     func deleteRow (at offsets:IndexSet){
@@ -17,22 +19,31 @@ struct BookmarkCellView : View{
     }
     
     var body: some View {
-        List{
-            ForEach(data){ item in
-                if(item.children != nil){
-                    NavigationLink(destination: BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, data: item.children!)){
-                        Text(item.description)
-                    }
-                }
-                else{
-                    Text(item.description)
-                        .onTapGesture {
-                            navigationState.navGoTo(addressInput: item.url)
-                            isPresented = false
+        VStack{
+            List{
+                ForEach(data){ item in
+                    if(item.children != nil){
+                        NavigationLink(destination: BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, data: item.children!)){
+                            Text(item.description)
                         }
-                }
-            }.onDelete(perform: deleteRow)
+                    }
+                    else{
+                        Text(item.description)
+                            .onTapGesture {
+                                navigationState.navGoTo(addressInput: item.url)
+                                isPresented = false
+                            }
+                    }
+                }.onDelete(perform: deleteRow)
+            }.environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
+            Button(action: {
+                isEditing.toggle()
+            }, label: {
+                Text("Button")
+            })
+            
         }
+        
     }
 }
 

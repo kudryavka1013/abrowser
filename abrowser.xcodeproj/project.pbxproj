@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */; };
 		0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468A2664F44500BA805F /* abrowserApp.swift */; };
 		0CA1468D2664F44500BA805F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468C2664F44500BA805F /* ContentView.swift */; };
 		0CA1468F2664F44600BA805F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA1468E2664F44600BA805F /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditView.swift; sourceTree = "<group>"; };
 		0CA146872664F44500BA805F /* abrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = abrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA1468A2664F44500BA805F /* abrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abrowserApp.swift; sourceTree = "<group>"; };
 		0CA1468C2664F44500BA805F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				0CA146D52669C6DB00BA805F /* BookmarkView.swift */,
 				59BD4C2F266E4B9700851029 /* HistoryCellView.swift */,
 				1817B636266F8F8600C7B4FE /* BookmarkCellView.swift */,
+				0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */,
 			);
 			path = HistoryAndBookmark;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */,
 				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
 				0CA146CA266863C800BA805F /* NavigationState.swift in Sources */,
 				1817B637266F8F8600C7B4FE /* BookmarkCellView.swift in Sources */,

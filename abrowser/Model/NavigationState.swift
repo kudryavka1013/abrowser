@@ -21,6 +21,7 @@ class NavigationState : NSObject, ObservableObject{
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
         let wv = WKWebView()
         wv.navigationDelegate = self
+        wv.uiDelegate = self
         webViews.append(wv)
         selectedWebView = wv
         wv.load(request)
@@ -31,6 +32,7 @@ class NavigationState : NSObject, ObservableObject{
         super.init()
         let wv = WKWebView()
         wv.navigationDelegate = self
+        wv.uiDelegate = self
         webViews.append(wv)
         wv.load(URLRequest(url: URL(string: "https://www.baidu.com")!))
         selectedWebView = wv
@@ -73,7 +75,7 @@ class NavigationState : NSObject, ObservableObject{
 }
 
 // 导航代理方法，追踪WKWebView加载过程
-extension NavigationState : WKNavigationDelegate {
+extension NavigationState : WKNavigationDelegate{
     //页面开始加载时调用
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!){
         print("didStart")
@@ -107,5 +109,35 @@ extension NavigationState : WKNavigationDelegate {
 extension NavigationState : WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         return webView
+    }
+    
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        //        let alertViewController = UIAlertController(title: "提示", message:message, preferredStyle: UIAlertController.Style.alert)
+        //        alertViewController.addAction(UIAlertAction(title: "确认", style: UIAlertAction.Style.default, handler: { (action) in
+        //            completionHandler()
+        //        }))
+        //        self.present(alertViewController, animated: true)
+    }
+    
+    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        //        let alertVicwController = UIAlertController(title: "提示", message: message, preferredStyle: UIAlertController.Style.alert)
+        //                alertVicwController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel, handler: { (alertAction) in
+        //                    completionHandler(false)
+        //                }))
+        //                alertVicwController.addAction(UIAlertAction(title: "确定", style: UIAlertAction.Style.default, handler: { (alertAction) in
+        //                    completionHandler(true)
+        //                }))
+        //                self.present(alertVicwController, animated: true, completion: nil)
+    }
+    
+    func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+        //            let alertViewController = UIAlertController(title: prompt, message: "", preferredStyle: UIAlertController.Style.alert)
+        //                    alertViewController.addTextField { (textField) in
+        //                        textField.text = defaultText
+        //                    }
+        //                    alertViewController.addAction(UIAlertAction(title: "完成", style: UIAlertAction.Style.default, handler: { (alertAction) in
+        //                        completionHandler(alertViewController.textFields![0].text)
+        //                    }))
+        //                    self.present(alertViewController, animated: true, completion: nil)
     }
 }

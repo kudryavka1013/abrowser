@@ -19,7 +19,7 @@ struct NavBarView: View {
     var body: some View {
         ZStack{
             MenuView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented)
-                .offset(y: MenuIsPresented ? -50 : 100)
+                .offset(y: MenuIsPresented ? -25 : 200)
                 .offset(y: MenuPosition.height)
                 .animation(.easeOut(duration: 0.2))
 //                上下滑动
@@ -31,7 +31,7 @@ struct NavBarView: View {
                             }
                         }
                         .onEnded{ value in
-                            if(value.translation.height <= 60){
+                            if(value.translation.height <= 80){
                                 self.MenuPosition = .zero
                             }else{
                                 MenuIsPresented = false
@@ -40,6 +40,7 @@ struct NavBarView: View {
                         }
                 )
             // 遮盖底部安全区域
+            
             Rectangle()
                 .fill(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
                 .frame(height: 200)
@@ -66,7 +67,8 @@ struct NavBarView: View {
                 Spacer()
                 //            主页
                 Button(action: {
-                    NavViewIsPresented = true
+//                    NavViewIsPresented = true
+                    navigationState.navGoTo(addressInput: "https://www.baidu.com")
                 }, label: {
                     Image(systemName: "house")
                 }).frame(maxWidth: .infinity)

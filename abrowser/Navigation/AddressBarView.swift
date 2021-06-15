@@ -21,7 +21,6 @@ struct AddressBarView: View {
                         .padding(.horizontal,32)
                         .zIndex(1)
                         .lineLimit(1)
-                    if(!SearchIsPresented){
                         RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
                             .fill(Color.white)
                             .frame(maxHeight:36)
@@ -30,7 +29,6 @@ struct AddressBarView: View {
                             .onTapGesture {
                                 SearchIsPresented = true
                             }
-                    }
                     HStack{
                         Spacer()
                         Button(action: {
