@@ -52,7 +52,7 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
-                    HistoryAndBookmarkView(viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
+                    HistoryAndBookmarkView(navigationState: navigationState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
                 })
                 
                 // 历史记录
@@ -70,7 +70,7 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
-                    HistoryAndBookmarkView(viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
+                    HistoryAndBookmarkView(navigationState: navigationState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
                 })
                 
                 

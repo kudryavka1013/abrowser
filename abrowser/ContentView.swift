@@ -13,9 +13,11 @@ struct ContentView: View {
     //    @StateObject var histortyState = historyState()
     
     @Namespace var addressbar
+
     @State var MenuIsPresented = false
     @State var TabManagementIsPresented = false
     @State var SearchIsPresented = false
+    @State var NavViewIsPresented = true
     
     var body: some View {
         ZStack{
@@ -27,10 +29,15 @@ struct ContentView: View {
                                         .transition(.opacity)
                 }
                 
-                // progressbar needed!!!
                 ZStack{
+
                     WebView(navigationState: navigationState)
                         .frame(maxWidth: .infinity,maxHeight: .infinity)
+                    
+                    if(!NavViewIsPresented){
+                        NavView(NavViewIsPresented: $NavViewIsPresented)
+                            .frame(maxWidth: .infinity,maxHeight: .infinity)
+                    }
                     
                     Rectangle()
                         .opacity(MenuIsPresented ? 0.4 : 0)
@@ -40,7 +47,7 @@ struct ContentView: View {
                         }
                     //                        .zIndex(1.0)
                 }
-                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented)
+                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
             }
             
             // 标签页管理页面
@@ -51,7 +58,7 @@ struct ContentView: View {
             }
             // 搜索
             if(SearchIsPresented){
-                SearchView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented, addressbar: addressbar)
+                SearchView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented, NavViewIsPresented: $NavViewIsPresented, addressbar: addressbar)
                     .background(Color.white)
                     .animation(.easeOut(duration: 0.2))
                     .transition(.opacity)

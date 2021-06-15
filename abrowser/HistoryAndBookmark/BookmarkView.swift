@@ -6,35 +6,25 @@
 //
 
 import SwiftUI
+//struct DestinationPageView: View {
+//    var color: Color
+//    var body: some View {
+//        Text("Destination Page")
+//            .font(.title)
+//            .foregroundColor(color)
+//    }
+//}
 
-struct DestinationPageView: View {
-    var color: Color
-    var body: some View {
-        Text("Destination Page")
-            .font(.title)
-            .foregroundColor(color)
-    }
-}
 
-struct Bookmark: Identifiable, Hashable {
-    var id = UUID()
-    var name = ""
-    var url = ""
-    var children: [Bookmark]? = nil
-    var description: String {
-        switch children {
-        case nil:
-            return "🔖 \(name)"
-        case .some(let children):
-            return children.isEmpty ? "📂 \(name)" : "📁 \(name)"
-        }
-    }
-}
+
+
 
 struct BookmarkView: View {
-//        @ObservedObject var navigationState : NavigationState
+    @ObservedObject var navigationState : NavigationState
+    @Binding var isPresented : Bool
+//    @Binding var data : []
     
-    var item = [
+    @State var item = [
         Bookmark(name: "文件夹1",children: [
             Bookmark(name: "书签1",url: "https://www.baidu.com",children: nil),
             Bookmark(name: "书签2",url: "https://www.baidu.com",children: nil),
@@ -53,42 +43,16 @@ struct BookmarkView: View {
     ]
     
     var body: some View {
-        
         NavigationView{
-            BookmarkCellView(data: item)
+            BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, data: item)
         }
     }
 }
 
-struct BookmarkCellView : View{
-    var data : [Bookmark]
-    
-    func deleteRow (at offsets:IndexSet){
-        print("删除");
-    }
-    
-    var body: some View {
-        
-        List{
-            ForEach(data){ item in
-                if(item.children != nil){
-                    NavigationLink(destination: BookmarkCellView(data: item.children!)){
-                        Text(item.description)
-                    }
-                }
-                else{
-                    Text(item.description)
-                        .onTapGesture {
-                            <#code#>
-                        }
-                }
-            }.onDelete(perform: deleteRow)
-        }
-    }
-}
 
-struct BookmarkView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookmarkView()
-    }
-}
+
+//struct BookmarkView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BookmarkView()
+//    }
+//}

@@ -14,12 +14,11 @@ struct AddressBarView: View {
     let addressbar : Namespace.ID
     
     var body: some View {
-        VStack {
+        VStack(spacing:0) {
             HStack{
                 ZStack{
-                    
                     Text((((navigationState.selectedWebView?.isLoading) == true) ? navigationState.currentURL?.absoluteString : navigationState.currentTitle) ?? "none")
-                        .padding(.horizontal,24)
+                        .padding(.horizontal,32)
                         .zIndex(1)
                         .lineLimit(1)
                     if(!SearchIsPresented){
@@ -46,12 +45,20 @@ struct AddressBarView: View {
                             }
                         })
                         .zIndex(1.0)
-                        .transition(AnyTransition.opacity.combined(with: .slide))
                     }.padding(.horizontal,8)
                 }
             }
             .padding(.horizontal)
-            .padding(.vertical, 5)
+            .padding(.top,4)
+            .padding(.bottom,8)
+            
+            // 简单的网页加载进度条
+            if(navigationState.selectedWebView?.estimatedProgress != 1.0){
+                ProgressView(value: navigationState.selectedWebView?.estimatedProgress)
+                    .progressViewStyle(LinearProgressViewStyle())
+                    .frame(height: 1)
+            }
+            
         }
         
     }

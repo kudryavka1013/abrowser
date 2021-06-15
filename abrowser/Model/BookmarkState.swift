@@ -7,7 +7,7 @@
 import SwiftUI
 
 class BookmarkState : NSObject, ObservableObject{
-   
+
     func addBookmark(name: String , url: String){
         //
     }
@@ -15,7 +15,7 @@ class BookmarkState : NSObject, ObservableObject{
     
 }
 
-/* struct Bookmark:Identifiable, Hashable {
+struct Bookmark: Identifiable, Hashable {
     var id = UUID()
     var name = ""
     var url = ""
@@ -28,4 +28,5 @@ class BookmarkState : NSObject, ObservableObject{
             return children.isEmpty ? "📂 \(name)" : "📁 \(name)"
         }
     }
-}*/
+}
+

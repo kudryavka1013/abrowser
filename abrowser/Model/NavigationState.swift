@@ -27,6 +27,15 @@ class NavigationState : NSObject, ObservableObject{
         return wv
     }
     
+    override init() {
+        super.init()
+        let wv = WKWebView()
+        wv.navigationDelegate = self
+        webViews.append(wv)
+        wv.load(URLRequest(url: URL(string: "https://www.baidu.com")!))
+        selectedWebView = wv
+    }
+    
     func deleteWebView(){}
     
     func deleteAllWebViews(){
@@ -58,7 +67,7 @@ class NavigationState : NSObject, ObservableObject{
         }
     }
     
-    func navGoTo(addressInput : String){
+    func navGoTo(addressInput: String){
         self.selectedWebView?.load(URLRequest(url: URL(string: addressInput)!))
     }
 }
@@ -67,22 +76,23 @@ class NavigationState : NSObject, ObservableObject{
 extension NavigationState : WKNavigationDelegate {
     //页面开始加载时调用
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!){
-        
+        print("didStart")
     }
     
     //当内容开始返回时调用
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        print("didCommit")
         if webView == selectedWebView {
             self.currentURL = webView.url
             // 上一页按钮和下一页按钮是否可点
             self.canGoBack = webView.canGoBack
-            print(canGoBack)
             self.canGoForward = webView.canGoForward
         }
     }
     
     // 页面加载完成之后调用
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
+        print("didFinish")
         if webView == selectedWebView {
             // 页面标题
             self.currentTitle = webView.title
@@ -90,7 +100,7 @@ extension NavigationState : WKNavigationDelegate {
     }
     //页面加载失败时调用
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error){
-        
+        print("didFail")
     }
 }
 

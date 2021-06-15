@@ -13,6 +13,7 @@ struct NavBarView: View {
     @ObservedObject var bookmarkState : BookmarkState
     @Binding var MenuIsPresented : Bool
     @Binding var TabManagementIsPresented : Bool
+    @Binding var NavViewIsPresented : Bool
     
     @State var MenuPosition = CGSize.zero
     var body: some View {
@@ -64,7 +65,9 @@ struct NavBarView: View {
                 .disabled(!navigationState.canGoForward)
                 Spacer()
                 //            主页
-                Button(action: {}, label: {
+                Button(action: {
+                    NavViewIsPresented = true
+                }, label: {
                     Image(systemName: "house")
                 }).frame(maxWidth: .infinity)
                 Spacer()

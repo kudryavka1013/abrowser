@@ -20,15 +20,15 @@ struct WebView: UIViewRepresentable {
     func updateUIView(_ uiView: WKWebView, context: Context) {
         print("updateUIView")
         guard let webView = navigationState.selectedWebView else {
+            print("no seleted webview")
             return
         }
-        if webView != uiView.subviews.first {
-            uiView.subviews.forEach { $0.removeFromSuperview() }
-            
-            webView.frame = CGRect(origin: .zero, size: uiView.bounds.size)
-            uiView.addSubview(webView)
-        }
+        
+        uiView.subviews.forEach { $0.removeFromSuperview() }
+        webView.frame = CGRect(origin: .zero, size: uiView.bounds.size)
+        uiView.addSubview(webView)
     }
+    
     typealias UIViewType = WKWebView
 }
 
