@@ -77,9 +77,6 @@ struct NavBarView: View {
                 }, label: {
                     Image(systemName: "square.on.square")
                 })
-                //                .sheet(isPresented: $TabManagementIsPresented, content: {
-                //                    TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
-                //                })
                 .frame(maxWidth: .infinity)
                 Spacer()
                 //            菜单

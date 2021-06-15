@@ -521,7 +521,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"abrowser/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4ZBFQ8FL6X;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = abrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -545,7 +545,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"abrowser/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4ZBFQ8FL6X;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = abrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

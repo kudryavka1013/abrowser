@@ -16,6 +16,8 @@ struct MenuView: View {
     @State var HistoryOrBookmarkIsPresented = false
     @State var ShareIsPresented = false
     @State var viewSeleted = 1
+            
+    
     var body: some View {
         VStack{
             Rectangle()
@@ -75,7 +77,12 @@ struct MenuView: View {
                 
                 
                 // 分享
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    guard let urlShare = navigationState.currentURL else { return }
+                        let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+                        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+                    MenuIsPresented = false
+                }, label: {
                     VStack{
                         Image(systemName: "square.and.arrow.up")
                             .padding(.bottom, 1)

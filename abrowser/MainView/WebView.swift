@@ -13,6 +13,7 @@ struct WebView: UIViewRepresentable {
     //实现协议里的makeUIView方法，用来初始化并返回一个WKWebView网页视图对象
     func makeUIView(context: Context) -> WKWebView {
         print("makeUIView")
+        let config = WKWebViewConfiguration()
         let wv = WKWebView()
         return wv
     }
@@ -27,6 +28,7 @@ struct WebView: UIViewRepresentable {
         uiView.subviews.forEach { $0.removeFromSuperview() }
         webView.frame = CGRect(origin: .zero, size: uiView.bounds.size)
         uiView.addSubview(webView)
+        
     }
     
     typealias UIViewType = WKWebView

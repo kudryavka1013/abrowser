@@ -34,10 +34,10 @@ struct ContentView: View {
                     WebView(navigationState: navigationState)
                         .frame(maxWidth: .infinity,maxHeight: .infinity)
                     
-                    if(!NavViewIsPresented){
-                        NavView(NavViewIsPresented: $NavViewIsPresented)
-                            .frame(maxWidth: .infinity,maxHeight: .infinity)
-                    }
+//                    if(!NavViewIsPresented){
+//                        NavView(NavViewIsPresented: $NavViewIsPresented)
+//                            .frame(maxWidth: .infinity,maxHeight: .infinity)
+//                    }
                     
                     Rectangle()
                         .opacity(MenuIsPresented ? 0.4 : 0)
