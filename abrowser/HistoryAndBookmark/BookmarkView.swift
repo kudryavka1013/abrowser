@@ -15,9 +15,11 @@ struct DestinationPageView: View {
             .foregroundColor(color)
     }
 }
-struct Bookmark:Identifiable, Hashable {
+
+struct Bookmark: Identifiable, Hashable {
     var id = UUID()
     var name = ""
+    var url = ""
     var children: [Bookmark]? = nil
     var description: String {
         switch children {
@@ -30,24 +32,24 @@ struct Bookmark:Identifiable, Hashable {
 }
 
 struct BookmarkView: View {
-    //    @ObservedObject var navigationState : NavigationState
+//        @ObservedObject var navigationState : NavigationState
     
     var item = [
         Bookmark(name: "文件夹1",children: [
-            Bookmark(name: "书签1",children: nil),
-            Bookmark(name: "书签2",children: nil),
-            Bookmark(name: "书签3",children: nil)
+            Bookmark(name: "书签1",url: "https://www.baidu.com",children: nil),
+            Bookmark(name: "书签2",url: "https://www.baidu.com",children: nil),
+            Bookmark(name: "书签3",url: "https://www.baidu.com",children: nil)
         ]),
         Bookmark(name: "文件夹2",children: [
             Bookmark(name: "文件夹3",children: [
-                Bookmark(name: "书签7",children: nil),
-                Bookmark(name: "书签8",children: nil),
-                Bookmark(name: "书签9",children: nil)
+                Bookmark(name: "书签7",url: "https://www.baidu.com",children: nil),
+                Bookmark(name: "书签8",url: "https://www.baidu.com",children: nil),
+                Bookmark(name: "书签9",url: "https://www.baidu.com",children: nil)
             ]),
-            Bookmark(name: "书签4",children: nil),
+            Bookmark(name: "书签4",url: "https://www.baidu.com",children: nil),
             Bookmark(name: "文件夹4",children: [])
         ]),
-        Bookmark(name: "书签5",children: nil)
+        Bookmark(name: "书签5",url: "https://www.baidu.com",children: nil)
     ]
     
     var body: some View {
@@ -76,6 +78,9 @@ struct BookmarkCellView : View{
                 }
                 else{
                     Text(item.description)
+                        .onTapGesture {
+                            <#code#>
+                        }
                 }
             }.onDelete(perform: deleteRow)
         }
