@@ -22,9 +22,9 @@ import SwiftUI
 struct BookmarkView: View {
     @ObservedObject var navigationState : NavigationState
     @Binding var isPresented : Bool
-//    @Binding var data : []
+    //    @Binding var data : []
     
-    @State var item = [
+    @State var data = [
         Bookmark(name: "文件夹1",children: [
             Bookmark(name: "书签1",url: "https://www.baidu.com",children: nil),
             Bookmark(name: "书签2",url: "https://www.baidu.com",children: nil),
@@ -42,13 +42,19 @@ struct BookmarkView: View {
         Bookmark(name: "书签5",url: "https://www.baidu.com",children: nil)
     ]
     
-    var body: some View {
-        NavigationView{
-            BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, data: item)
-            
-        }
+    @State var isEditing = false
+    
+    func deleteRow (at offsets:IndexSet){
+        print("删除");
     }
+    
+    var body: some View {
+        BookmarkCellView(navigationState: navigationState, isPresented: $isPresented, isEditing: $isEditing, data: data)
+    }
+    
+    
 }
+
 
 
 

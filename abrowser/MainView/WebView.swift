@@ -26,6 +26,7 @@ struct WebView: UIViewRepresentable {
 //                    alertViewController.addAction(UIAlertAction(title: "确认", style: UIAlertAction.Style.default, handler: { (action) in
 //                        completionHandler()
 //                    }))
+            print(message)
 
         }
         
@@ -37,7 +38,8 @@ struct WebView: UIViewRepresentable {
 //            alertController.addAction(
 //                UIAlertAction(title: "Cancel", style: .default, handler: { (action) in completionHandler(false) })
 //            )
-            
+            print(message)
+
         }
     }
 
@@ -53,7 +55,7 @@ struct WebView: UIViewRepresentable {
     //实现协议里的updatedUIView方法，用来设置网页视图更新需要的参数
     func updateUIView(_ uiView: WKWebView, context: Context) {
         print("updateUIView")
-        uiView.uiDelegate = context.coordinator
+//        uiView.uiDelegate = context.coordinator
         guard let webView = navigationState.selectedWebView else {
             print("no seleted webview")
             return
@@ -61,6 +63,7 @@ struct WebView: UIViewRepresentable {
         
         uiView.subviews.forEach { $0.removeFromSuperview() }
         webView.frame = CGRect(origin: .zero, size: uiView.bounds.size)
+//        webView.uiDelegate = context.coordinator
         uiView.addSubview(webView)
         
     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct BookmarkCellView : View{
     @ObservedObject var navigationState : NavigationState
     @Binding var isPresented : Bool
-    @State var isEditing = false
+    @Binding var isEditing : Bool
     @State var test = ""
     var data : [Bookmark]
     
@@ -23,7 +23,7 @@ struct BookmarkCellView : View{
             List{
                 ForEach(data){ item in
                     if(item.children != nil){
-                        NavigationLink(destination: BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, data: item.children!)){
+                        NavigationLink(destination: BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, isEditing: $isEditing, data: item.children!)){
                             Text(item.description)
                         }
                     }
@@ -36,12 +36,24 @@ struct BookmarkCellView : View{
                     }
                 }.onDelete(perform: deleteRow)
             }.environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
-            Button(action: {
-                isEditing.toggle()
-            }, label: {
-                Text("Button")
-            })
-            
+            HStack{
+                Button(action: {
+                    // 添加
+                }, label: {
+                    Text("新建文件夹")
+                })
+                Spacer()
+                
+                Button(action: {
+                    // 编辑
+                    isEditing.toggle()
+                }, label: {
+                    Text("编辑")
+                })
+            }
+            .padding(.horizontal)
+            .padding(.top, 8)
+            .padding(.bottom)
         }
         
     }
