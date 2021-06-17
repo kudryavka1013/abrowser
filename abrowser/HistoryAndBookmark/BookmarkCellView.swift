@@ -9,13 +9,14 @@ import SwiftUI
 
 struct BookmarkCellView : View{
     @ObservedObject var navigationState : NavigationState
+    @ObservedObject var bookmarkState : BookmarkState
     @Binding var isPresented : Bool
     @Binding var isEditing : Bool
     @State var test = ""
     var data : [Bookmark]
     
     func deleteRow (at offsets:IndexSet){
-        print("删除");
+        bookmarkState.data.remove(atOffsets: offsets)
     }
     
     var body: some View {
@@ -23,12 +24,14 @@ struct BookmarkCellView : View{
             List{
                 ForEach(data){ item in
                     if(item.children != nil){
-                        NavigationLink(destination: BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, isEditing: $isEditing, data: item.children!)){
+                        NavigationLink(destination: BookmarkCellView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, data: item.children!)){
                             Text(item.description)
+                                .lineLimit(1)
                         }
                     }
                     else{
                         Text(item.description)
+                            .lineLimit(1)
                             .onTapGesture {
                                 navigationState.navGoTo(addressInput: item.url)
                                 isPresented = false

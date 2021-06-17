@@ -21,35 +21,15 @@ import SwiftUI
 
 struct BookmarkView: View {
     @ObservedObject var navigationState : NavigationState
+    @ObservedObject var bookmarkState : BookmarkState
     @Binding var isPresented : Bool
-    //    @Binding var data : []
-    
-    @State var data = [
-        Bookmark(name: "文件夹1",children: [
-            Bookmark(name: "书签1",url: "https://www.baidu.com",children: nil),
-            Bookmark(name: "书签2",url: "https://www.baidu.com",children: nil),
-            Bookmark(name: "书签3",url: "https://www.baidu.com",children: nil)
-        ]),
-        Bookmark(name: "文件夹2",children: [
-            Bookmark(name: "文件夹3",children: [
-                Bookmark(name: "书签7",url: "https://www.baidu.com",children: nil),
-                Bookmark(name: "书签8",url: "https://www.baidu.com",children: nil),
-                Bookmark(name: "书签9",url: "https://www.baidu.com",children: nil)
-            ]),
-            Bookmark(name: "书签4",url: "https://www.baidu.com",children: nil),
-            Bookmark(name: "文件夹4",children: [])
-        ]),
-        Bookmark(name: "书签5",url: "https://www.baidu.com",children: nil)
-    ]
     
     @State var isEditing = false
     
-    func deleteRow (at offsets:IndexSet){
-        print("删除");
-    }
+
     
     var body: some View {
-        BookmarkCellView(navigationState: navigationState, isPresented: $isPresented, isEditing: $isEditing, data: data)
+        BookmarkCellView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, data: bookmarkState.data)
     }
     
     
