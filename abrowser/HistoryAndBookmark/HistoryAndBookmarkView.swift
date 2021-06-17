@@ -10,6 +10,7 @@ import SwiftUI
 struct HistoryAndBookmarkView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var historyState : HistoryState
+    @ObservedObject var bookmarkState : BookmarkState
     @Binding var viewSelected : Int
     @Binding var isPresented : Bool
     
@@ -33,7 +34,7 @@ struct HistoryAndBookmarkView: View {
                         .frame(maxWidth: .infinity,maxHeight:.infinity)
                     
                 }else{
-                    BookmarkView(navigationState: navigationState,isPresented: $isPresented)
+                    BookmarkView(navigationState: navigationState,bookmarkState: bookmarkState, isPresented: $isPresented)
                         .frame(maxWidth: .infinity,maxHeight:.infinity)
                 }
             }
