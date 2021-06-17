@@ -17,6 +17,7 @@ struct MenuView: View {
     @State var ShareIsPresented = false
     @State var viewSeleted = 1
     @State var darkMode = false
+    @State var SettingsIsPresented = false
     
     var body: some View {
         VStack{
@@ -109,6 +110,7 @@ struct MenuView: View {
                 // 设置
                 Button(action: {
                     MenuIsPresented = false
+                    SettingsIsPresented = true
                 }, label: {
                     VStack{
                         Image(systemName: "gearshape")
@@ -116,6 +118,8 @@ struct MenuView: View {
                         Text("设置")
                             .font(.subheadline)
                     }
+                }).sheet(isPresented: $SettingsIsPresented, content: {
+                    Text("1234")
                 })
                 .frame(maxWidth:.infinity)
                 // 浅色/深色模式

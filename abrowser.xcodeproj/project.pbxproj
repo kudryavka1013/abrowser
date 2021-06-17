@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */; };
+		0C5CE59C2678D638009CE5EE /* html in Resources */ = {isa = PBXBuildFile; fileRef = 0C5CE59B2678D638009CE5EE /* html */; };
 		0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468A2664F44500BA805F /* abrowserApp.swift */; };
 		0CA1468D2664F44500BA805F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468C2664F44500BA805F /* ContentView.swift */; };
 		0CA1468F2664F44600BA805F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA1468E2664F44600BA805F /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditView.swift; sourceTree = "<group>"; };
+		0C5CE59B2678D638009CE5EE /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		0CA146872664F44500BA805F /* abrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = abrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA1468A2664F44500BA805F /* abrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abrowserApp.swift; sourceTree = "<group>"; };
 		0CA1468C2664F44500BA805F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,13 +135,14 @@
 				0CA1468C2664F44500BA805F /* ContentView.swift */,
 				0CA1468E2664F44600BA805F /* Assets.xcassets */,
 				0CA146932664F44600BA805F /* Info.plist */,
+				0C5CE59B2678D638009CE5EE /* html */,
 				0CA146DF266DCCB500BA805F /* MainView */,
 				0CA146CF2668737600BA805F /* Navigation */,
 				0CA146DA266A585800BA805F /* Model */,
 				0CA146CD2668733600BA805F /* TabManagement */,
 				0CA146D22669C6BE00BA805F /* HistoryAndBookmark */,
-				0CA146902664F44600BA805F /* Preview Content */,
 				7384DB6C26799E9E004225CD /* Settings */,
+				0CA146902664F44600BA805F /* Preview Content */,
 			);
 			path = abrowser;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			files = (
 				0CA146922664F44600BA805F /* Preview Assets.xcassets in Resources */,
 				0CA1468F2664F44600BA805F /* Assets.xcassets in Resources */,
+				0C5CE59C2678D638009CE5EE /* html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
