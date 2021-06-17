@@ -12,8 +12,8 @@ struct HistoryCellView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(model.websitename)
-                Text(model.websiteURL)
+                Text(model.websitename).lineLimit(1)
+                Text(model.websiteURL).lineLimit(1)
             }
             Spacer()
         }//.padding()
