@@ -72,9 +72,10 @@ struct HistoryAndBookmarkView: View {
                     Button(action: {
                         // 添加
                     }, label: {
-                        Image(systemName: "plus")
+                        Text("新建文件夹")
                     })
                     Spacer()
+                    
                     Button(action: {
                         // 编辑
                     }, label: {
@@ -93,9 +94,10 @@ struct HistoryAndBookmarkView: View {
                     Button(action: {
                         // 添加
                     }, label: {
-                        Image(systemName: "plus")
+                        Text("新建文件夹")
                     })
                     Spacer()
+                    
                     Button(action: {
                         // 编辑
                     }, label: {
@@ -112,6 +114,8 @@ struct HistoryAndBookmarkView: View {
     }
     
 }
+
+
 
 //struct HistoryAndBookmarkView_Previews: PreviewProvider {
 //    static var previews: some View {
