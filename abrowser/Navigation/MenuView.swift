@@ -16,6 +16,9 @@ struct MenuView: View {
     @State var HistoryOrBookmarkIsPresented = false
     @State var ShareIsPresented = false
     @State var viewSeleted = 1
+    @State var darkMode = false
+    @State var SettingsIsPresented = false
+    
     var body: some View {
         VStack{
             Rectangle()
@@ -52,7 +55,7 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
-                    HistoryAndBookmarkView(viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
+                    HistoryAndBookmarkView(navigationState: navigationState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
                 })
                 
                 // 历史记录
@@ -70,12 +73,17 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
-                    HistoryAndBookmarkView(viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
+                    HistoryAndBookmarkView(navigationState: navigationState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
                 })
                 
                 
                 // 分享
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Button(action: {
+                    guard let urlShare = navigationState.currentURL else { return }
+                        let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+                        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+                    MenuIsPresented = false
+                }, label: {
                     VStack{
                         Image(systemName: "square.and.arrow.up")
                             .padding(.bottom, 1)
@@ -97,11 +105,50 @@ struct MenuView: View {
                     }
                 }).frame(maxWidth:.infinity)
             }
-            .frame(maxWidth:.infinity)
+            .padding()
+            HStack{
+                // 设置
+                Button(action: {
+                    MenuIsPresented = false
+                    SettingsIsPresented = true
+                }, label: {
+                    VStack{
+                        Image(systemName: "gearshape")
+                            .padding(.bottom, 1)
+                        Text("设置")
+                            .font(.subheadline)
+                    }
+                }).sheet(isPresented: $SettingsIsPresented, content: {
+                    Text("1234")
+                })
+                .frame(maxWidth:.infinity)
+                // 浅色/深色模式
+                Button(action: {
+                    darkMode.toggle()
+                }, label: {
+                    VStack{
+                        if(darkMode){
+                            Image(systemName: "moon")
+                                .padding(.bottom, 1)
+                            Text("深色模式")
+                                .font(.subheadline)
+
+                        }else{
+                            Image(systemName: "sun.max")
+                                .padding(.bottom, 1)
+                            Text("浅色模式")
+                                .font(.subheadline)
+                        }
+                        
+                    }
+                })
+                .frame(maxWidth:.infinity)
+                Spacer()
+            }
             .padding()
             Spacer()
         }
-        .frame(height: 200)
+        .frame(height: 400)
         .background(Color.white)
         .cornerRadius(20)
         .shadow(radius: 20)

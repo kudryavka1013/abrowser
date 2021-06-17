@@ -13,12 +13,13 @@ struct NavBarView: View {
     @ObservedObject var bookmarkState : BookmarkState
     @Binding var MenuIsPresented : Bool
     @Binding var TabManagementIsPresented : Bool
+    @Binding var NavViewIsPresented : Bool
     
     @State var MenuPosition = CGSize.zero
     var body: some View {
         ZStack{
             MenuView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented)
-                .offset(y: MenuIsPresented ? -50 : 100)
+                .offset(y: MenuIsPresented ? -25 : 200)
                 .offset(y: MenuPosition.height)
                 .animation(.easeOut(duration: 0.2))
 //                上下滑动
@@ -30,7 +31,7 @@ struct NavBarView: View {
                             }
                         }
                         .onEnded{ value in
-                            if(value.translation.height <= 60){
+                            if(value.translation.height <= 80){
                                 self.MenuPosition = .zero
                             }else{
                                 MenuIsPresented = false
@@ -39,6 +40,7 @@ struct NavBarView: View {
                         }
                 )
             // 遮盖底部安全区域
+            
             Rectangle()
                 .fill(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
                 .frame(height: 200)
@@ -64,7 +66,10 @@ struct NavBarView: View {
                 .disabled(!navigationState.canGoForward)
                 Spacer()
                 //            主页
-                Button(action: {}, label: {
+                Button(action: {
+//                    NavViewIsPresented = true
+                    navigationState.navGoTo(addressInput: "https://www.baidu.com")
+                }, label: {
                     Image(systemName: "house")
                 }).frame(maxWidth: .infinity)
                 Spacer()
@@ -74,9 +79,6 @@ struct NavBarView: View {
                 }, label: {
                     Image(systemName: "square.on.square")
                 })
-                //                .sheet(isPresented: $TabManagementIsPresented, content: {
-                //                    TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
-                //                })
                 .frame(maxWidth: .infinity)
                 Spacer()
                 //            菜单

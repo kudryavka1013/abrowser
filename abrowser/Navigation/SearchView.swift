@@ -10,17 +10,16 @@ import SwiftUI
 struct SearchView: View {
     @ObservedObject var navigationState : NavigationState
     @Binding var SearchIsPresented : Bool
+    @Binding var NavViewIsPresented : Bool
     let addressbar: Namespace.ID
-    
     @State var addressInput = ""
     @State var currentURL = ""
     var body: some View {
         VStack{
             HStack{
                 ZStack{
-                    
                     TextField(navigationState.currentURL?.absoluteString ?? "", text: $addressInput,onCommit: {
-                        // 正则 https/http :// www. 串
+                        // 正则
                         let pattern = "((https|http)://)?(www\\.)?[\\w\\d\\-_]+\\.\\w{2,3}(\\.\\w{2})?(/(?<=/)([\\w\\d\\-./_]+)?)?"
                         let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
                         // 格式化输入
@@ -28,18 +27,25 @@ struct SearchView: View {
                         let range = NSMakeRange(0, formatString.count)
                         // 正则匹配
                         let results = regex.numberOfMatches(in: formatString, options: [], range: range)
-                  
+                        
+                        var addressToGo = ""
                         if(results == 1){
                             if(formatString.hasPrefix("https://") || formatString.hasPrefix("http://")){
-                                navigationState.navGoTo(addressInput: formatString)
+                                addressToGo = formatString
                             }
                             else{
-                                navigationState.navGoTo(addressInput: "https://" + formatString)
+                                addressToGo = "https://" + formatString
                             }
                         }else{
-                            navigationState.navGoTo(addressInput: "https://cn.bing.com/search?q=" + formatString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                            addressToGo = "https://cn.bing.com/search?q=" + formatString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                        }
+                        if(navigationState.webViews == []){
+                            navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: addressToGo)!))
+                        }else{
+                            navigationState.navGoTo(addressInput: addressToGo)
                         }
                         SearchIsPresented = false
+                        NavViewIsPresented = false
                     })
                     .onAppear(){
                         addressInput = navigationState.currentURL?.absoluteString ?? ""

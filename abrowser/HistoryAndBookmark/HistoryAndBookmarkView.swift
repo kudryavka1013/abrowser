@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HistoryAndBookmarkView: View {
+    @ObservedObject var navigationState : NavigationState
     @Binding var viewSelected : Int
     @Binding var isPresented : Bool
     
@@ -64,16 +65,17 @@ struct HistoryAndBookmarkView: View {
                 
             case 2:
                 
-                BookmarkView()
+                BookmarkView(navigationState: navigationState,isPresented: $isPresented)
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
                     .background(Color.gray)
                 HStack{
                     Button(action: {
                         // 添加
                     }, label: {
-                        Image(systemName: "plus")
+                        Text("新建文件夹")
                     })
                     Spacer()
+                    
                     Button(action: {
                         // 编辑
                     }, label: {
@@ -85,16 +87,17 @@ struct HistoryAndBookmarkView: View {
                 .padding(.bottom)
                 
             default:
-                BookmarkView()
+                BookmarkView(navigationState: navigationState, isPresented: $isPresented)
                     .frame(maxWidth: .infinity,maxHeight:.infinity)
                     .background(Color.gray)
                 HStack{
                     Button(action: {
                         // 添加
                     }, label: {
-                        Image(systemName: "plus")
+                        Text("新建文件夹")
                     })
                     Spacer()
+                    
                     Button(action: {
                         // 编辑
                     }, label: {
@@ -112,8 +115,10 @@ struct HistoryAndBookmarkView: View {
     
 }
 
-struct HistoryAndBookmarkView_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryAndBookmarkView(viewSelected: .constant(1), isPresented: .constant(false))
-    }
-}
+
+
+//struct HistoryAndBookmarkView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HistoryAndBookmarkView(navigationState: navigationState, viewSelected: .constant(1), isPresented: .constant(false))
+//    }
+//}

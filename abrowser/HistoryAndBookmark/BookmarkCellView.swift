@@ -7,16 +7,48 @@
 
 import SwiftUI
 
-/* struct BookmarkCellView: View {
-    var model: BookmarkModel
+struct BookmarkCellView : View{
+    @ObservedObject var navigationState : NavigationState
+    @Binding var isPresented : Bool
+    @State var isEditing = false
+    @State var test = ""
+    var data : [Bookmark]
+    
+    func deleteRow (at offsets:IndexSet){
+        print("删除");
+    }
+    
     var body: some View {
-        HStack{ VStack(alignment: .leading) { Text(model.title); Text(model.subTitle) }; Spacer() }.padding()
+        VStack{
+            List{
+                ForEach(data){ item in
+                    if(item.children != nil){
+                        NavigationLink(destination: BookmarkCellView(navigationState : navigationState, isPresented: $isPresented, data: item.children!)){
+                            Text(item.description)
+                        }
+                    }
+                    else{
+                        Text(item.description)
+                            .onTapGesture {
+                                navigationState.navGoTo(addressInput: item.url)
+                                isPresented = false
+                            }
+                    }
+                }.onDelete(perform: deleteRow)
+            }.environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
+            Button(action: {
+                isEditing.toggle()
+            }, label: {
+                Text("Button")
+            })
+            
+        }
+        
     }
 }
 
-struct BookmarkCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookmarkCellView(model: BookmarkCellView(model:BookmarkModel(title: "Item Title", subTitle: "Item SubTitle")).previewLayout(.fixed(width: 375, height: 60)) as! BookmarkModel
-        ) }
-}
-*/
+//struct BookmarkCellView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BookmarkCellView(model: BookmarkCellView(model:BookmarkModel(title: "Item Title", subTitle: "Item SubTitle")).previewLayout(.fixed(width: 375, height: 60)) as! BookmarkModel
+//        ) }
+//}
