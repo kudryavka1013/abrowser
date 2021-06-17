@@ -11,6 +11,7 @@ import SwiftUI
 struct MenuView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
+    @ObservedObject var historyState : HistoryState
     @Binding var MenuIsPresented : Bool
     
     @State var HistoryOrBookmarkIsPresented = false
@@ -55,7 +56,7 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
-                    HistoryAndBookmarkView(navigationState: navigationState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
+                    HistoryAndBookmarkView(navigationState: navigationState, historyState: historyState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
                 })
                 
                 // 历史记录
@@ -73,7 +74,7 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
-                    HistoryAndBookmarkView(navigationState: navigationState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
+                    HistoryAndBookmarkView(navigationState: navigationState, historyState: historyState, viewSelected: $viewSeleted, isPresented : $HistoryOrBookmarkIsPresented)
                 })
                 
                 

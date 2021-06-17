@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var navigationState = NavigationState()
     @StateObject var bookmarkState = BookmarkState()
-    //    @StateObject var histortyState = historyState()
+    @StateObject var historyState = HistoryState()
     
     @Namespace var addressbar
 
@@ -47,7 +47,7 @@ struct ContentView: View {
                         }
                     //                        .zIndex(1.0)
                 }
-                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
+                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
             }
             
             // 标签页管理页面

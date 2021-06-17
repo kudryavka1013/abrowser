@@ -11,6 +11,7 @@ import SwiftUI
 struct NavBarView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
+    @ObservedObject var historyState : HistoryState
     @Binding var MenuIsPresented : Bool
     @Binding var TabManagementIsPresented : Bool
     @Binding var NavViewIsPresented : Bool
@@ -18,7 +19,7 @@ struct NavBarView: View {
     @State var MenuPosition = CGSize.zero
     var body: some View {
         ZStack{
-            MenuView(navigationState: navigationState, bookmarkState: bookmarkState, MenuIsPresented: $MenuIsPresented)
+            MenuView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, MenuIsPresented: $MenuIsPresented)
                 .offset(y: MenuIsPresented ? -25 : 200)
                 .offset(y: MenuPosition.height)
                 .animation(.easeOut(duration: 0.2))

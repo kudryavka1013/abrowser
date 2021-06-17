@@ -9,42 +9,62 @@ import SwiftUI
 
 struct HistoryView: View {
     @State var clearBtnIsPresented = false
+    @ObservedObject var historyState : HistoryState
+    @ObservedObject var navigationState : NavigationState
+    @Binding var isPresented : Bool
     
-    func deleteRow(at offsets:IndexSet) {
-        print("删除");
+    func deleteRowToday(at offsets:IndexSet) {
+        historyState.historytoday.remove(atOffsets: offsets)
+    }
+    
+    func deleteRowYesterday(at offsets:IndexSet) {
+        historyState.historyyesterday.remove(atOffsets: offsets)
+    }
+    
+    func deleteRowAgo(at offsets:IndexSet) {
+        historyState.historyago.remove(atOffsets: offsets)
     }
     
     var body: some View {
-        
         VStack{
-            List {
-                //造数据
-                ForEach(0..<3) {
-                    if ($0 == 0) {
+            List{
+                if (!historyState.historytoday.isEmpty) {
                         Section(header: Text("今天")) {
-                            ForEach(0..<2) {
-                                let model = HistoryModel(websitename: "和生活-畅享移动新生活-和生活", websiteURL: "https://www.baicu.com-\($0)",responsetime: "20210617")
-                                HistoryCellView(model: model)
-                            }.onDelete(perform: deleteRow)
+                            ForEach(historyState.historytoday) { item in
+                                HistoryCellView(model: item)
+                                    .onTapGesture {
+                                        navigationState.navGoTo(addressInput: item.websiteURL)
+                                        isPresented = false
+                                    }
+                            }.onDelete(perform: deleteRowToday)
                         }
-                        
-                    } else if ($0 == 1) {
-                        Section(header: Text("今天和昨天")) {
-                            ForEach(0..<5) {
-                                let model = HistoryModel(websitename: "和生活-畅享移动新生活-和生活", websiteURL: "https://www.baicu.com-\($0)",responsetime: "20210617")
-                                HistoryCellView(model: model)
-                            }.onDelete(perform: deleteRow)
+                    }
+                if (!historyState.historyyesterday.isEmpty) {
+                        Section(header: Text("昨天")) {
+                            ForEach(historyState.historyyesterday) { item in
+                                HistoryCellView(model: item)
+                                    .onTapGesture {
+                                    navigationState.navGoTo(addressInput: item.websiteURL)
+                                        isPresented = false
+
+                                }
+                            }.onDelete(perform: deleteRowYesterday)
                         }
-                    } else {
-                        Section(header: Text("全部")) {
-                            ForEach(0..<5) {
-                                let model = HistoryModel(websitename: "国家医疗保障", websiteURL: "https://www.govn.com-\($0)",responsetime: "20210617")
-                                HistoryCellView(model: model)
-                            }.onDelete(perform: deleteRow)
+                    }
+                if (!historyState.historyago.isEmpty) {
+                        Section(header: Text("两天前")) {
+                            ForEach(historyState.historyago) { item in
+                                HistoryCellView(model: item)
+                                    .onTapGesture {
+                                        navigationState.navGoTo(addressInput: item.websiteURL)
+                                        isPresented = false
+
+                                    }
+                            }.onDelete(perform: deleteRowAgo)
                         }
                     }
                 }
-            }
+            
             HStack{
                 Spacer()
                 Button(action: {
@@ -55,9 +75,16 @@ struct HistoryView: View {
                 })
                 .actionSheet(isPresented: $clearBtnIsPresented) {
                     ActionSheet(title: Text("清除历史记录"), buttons: [
-                        .destructive(Text("今天")) { },
-                        .destructive(Text("今天和昨天")) { },
-                        .destructive(Text("全部")) { },
+                        .destructive(Text("今天")) {
+                            historyState.deleteTodayHistory()
+                        },
+                        .destructive(Text("今天和昨天")) {
+                            historyState.deleteTodayandYesterdayHistory()
+                        },
+                        .destructive(Text("全部")) {
+                            historyState.deleteAllHistory()
+                            
+                        },
                         .cancel(Text("取消"))
                     ])
                 }
@@ -71,10 +98,10 @@ struct HistoryView: View {
     }
 }
 
-struct HistoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        //ListDemo()
-        HistoryView()
-    }
-}
+//struct HistoryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        //ListDemo()
+//        HistoryView()
+//    }
+//}
 

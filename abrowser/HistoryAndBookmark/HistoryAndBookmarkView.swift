@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HistoryAndBookmarkView: View {
     @ObservedObject var navigationState : NavigationState
+    @ObservedObject var historyState : HistoryState
     @Binding var viewSelected : Int
     @Binding var isPresented : Bool
     
@@ -28,7 +29,7 @@ struct HistoryAndBookmarkView: View {
                 .padding(.top,8)
                 // 子页面
                 if(viewSelected == 1){
-                    HistoryView()
+                    HistoryView(historyState: historyState, navigationState: navigationState, isPresented: $isPresented)
                         .frame(maxWidth: .infinity,maxHeight:.infinity)
                     
                 }else{
