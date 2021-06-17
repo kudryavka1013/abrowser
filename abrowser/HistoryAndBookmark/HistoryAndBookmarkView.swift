@@ -51,9 +51,9 @@ struct HistoryAndBookmarkView: View {
                     })
                     .actionSheet(isPresented: $clearBtnIsPresented) {
                         ActionSheet(title: Text("清除历史记录"), buttons: [
-                            .default(Text("今天")) { },
-                            .default(Text("今天和昨天")) { },
-                            .default(Text("全部")) { },
+                            .destructive(Text("今天")) { },
+                            .destructive(Text("今天和昨天")) { },
+                            .destructive(Text("全部")) { },
                             .cancel(Text("取消"))
                         ])
                     }

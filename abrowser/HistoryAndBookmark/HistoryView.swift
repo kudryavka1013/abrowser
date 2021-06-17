@@ -20,24 +20,24 @@ struct HistoryView: View {
                 //造数据
                 ForEach(0..<3) {
                     if ($0 == 0) {
-                        Section(header: Text("昨天晚上")) {
+                        Section(header: Text("今天")) {
                             ForEach(0..<2) {
-                                let model = HistoryModel(title: "和生活-畅享移动新生活-和生活", subTitle: "https://www.baicu.com-\($0)")
+                                let model = HistoryModel(websitename: "和生活-畅享移动新生活-和生活", websiteURL: "https://www.baicu.com-\($0)",responsetime: "20210617")
                                 HistoryCellView(model: model)
                             }.onDelete(perform: deleteRow)
                         }
                     
                     } else if ($0 == 1) {
-                        Section(header: Text("今天早上")) {
+                        Section(header: Text("今天和昨天")) {
                             ForEach(0..<5) {
-                                let model = HistoryModel(title: "和生活-畅享移动新生活-和生活", subTitle: "https://www.baicu.com-\($0)")
+                                let model = HistoryModel(websitename: "和生活-畅享移动新生活-和生活", websiteURL: "https://www.baicu.com-\($0)",responsetime: "20210617")
                                 HistoryCellView(model: model)
                             }.onDelete(perform: deleteRow)
                         }
                     } else {
-                        Section(header: Text("今天中午")) {
+                        Section(header: Text("全部")) {
                             ForEach(0..<5) {
-                                let model = HistoryModel(title: "国家医疗保障", subTitle: "https://www.govn.com-\($0)")
+                                let model = HistoryModel(websitename: "国家医疗保障", websiteURL: "https://www.govn.com-\($0)",responsetime: "20210617")
                                 HistoryCellView(model: model)
                             }.onDelete(perform: deleteRow)
                         }
@@ -49,44 +49,6 @@ struct HistoryView: View {
         }
     }
 }
-
-struct HistoryModel : Identifiable{
-    var id = UUID()
-    
-    var title: String
-    var subTitle: String
-    
-    init(title: String, subTitle: String) {
-        self.title = title
-        self.subTitle = subTitle
-    }
-}
-
-    
-//struct HistoryView: View {
-//    var dataSource = (0..<5).map({ListModel(title: "Item \($0)", subTitle: "Sub \($0)")})
-//        var body: some View {
-//            List(dataSource) { model in
-//                HistoryCellView(model: model)
-//            }.padding()
-//        }
-//}
-//
-//struct ListModel : Identifiable{
-//    var id = UUID()
-//
-//    var title: String
-//    var subTitle: String
-//
-//    init(title: String, subTitle: String) {
-//        self.title = title
-//        self.subTitle = subTitle
-//    }
-//}
-
-
-
-
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
