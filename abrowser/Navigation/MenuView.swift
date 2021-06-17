@@ -30,7 +30,7 @@ struct MenuView: View {
             HStack{
                 // 添加书签
                 Button(action: {
-                    bookmarkState.addBookmark(name: navigationState.currentTitle!, url: "https://www.baidu.com")
+                    bookmarkState.addBookmark(name: navigationState.currentTitle!, url: navigationState.currentURL!.absoluteString)
                     MenuIsPresented = false
                 }, label: {
                     VStack{

@@ -23,15 +23,13 @@ struct BookmarkView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @Binding var isPresented : Bool
-        
+    
     @State var isEditing = false
     
-    func deleteRow (at offsets:IndexSet){
-        print("删除");
-    }
+
     
     var body: some View {
-        BookmarkCellView(navigationState: navigationState, isPresented: $isPresented, isEditing: $isEditing, data: bookmarkState.data)
+        BookmarkCellView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, data: bookmarkState.data)
     }
     
     

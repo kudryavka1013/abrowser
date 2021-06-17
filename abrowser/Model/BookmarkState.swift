@@ -58,7 +58,7 @@ class BookmarkState : NSObject, ObservableObject{
     
     
     func addBookmark(name: String, url: String){
-        let bm = Bookmark(name: name, url: url, children: nil)
+        let bm = Bookmark(name: name == "" ? url : name , url: url, children: nil)
         data.append(bm)
     }
     
