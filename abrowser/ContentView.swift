@@ -30,7 +30,7 @@ struct ContentView: View {
                 }
                 
                 ZStack{
-
+                    WebViewContainer()
                     WebView(navigationState: navigationState)
                         .frame(maxWidth: .infinity,maxHeight: .infinity)
                     

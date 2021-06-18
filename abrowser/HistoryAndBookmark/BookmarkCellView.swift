@@ -12,11 +12,12 @@ struct BookmarkCellView : View{
     @ObservedObject var bookmarkState : BookmarkState
     @Binding var isPresented : Bool
     @Binding var isEditing : Bool
-    @State var test = ""
-    var data : [Bookmark]
+    @State var data : [Bookmark]
     
-    func deleteRow (at offsets:IndexSet){
-        bookmarkState.data.remove(atOffsets: offsets)
+    func deleteRow(at offsets:IndexSet){
+        data.remove(atOffsets: offsets)
+//        print(offsets.first)
+//        offsets.in
     }
     
     var body: some View {

@@ -14,7 +14,6 @@ struct WebView: UIViewRepresentable {
     class Coordinator: NSObject, WKUIDelegate {
         var parent: WebView
         
-        
         init(_ parent: WebView) {
             self.parent = parent
         }
@@ -24,10 +23,9 @@ struct WebView: UIViewRepresentable {
         func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
 //                    let alertViewController = UIAlertController(title: "提示", message:message, preferredStyle: UIAlertController.Style.alert)
 //                    alertViewController.addAction(UIAlertAction(title: "确认", style: UIAlertAction.Style.default, handler: { (action) in
-//                        completionHandler()
 //                    }))
             print(message)
-
+            completionHandler()
         }
         
         func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
@@ -39,7 +37,11 @@ struct WebView: UIViewRepresentable {
 //                UIAlertAction(title: "Cancel", style: .default, handler: { (action) in completionHandler(false) })
 //            )
             print(message)
-
+            completionHandler(true)
+        }
+        func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+            print(prompt)
+            completionHandler("abc")
         }
     }
 
@@ -63,7 +65,7 @@ struct WebView: UIViewRepresentable {
         
         uiView.subviews.forEach { $0.removeFromSuperview() }
         webView.frame = CGRect(origin: .zero, size: uiView.bounds.size)
-//        webView.uiDelegate = context.coordinator
+        webView.uiDelegate = context.coordinator
         uiView.addSubview(webView)
         
     }

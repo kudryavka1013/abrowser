@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct Bookmark: Identifiable, Hashable, Codable {
+struct Bookmark: Identifiable, Hashable, Codable{
     var id = UUID()
     var name = ""
     var url = ""

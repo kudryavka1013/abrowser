@@ -6,18 +6,6 @@
 //
 
 import SwiftUI
-//struct DestinationPageView: View {
-//    var color: Color
-//    var body: some View {
-//        Text("Destination Page")
-//            .font(.title)
-//            .foregroundColor(color)
-//    }
-//}
-
-
-
-
 
 struct BookmarkView: View {
     @ObservedObject var navigationState : NavigationState
