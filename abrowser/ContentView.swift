@@ -30,9 +30,11 @@ struct ContentView: View {
                 }
                 
                 ZStack{
-                    WebViewContainer()
-                    WebView(navigationState: navigationState)
-                        .frame(maxWidth: .infinity,maxHeight: .infinity)
+//                    WebViewContainer(navigationState: navigationState)
+//                        .frame(maxWidth: .infinity,maxHeight: .infinity)
+                    WebViewContainer(navigationState: navigationState)
+//                    WebView(navigationState: navigationState)
+//                        .frame(maxWidth: .infinity,maxHeight: .infinity)
                     
 //                    if(!NavViewIsPresented){
 //                        NavView(NavViewIsPresented: $NavViewIsPresented)

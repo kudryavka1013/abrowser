@@ -19,7 +19,10 @@ class NavigationState : NSObject, ObservableObject{
     @Published var image : UIImage?
     @Published var images : [UIImage] = []
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
+        let config = WKWebViewConfiguration()
         let wv = WKWebView()
+        wv.allowsBackForwardNavigationGestures = true
+        wv.allowsLinkPreview = true
         wv.navigationDelegate = self
         webViews.append(wv)
         selectedWebView = wv

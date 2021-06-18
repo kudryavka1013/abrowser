@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */; };
 		0C5CE59C2678D638009CE5EE /* html in Resources */ = {isa = PBXBuildFile; fileRef = 0C5CE59B2678D638009CE5EE /* html */; };
-		0C5CE5A6267C288C009CE5EE /* WebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5A5267C288C009CE5EE /* WebViewContainer.swift */; };
 		0C5CE5A8267C2ACD009CE5EE /* BookmarkAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5A7267C2ACD009CE5EE /* BookmarkAddView.swift */; };
 		0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468A2664F44500BA805F /* abrowserApp.swift */; };
 		0CA1468D2664F44500BA805F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468C2664F44500BA805F /* ContentView.swift */; };
@@ -18,7 +17,7 @@
 		0CA1469D2664F44600BA805F /* abrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1469C2664F44600BA805F /* abrowserTests.swift */; };
 		0CA146A82664F44600BA805F /* abrowserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146A72664F44600BA805F /* abrowserUITests.swift */; };
 		0CA146BA2665CEB500BA805F /* NavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146B92665CEB500BA805F /* NavBarView.swift */; };
-		0CA146BC2665D61E00BA805F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146BB2665D61E00BA805F /* WebView.swift */; };
+		0CA146BC2665D61E00BA805F /* WebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146BB2665D61E00BA805F /* WebViewContainer.swift */; };
 		0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146BD26664DBF00BA805F /* AddressBarView.swift */; };
 		0CA146C4266725C900BA805F /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146C3266725C900BA805F /* MenuView.swift */; };
 		0CA146CA266863C800BA805F /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146C9266863C800BA805F /* NavigationState.swift */; };
@@ -55,7 +54,6 @@
 /* Begin PBXFileReference section */
 		0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditView.swift; sourceTree = "<group>"; };
 		0C5CE59B2678D638009CE5EE /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
-		0C5CE5A5267C288C009CE5EE /* WebViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewContainer.swift; sourceTree = "<group>"; };
 		0C5CE5A7267C2ACD009CE5EE /* BookmarkAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkAddView.swift; sourceTree = "<group>"; };
 		0CA146872664F44500BA805F /* abrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = abrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA1468A2664F44500BA805F /* abrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abrowserApp.swift; sourceTree = "<group>"; };
@@ -70,7 +68,7 @@
 		0CA146A72664F44600BA805F /* abrowserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abrowserUITests.swift; sourceTree = "<group>"; };
 		0CA146A92664F44600BA805F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CA146B92665CEB500BA805F /* NavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarView.swift; sourceTree = "<group>"; };
-		0CA146BB2665D61E00BA805F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		0CA146BB2665D61E00BA805F /* WebViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewContainer.swift; sourceTree = "<group>"; };
 		0CA146BD26664DBF00BA805F /* AddressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBarView.swift; sourceTree = "<group>"; };
 		0CA146C3266725C900BA805F /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		0CA146C9266863C800BA805F /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
@@ -223,9 +221,8 @@
 		0CA146DF266DCCB500BA805F /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				0CA146BB2665D61E00BA805F /* WebView.swift */,
+				0CA146BB2665D61E00BA805F /* WebViewContainer.swift */,
 				0CA146D7266A3F8E00BA805F /* NavView.swift */,
-				0C5CE5A5267C288C009CE5EE /* WebViewContainer.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -370,7 +367,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */,
-				0C5CE5A6267C288C009CE5EE /* WebViewContainer.swift in Sources */,
 				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
 				0CA146CA266863C800BA805F /* NavigationState.swift in Sources */,
 				1817B637266F8F8600C7B4FE /* BookmarkCellView.swift in Sources */,
@@ -380,7 +376,7 @@
 				0CDB9946266F9B11003A1DCB /* SearchView.swift in Sources */,
 				0CA1468D2664F44500BA805F /* ContentView.swift in Sources */,
 				0C5CE5A8267C2ACD009CE5EE /* BookmarkAddView.swift in Sources */,
-				0CA146BC2665D61E00BA805F /* WebView.swift in Sources */,
+				0CA146BC2665D61E00BA805F /* WebViewContainer.swift in Sources */,
 				0CA146D42669C6D200BA805F /* HistoryView.swift in Sources */,
 				0CA146D62669C6DB00BA805F /* BookmarkView.swift in Sources */,
 				0CA146D12668869A00BA805F /* HistoryAndBookmarkView.swift in Sources */,
