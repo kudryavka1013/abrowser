@@ -8,7 +8,7 @@
 import SwiftUI
 //url name list time
 
-struct HistoryModel : Identifiable{
+struct HistoryModel : Identifiable, Hashable{
     var id = UUID()
     var websitename: String
     var websiteURL: String
@@ -23,7 +23,7 @@ struct HistoryModel : Identifiable{
 
 //本地历史数据
 class HistoryState : NSObject , ObservableObject {
-    var history : [HistoryModel] = [
+    @Published var history : [HistoryModel] = [
         HistoryModel(websitename: "百度1", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
         HistoryModel(websitename: "百度2", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
         HistoryModel(websitename: "百度3", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
@@ -32,7 +32,11 @@ class HistoryState : NSObject , ObservableObject {
         HistoryModel(websitename: "百度6", websiteURL: "https://www.baidu.com", responsetime: "20210616"),
         HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
         HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度9", websiteURL: "https://www.baidu.com", responsetime: "20210615")
+        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
+        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
+        HistoryModel(websitename: "百度9", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
+        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
+        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
     ]
     
     @Published var historytoday : [HistoryModel] = []
@@ -53,13 +57,20 @@ class HistoryState : NSObject , ObservableObject {
         print("classification")
         for item in history{
             if date == item.responsetime{
-                historytoday.append(item)
+                historytoday.insert(item, at: 0)
             }else if (date as NSString).integerValue - (item.responsetime as NSString).integerValue == 1 {
-                historyyesterday.append(item)
+                historyyesterday.insert(item, at: 0)
             }else {
-                historyago.append(item)
+                historyago.insert(item, at: 0)
             }
         }
+    }
+    
+    func addhistory(newtitle : String,newUrl : String) {
+        let newresponse = currentTime()
+        let item = HistoryModel(websitename: newtitle, websiteURL: newUrl, responsetime: newresponse)
+        //historytoday.append(item)
+        historytoday.insert(item, at: 0)
     }
     
     func deleteAllHistory(){

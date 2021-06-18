@@ -144,6 +144,21 @@ struct MenuView: View {
                     }
                 })
                 .frame(maxWidth:.infinity)
+                
+                Button(action: {
+                    historyState.addhistory(newtitle: navigationState.currentTitle!, newUrl: navigationState.currentURL!.absoluteString)
+                }, label: {
+                    VStack{
+                        
+                            Image(systemName: "sun.max")
+                                .padding(.bottom, 1)
+                            Text("test")
+                                .font(.subheadline)
+                        
+                        
+                    }
+                })
+                .frame(maxWidth:.infinity)
                 Spacer()
             }
             .padding()

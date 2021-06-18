@@ -98,6 +98,7 @@ extension NavigationState : WKNavigationDelegate{
         if webView == selectedWebView {
             // 页面标题
             self.currentTitle = webView.title
+            
         }
     }
     //页面加载失败时调用
