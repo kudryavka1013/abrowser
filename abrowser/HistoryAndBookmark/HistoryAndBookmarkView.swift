@@ -18,6 +18,7 @@ struct HistoryAndBookmarkView: View {
 //    @State var clearBtnIsPresented = false
     var body: some View {
         NavigationView{
+            
             VStack(spacing:0){
                 // 选择器
                 Picker("testPicker", selection: $viewSelected, content: {
@@ -43,6 +44,8 @@ struct HistoryAndBookmarkView: View {
             .navigationBarItems(trailing:
                 Button("完成"){ isPresented = false }
             )
+                
+                
             // NavgationView end
         }
     }

@@ -56,10 +56,14 @@ class BookmarkState : NSObject, ObservableObject{
 //        Bookmark = coder.decodeObject(forKey: "Bookmark") as! BookmarkState.Bookmark.Type 
 //    }
     
-    
     func addBookmark(name: String, url: String){
         let bm = Bookmark(name: name == "" ? url : name , url: url, children: nil)
         data.append(bm)
+    }
+    
+    func addFolder(name: String){
+        let folder = Bookmark(name: name, children:[])
+        data.append(folder)
     }
     
 //    @objc func storeComplexDataAction() {
