@@ -25,69 +25,39 @@ struct HistoryModel : Identifiable, Hashable, Codable{
 
 //本地历史数据
 class HistoryState : NSObject , ObservableObject {
-    @Published var history : [HistoryModel] = [
-        HistoryModel(websitename: "百度B", websiteURL: "https://www.baidu.com", responsetime: "20210618"),
-        HistoryModel(websitename: "百度b", websiteURL: "https://www.baidu.com", responsetime: "20210618"),
-        HistoryModel(websitename: "百度1", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
-        HistoryModel(websitename: "百度2", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
-        HistoryModel(websitename: "百度3", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
-        HistoryModel(websitename: "百度4", websiteURL: "https://www.baidu.com", responsetime: "20210616"),
-        HistoryModel(websitename: "百度5", websiteURL: "https://www.baidu.com", responsetime: "20210616"),
-        HistoryModel(websitename: "百度6", websiteURL: "https://www.baidu.com", responsetime: "20210616"),
-        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度9", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-    ]
-    
+    @Published var history : [HistoryModel] = []
     @Published var historytoday : [HistoryModel] = []
     @Published var historyyesterday : [HistoryModel] = []
     @Published var historyago : [HistoryModel] = []
 
     //存储
-    func localS(){
-        let jsonString =
-        """
-        [{
-            "websitename": "小明",
-            "websiteURL": "www.abc.com",
-            "responsetime": "43.2"
-        },{
-            "websitename": "小明",
-            "websiteURL": "www.abc.com",
-            "responsetime": "43.2"
-        }]
-        """
+    func saveHistoryToLocal(){
+        history.removeAll()
+        for item in historyago{
+            history.append(item)
+        }
+        for item in historyyesterday{
+            history.append(item)
+        }
+        for item in historytoday{
+            history.append(item)
+        }
         do{
-//            let tempDataGet = try JSONDecoder().decode([HistoryModel].self, from: jsonString.data(using: .utf8)!)
-//            print(tempDataGet)
-//
-            
-            let tempData = try JSONEncoder().encode(history)
-            print(tempData)
-            UserDefaults.standard.set(tempData, forKey: "history")
+            let tempData = try JSONEncoder().encode(history)  //history 包装Data
+           // print(tempData)
+            UserDefaults.standard.set(tempData, forKey: "history")//存入本地
         }catch{
             print(error)
         }
-        
-//        var array = [
-//            HistoryModel(websitename: "test", websiteURL: "test.com", responsetime: "20210617"),
-//            HistoryModel(websitename: "test2", websiteURL: "test2.com", responsetime: "20210617")
-//        ]
-//                userDefault.set(array, forKey: "Array")
-//                array = userDefault.array(forKey: "Array") as! [HistoryModel]
-//                print(array)
     }
     
-    func localG(){
+    //从本地取出history
+    func getHistoryFromLocal(){
         do{
-            let tempdata = UserDefaults.standard.data(forKey: "history")
+            let tempdata = UserDefaults.standard.data(forKey: "history") //Data取出
 //            let jsonString = String.init(data: tempdata!, encoding: String.Encoding.utf8)
-            let tempDataGet = try JSONDecoder().decode([HistoryModel].self, from: tempdata!)
-            print(tempDataGet)
+            let tempArray = try JSONDecoder().decode([HistoryModel].self, from: tempdata!)
+            history = tempArray
         }catch{
             print(error)
         }
@@ -141,6 +111,7 @@ class HistoryState : NSObject , ObservableObject {
         super.init()
         // jiedang
         self.date = currentTime()
+        self.getHistoryFromLocal()
         self.classification()
 
     }

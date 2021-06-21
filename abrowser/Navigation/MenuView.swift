@@ -165,7 +165,7 @@ struct MenuView: View {
                 .frame(maxWidth:.infinity)
                 
                 Button(action: {
-                    historyState.localS()
+                    historyState.saveHistoryToLocal()
                 }, label: {
                     VStack{
                         
@@ -180,7 +180,7 @@ struct MenuView: View {
                 .frame(maxWidth:.infinity)
                 
                 Button(action: {
-                    historyState.localG()
+                    historyState.getHistoryFromLocal()
                 }, label: {
                     VStack{
                         

@@ -18,6 +18,7 @@ class NavigationState : NSObject, ObservableObject{
     
     @Published var image : UIImage?
     @Published var images : [UIImage] = []
+    
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
         let config = WKWebViewConfiguration()
         let wv = WKWebView()
@@ -89,6 +90,7 @@ extension NavigationState : WKNavigationDelegate{
         print("didCommit")
         if webView == selectedWebView {
             self.currentURL = webView.url
+            //self.currentTitle = webView.title
             // 上一页按钮和下一页按钮是否可点
             self.canGoBack = webView.canGoBack
             self.canGoForward = webView.canGoForward
@@ -98,10 +100,10 @@ extension NavigationState : WKNavigationDelegate{
     // 页面加载完成之后调用
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!){
         print("didFinish")
+        
         if webView == selectedWebView {
             // 页面标题
             self.currentTitle = webView.title
-            
         }
     }
     //页面加载失败时调用
