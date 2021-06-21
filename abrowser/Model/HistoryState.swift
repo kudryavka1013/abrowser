@@ -8,11 +8,13 @@
 import SwiftUI
 //url name list time
 
-struct HistoryModel : Identifiable, Hashable{
-    var id = UUID()
-    var websitename: String
-    var websiteURL: String
-    var responsetime : String
+struct HistoryModel : Identifiable, Hashable, Codable{
+    let id = UUID()
+    let websitename: String
+    let websiteURL: String
+    let responsetime : String
+    
+    private enum CodingKeys : String, CodingKey { case websitename, websiteURL, responsetime }
     
     init(websitename: String, websiteURL: String, responsetime: String) {
         self.websitename = websitename
@@ -43,7 +45,35 @@ class HistoryState : NSObject , ObservableObject {
     @Published var historyyesterday : [HistoryModel] = []
     @Published var historyago : [HistoryModel] = []
 
-    //解档
+    //存储
+    func localS(){
+        let jsonString =
+        """
+        [{
+            "websitename": "小明",
+            "websiteURL": "www.abc.com",
+            "responsetime": "43.2"
+        },{
+            "websitename": "小明",
+            "websiteURL": "www.abc.com",
+            "responsetime": "43.2"
+        }]
+        """
+        do{
+            let xiaoming = try JSONDecoder().decode([HistoryModel].self, from: jsonString.data(using: .utf8)!)
+            print(xiaoming[0].websitename)
+        }catch{
+            print(error)
+        }
+//        var array = [
+//            HistoryModel(websitename: "test", websiteURL: "test.com", responsetime: "20210617"),
+//            HistoryModel(websitename: "test2", websiteURL: "test2.com", responsetime: "20210617")
+//        ]
+//                userDefault.set(array, forKey: "Array")
+//                array = userDefault.array(forKey: "Array") as! [HistoryModel]
+//                print(array)
+    }
+    
     func currentTime() -> String {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "YYYYMMdd"// 自定义时间格式
