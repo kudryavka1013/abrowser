@@ -10,6 +10,8 @@ import WebKit
 
 struct WebViewContainer: UIViewRepresentable {
     @ObservedObject var navigationState : NavigationState
+    @ObservedObject var historyState : HistoryState
+    
     class Coordinator: NSObject, WKUIDelegate {
         var parent: WebViewContainer
         
@@ -77,6 +79,7 @@ struct WebViewContainer: UIViewRepresentable {
 }
 //
 extension WKWebView {
+    
     func screenshot() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, 0);
         self.drawHierarchy(in: self.bounds, afterScreenUpdates: true);
@@ -84,6 +87,8 @@ extension WKWebView {
         UIGraphicsEndImageContext();
         return snapshotImage;
     }
+    
+
 }
 
 //struct WebView_Previews: PreviewProvider {

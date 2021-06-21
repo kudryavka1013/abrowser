@@ -8,11 +8,13 @@
 import SwiftUI
 //url name list time
 
-struct HistoryModel : Identifiable, Hashable{
-    var id = UUID()
-    var websitename: String
-    var websiteURL: String
-    var responsetime : String
+struct HistoryModel : Identifiable, Hashable, Codable{
+    let id = UUID()
+    let websitename: String
+    let websiteURL: String
+    let responsetime : String
+    
+    private enum CodingKeys : String, CodingKey { case websitename, websiteURL, responsetime }
     
     init(websitename: String, websiteURL: String, responsetime: String) {
         self.websitename = websitename
@@ -23,27 +25,44 @@ struct HistoryModel : Identifiable, Hashable{
 
 //本地历史数据
 class HistoryState : NSObject , ObservableObject {
-    @Published var history : [HistoryModel] = [
-        HistoryModel(websitename: "百度1", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
-        HistoryModel(websitename: "百度2", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
-        HistoryModel(websitename: "百度3", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
-        HistoryModel(websitename: "百度4", websiteURL: "https://www.baidu.com", responsetime: "20210616"),
-        HistoryModel(websitename: "百度5", websiteURL: "https://www.baidu.com", responsetime: "20210616"),
-        HistoryModel(websitename: "百度6", websiteURL: "https://www.baidu.com", responsetime: "20210616"),
-        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度9", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度7", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-        HistoryModel(websitename: "百度8", websiteURL: "https://www.baidu.com", responsetime: "20210615"),
-    ]
-    
+    @Published var history : [HistoryModel] = []
     @Published var historytoday : [HistoryModel] = []
     @Published var historyyesterday : [HistoryModel] = []
     @Published var historyago : [HistoryModel] = []
 
-    //解档
+    //存储
+    func saveHistoryToLocal(){
+        history.removeAll()
+        for item in historyago{
+            history.append(item)
+        }
+        for item in historyyesterday{
+            history.append(item)
+        }
+        for item in historytoday{
+            history.append(item)
+        }
+        do{
+            let tempData = try JSONEncoder().encode(history)  //history 包装Data
+           // print(tempData)
+            UserDefaults.standard.set(tempData, forKey: "history")//存入本地
+        }catch{
+            print(error)
+        }
+    }
+    
+    //从本地取出history
+    func getHistoryFromLocal(){
+        do{
+            let tempdata = UserDefaults.standard.data(forKey: "history") //Data取出
+//            let jsonString = String.init(data: tempdata!, encoding: String.Encoding.utf8)
+            let tempArray = try JSONDecoder().decode([HistoryModel].self, from: tempdata!)
+            history = tempArray
+        }catch{
+            print(error)
+        }
+    }
+    
     func currentTime() -> String {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "YYYYMMdd"// 自定义时间格式
@@ -92,6 +111,7 @@ class HistoryState : NSObject , ObservableObject {
         super.init()
         // jiedang
         self.date = currentTime()
+        self.getHistoryFromLocal()
         self.classification()
 
     }

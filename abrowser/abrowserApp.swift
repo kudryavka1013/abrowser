@@ -9,9 +9,28 @@ import SwiftUI
 
 @main
 struct abrowserApp: App {
+    @Environment(\.scenePhase) var scenePhase
+
+    @StateObject var userPreferences = UserPreferences()
+    @StateObject var navigationState = NavigationState()
+    @StateObject var bookmarkState = BookmarkState()
+    @StateObject var historyState = HistoryState()
+    
     var body: some Scene {
+        
         WindowGroup {
-            ContentView()
+            ContentView(userPreferences: userPreferences, navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState)
+        }.onChange(of: scenePhase){ newScenePhase in
+            switch (newScenePhase) {
+            case .background:
+                historyState.saveHistoryToLocal()
+            case .inactive:
+                historyState.saveHistoryToLocal()
+            case .active:
+                print("App is active")
+            @unknown default:
+                print("Oh - interesting: I received an unexpected new value.")
+            }
         }
     }
 }

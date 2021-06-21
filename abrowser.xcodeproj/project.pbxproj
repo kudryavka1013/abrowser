@@ -10,6 +10,7 @@
 		0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */; };
 		0C5CE59C2678D638009CE5EE /* html in Resources */ = {isa = PBXBuildFile; fileRef = 0C5CE59B2678D638009CE5EE /* html */; };
 		0C5CE5A8267C2ACD009CE5EE /* BookmarkAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5A7267C2ACD009CE5EE /* BookmarkAddView.swift */; };
+		0C5CE5AE268041E2009CE5EE /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CE5AD268041E2009CE5EE /* UserPreferences.swift */; };
 		0CA1468B2664F44500BA805F /* abrowserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468A2664F44500BA805F /* abrowserApp.swift */; };
 		0CA1468D2664F44500BA805F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA1468C2664F44500BA805F /* ContentView.swift */; };
 		0CA1468F2664F44600BA805F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA1468E2664F44600BA805F /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		0C5CE5932678C441009CE5EE /* BookmarkEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditView.swift; sourceTree = "<group>"; };
 		0C5CE59B2678D638009CE5EE /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
 		0C5CE5A7267C2ACD009CE5EE /* BookmarkAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkAddView.swift; sourceTree = "<group>"; };
+		0C5CE5AD268041E2009CE5EE /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		0CA146872664F44500BA805F /* abrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = abrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA1468A2664F44500BA805F /* abrowserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = abrowserApp.swift; sourceTree = "<group>"; };
 		0CA1468C2664F44500BA805F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				0CA146C9266863C800BA805F /* NavigationState.swift */,
 				0CA146DB266A586F00BA805F /* BookmarkState.swift */,
 				0CA146DD266A5C5C00BA805F /* HistoryState.swift */,
+				0C5CE5AD268041E2009CE5EE /* UserPreferences.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */,
+				0C5CE5AE268041E2009CE5EE /* UserPreferences.swift in Sources */,
 				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
 				0CA146CA266863C800BA805F /* NavigationState.swift in Sources */,
 				1817B637266F8F8600C7B4FE /* BookmarkListView.swift in Sources */,

@@ -19,7 +19,7 @@ struct MenuView: View {
     @State var viewSeleted = 1
     @State var darkMode = false
     @State var SettingsIsPresented = false
-    
+    @State var test = false
     var body: some View {
         VStack{
             Rectangle()
@@ -32,6 +32,7 @@ struct MenuView: View {
                 Button(action: {
                     bookmarkState.addBookmark(name: navigationState.currentTitle!, url: navigationState.currentURL!.absoluteString)
                     MenuIsPresented = false
+                    test = true
                 }, label: {
                     VStack{
                         Image(systemName: "bookmark")
@@ -40,6 +41,9 @@ struct MenuView: View {
                             .font(.subheadline)
                     }
                 }).frame(maxWidth:.infinity)
+                .alert(isPresented: $test, content: {
+                    Alert(title: Text("添加成功"))
+                })
                 
                 // 书签
                 Button(action: {
@@ -123,6 +127,7 @@ struct MenuView: View {
                     Text("1234")
                 })
                 .frame(maxWidth:.infinity)
+                
                 // 浅色/深色模式
                 Button(action: {
                     darkMode.toggle()
@@ -159,7 +164,36 @@ struct MenuView: View {
                     }
                 })
                 .frame(maxWidth:.infinity)
-                Spacer()
+                
+                Button(action: {
+                    historyState.saveHistoryToLocal()
+                }, label: {
+                    VStack{
+                        
+                            Image(systemName: "sun.max")
+                                .padding(.bottom, 1)
+                            Text("本地存")
+                                .font(.subheadline)
+                        
+                        
+                    }
+                })
+                .frame(maxWidth:.infinity)
+                
+                Button(action: {
+                    historyState.getHistoryFromLocal()
+                }, label: {
+                    VStack{
+                        
+                            Image(systemName: "sun.max")
+                                .padding(.bottom, 1)
+                            Text("本地取")
+                                .font(.subheadline)
+                        
+                        
+                    }
+                })
+                .frame(maxWidth:.infinity)
             }
             .padding()
             Spacer()

@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var navigationState = NavigationState()
-    @StateObject var bookmarkState = BookmarkState()
-    @StateObject var historyState = HistoryState()
     
+    @ObservedObject var userPreferences : UserPreferences
+    @ObservedObject var navigationState : NavigationState
+    @ObservedObject var bookmarkState : BookmarkState
+    @ObservedObject var historyState : HistoryState
     @Namespace var addressbar
 
     @State var MenuIsPresented = false
@@ -32,7 +33,7 @@ struct ContentView: View {
                 ZStack{
 //                    WebViewContainer(navigationState: navigationState)
 //                        .frame(maxWidth: .infinity,maxHeight: .infinity)
-                    WebViewContainer(navigationState: navigationState)
+                    WebViewContainer(navigationState: navigationState,historyState: historyState)
 //                    WebView(navigationState: navigationState)
 //                        .frame(maxWidth: .infinity,maxHeight: .infinity)
                     
@@ -60,7 +61,7 @@ struct ContentView: View {
             }
             // 搜索
             if(SearchIsPresented){
-                SearchView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented, NavViewIsPresented: $NavViewIsPresented, addressbar: addressbar)
+                SearchView(navigationState: navigationState, userPreferences: userPreferences, SearchIsPresented: $SearchIsPresented, NavViewIsPresented: $NavViewIsPresented, addressbar: addressbar)
                     .background(Color.white)
                     .animation(.easeOut(duration: 0.2))
                     .transition(.opacity)
