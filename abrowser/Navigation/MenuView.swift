@@ -127,6 +127,7 @@ struct MenuView: View {
                     Text("1234")
                 })
                 .frame(maxWidth:.infinity)
+                
                 // 浅色/深色模式
                 Button(action: {
                     darkMode.toggle()
@@ -193,7 +194,6 @@ struct MenuView: View {
                     }
                 })
                 .frame(maxWidth:.infinity)
-                Spacer()
             }
             .padding()
             Spacer()

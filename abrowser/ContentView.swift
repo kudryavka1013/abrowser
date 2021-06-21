@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var userPreferences = UserPreferences()
-    @StateObject var navigationState = NavigationState()
-    @StateObject var bookmarkState = BookmarkState()
-    @StateObject var historyState = HistoryState()
+    
+    @ObservedObject var userPreferences : UserPreferences
+    @ObservedObject var navigationState : NavigationState
+    @ObservedObject var bookmarkState : BookmarkState
+    @ObservedObject var historyState : HistoryState
     @Namespace var addressbar
 
     @State var MenuIsPresented = false
