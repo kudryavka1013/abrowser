@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @ObservedObject var navigationState : NavigationState
+    @ObservedObject var userPreferences : UserPreferences
     @Binding var SearchIsPresented : Bool
     @Binding var NavViewIsPresented : Bool
     let addressbar: Namespace.ID
@@ -37,7 +38,7 @@ struct SearchView: View {
                                 addressToGo = "https://" + formatString
                             }
                         }else{
-                            addressToGo = "https://cn.bing.com/search?q=" + formatString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                            addressToGo = userPreferences.searchEngine + formatString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                         }
                         if(navigationState.webViews == []){
                             navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: addressToGo)!))

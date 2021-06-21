@@ -178,6 +178,21 @@ struct MenuView: View {
                     }
                 })
                 .frame(maxWidth:.infinity)
+                
+                Button(action: {
+                    historyState.localG()
+                }, label: {
+                    VStack{
+                        
+                            Image(systemName: "sun.max")
+                                .padding(.bottom, 1)
+                            Text("本地取")
+                                .font(.subheadline)
+                        
+                        
+                    }
+                })
+                .frame(maxWidth:.infinity)
                 Spacer()
             }
             .padding()

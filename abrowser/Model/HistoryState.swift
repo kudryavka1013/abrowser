@@ -62,11 +62,17 @@ class HistoryState : NSObject , ObservableObject {
         }]
         """
         do{
-            let xiaoming = try JSONDecoder().decode([HistoryModel].self, from: jsonString.data(using: .utf8)!)
-            print(xiaoming[0].websitename)
+//            let tempDataGet = try JSONDecoder().decode([HistoryModel].self, from: jsonString.data(using: .utf8)!)
+//            print(tempDataGet)
+//
+            
+            let tempData = try JSONEncoder().encode(history)
+            print(tempData)
+            UserDefaults.standard.set(tempData, forKey: "history")
         }catch{
             print(error)
         }
+        
 //        var array = [
 //            HistoryModel(websitename: "test", websiteURL: "test.com", responsetime: "20210617"),
 //            HistoryModel(websitename: "test2", websiteURL: "test2.com", responsetime: "20210617")
@@ -74,6 +80,17 @@ class HistoryState : NSObject , ObservableObject {
 //                userDefault.set(array, forKey: "Array")
 //                array = userDefault.array(forKey: "Array") as! [HistoryModel]
 //                print(array)
+    }
+    
+    func localG(){
+        do{
+            let tempdata = UserDefaults.standard.data(forKey: "history")
+//            let jsonString = String.init(data: tempdata!, encoding: String.Encoding.utf8)
+            let tempDataGet = try JSONDecoder().decode([HistoryModel].self, from: tempdata!)
+            print(tempDataGet)
+        }catch{
+            print(error)
+        }
     }
     
     func currentTime() -> String {
