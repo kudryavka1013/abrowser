@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+struct HistoryCellViewSearch: View {
+    var model: HistoryModel
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(model.websitename).lineLimit(1).offset(x: 20, y: 2)
+                Text(model.websiteURL).lineLimit(1).offset(x: 20, y: 1)
+            }
+            Spacer()
+        }.frame(height: 45)
+    }
+}
+
 struct HistoryCellView: View {
     var model: HistoryModel
     var body: some View {

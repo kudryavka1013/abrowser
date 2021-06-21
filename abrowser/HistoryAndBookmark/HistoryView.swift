@@ -64,7 +64,7 @@
                 ForEach(historyState.history.filter{ item in
                     self.searchTerm.isEmpty ? false : item.websitename.localizedStandardContains(self.searchTerm)
                 }, id: \.self) { i in
-                    HistoryCellView(model: i)
+                    HistoryCellViewSearch(model: i)
                         .onTapGesture {
                             navigationState.navGoTo(addressInput: i.websiteURL)
                             isPresented = false

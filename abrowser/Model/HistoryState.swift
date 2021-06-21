@@ -26,6 +26,8 @@ struct HistoryModel : Identifiable, Hashable, Codable{
 //本地历史数据
 class HistoryState : NSObject , ObservableObject {
     @Published var history : [HistoryModel] = [
+        HistoryModel(websitename: "百度B", websiteURL: "https://www.baidu.com", responsetime: "20210618"),
+        HistoryModel(websitename: "百度b", websiteURL: "https://www.baidu.com", responsetime: "20210618"),
         HistoryModel(websitename: "百度1", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
         HistoryModel(websitename: "百度2", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
         HistoryModel(websitename: "百度3", websiteURL: "https://www.baidu.com", responsetime: "20210617"),
