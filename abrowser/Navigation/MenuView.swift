@@ -37,9 +37,12 @@ struct MenuView: View {
                     VStack{
                         Image(systemName: "bookmark")
                             .padding(.bottom, 1)
+                            
                         Text("添加书签")
-                            .font(.subheadline)
+                            .font(.footnote)
                     }
+                    .foregroundColor(Color("ButtonTextColor"))
+
                 }).frame(maxWidth:.infinity)
                 .alert(isPresented: $test, content: {
                     Alert(title: Text("添加成功"))
@@ -55,8 +58,10 @@ struct MenuView: View {
                         Image(systemName: "book")
                             .padding(.bottom, 1)
                         Text("书签")
-                            .font(.subheadline)
+                            .font(.footnote)
                     }
+                    .foregroundColor(Color("ButtonTextColor"))
+
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
@@ -73,8 +78,11 @@ struct MenuView: View {
                         Image(systemName: "clock.arrow.circlepath")
                             .padding(.bottom, 1)
                         Text("历史记录")
-                            .font(.subheadline)
+                            .font(.footnote)
+                        
                     }
+                    .foregroundColor(Color("ButtonTextColor"))
+
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
@@ -82,20 +90,7 @@ struct MenuView: View {
                 })
                 
                 
-                // 分享
-                Button(action: {
-                    guard let urlShare = navigationState.currentURL else { return }
-                        let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
-                        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
-                    MenuIsPresented = false
-                }, label: {
-                    VStack{
-                        Image(systemName: "square.and.arrow.up")
-                            .padding(.bottom, 1)
-                        Text("分享")
-                            .font(.subheadline)
-                    }
-                }).frame(maxWidth:.infinity)
+                
                 
                 // 刷新
                 Button(action: {
@@ -106,25 +101,27 @@ struct MenuView: View {
                         Image(systemName: "arrow.triangle.2.circlepath")
                             .padding(.bottom, 1)
                         Text("刷新")
-                            .font(.subheadline)
+                            .font(.footnote)
                     }
+                    .foregroundColor(Color("ButtonTextColor"))
+
                 }).frame(maxWidth:.infinity)
             }
             .padding()
             HStack{
-                // 设置
+                
+                // 新建标签页
                 Button(action: {
+                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:blank")!))
                     MenuIsPresented = false
-                    SettingsIsPresented = true
                 }, label: {
                     VStack{
-                        Image(systemName: "gearshape")
+                        Image(systemName: "plus.rectangle.on.rectangle")
                             .padding(.bottom, 1)
-                        Text("设置")
-                            .font(.subheadline)
+                        Text("新建标签页")
+                            .font(.footnote)
                     }
-                }).sheet(isPresented: $SettingsIsPresented, content: {
-                    Text("1234")
+                    .foregroundColor(Color("ButtonTextColor"))
                 })
                 .frame(maxWidth:.infinity)
                 
@@ -137,61 +134,72 @@ struct MenuView: View {
                             Image(systemName: "moon")
                                 .padding(.bottom, 1)
                             Text("深色模式")
-                                .font(.subheadline)
+                                .font(.footnote)
 
                         }else{
                             Image(systemName: "sun.max")
                                 .padding(.bottom, 1)
                             Text("浅色模式")
-                                .font(.subheadline)
+                                .font(.footnote)
                         }
-                        
                     }
+                    .foregroundColor(Color("ButtonTextColor"))
+
                 })
                 .frame(maxWidth:.infinity)
                 
+                // 设置
+                Button(action: {
+                    MenuIsPresented = false
+                    SettingsIsPresented = true
+                }, label: {
+                    VStack{
+                        Image(systemName: "gearshape")
+                            .padding(.bottom, 1)
+                        Text("设置")
+                            .font(.footnote)
+                    }
+                    .foregroundColor(Color("ButtonTextColor"))
+
+                }).sheet(isPresented: $SettingsIsPresented, content: {
+                    SettingsView()
+                })
+                .frame(maxWidth:.infinity)
+                
+                
+                
+                
+                // 分享
+                Button(action: {
+                    guard let urlShare = navigationState.currentURL else { return }
+                    let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+                    UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
+                    MenuIsPresented = false
+                }, label: {
+                    VStack{
+                        Image(systemName: "square.and.arrow.up")
+                            .padding(.bottom, 1)
+                        Text("分享")
+                            .font(.footnote)
+                            
+                    }
+                    .foregroundColor(Color("ButtonTextColor"))
+
+                })
+                .frame(maxWidth:.infinity)
+                
+                // test
                 Button(action: {
                     historyState.addhistory(newtitle: navigationState.currentTitle!, newUrl: navigationState.currentURL!.absoluteString)
                 }, label: {
                     VStack{
-                        
-                            Image(systemName: "sun.max")
-                                .padding(.bottom, 1)
-                            Text("test")
-                                .font(.subheadline)
-                        
-                        
+                        Image(systemName: "sun.max")
+                            .padding(.bottom, 1)
+                        Text("test")
+                            .font(.footnote)
                     }
-                })
-                .frame(maxWidth:.infinity)
-                
-                Button(action: {
-                    historyState.saveHistoryToLocal()
-                }, label: {
-                    VStack{
-                        
-                            Image(systemName: "sun.max")
-                                .padding(.bottom, 1)
-                            Text("本地存")
-                                .font(.subheadline)
-                        
-                        
-                    }
-                })
-                .frame(maxWidth:.infinity)
-                
-                Button(action: {
-                    historyState.getHistoryFromLocal()
-                }, label: {
-                    VStack{
-                        
-                            Image(systemName: "sun.max")
-                                .padding(.bottom, 1)
-                            Text("本地取")
-                                .font(.subheadline)
-                        
-                        
-                    }
+                    .foregroundColor(Color("ButtonTextColor"))
+
                 })
                 .frame(maxWidth:.infinity)
             }
@@ -199,7 +207,7 @@ struct MenuView: View {
             Spacer()
         }
         .frame(height: 400)
-        .background(Color.white)
+        .background(Color("ViewColor"))
         .cornerRadius(20)
         .shadow(radius: 20)
         //        .offset(y: MenuIsPresented ? 100 : 400)

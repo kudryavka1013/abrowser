@@ -43,7 +43,7 @@ struct NavBarView: View {
             // 遮盖底部安全区域
             
             Rectangle()
-                .fill(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
+                .fill(Color("BackgroundColor"))
                 .frame(height: 200)
                 .offset(y: 100)
             
@@ -53,6 +53,7 @@ struct NavBarView: View {
                     navigationState.navGoBack()
                 }, label: {
                     Image(systemName: "chevron.left")
+                        .foregroundColor(navigationState.canGoBack ? Color("ButtonTextColor") : Color.gray)
                 })
                 .frame(maxWidth: .infinity)
                 .disabled(!navigationState.canGoBack)
@@ -62,6 +63,7 @@ struct NavBarView: View {
                     navigationState.navGoForward()
                 }, label: {
                     Image(systemName: "chevron.right")
+                        .foregroundColor(navigationState.canGoForward ? Color("ButtonTextColor") : Color.gray)
                 })
                 .frame(maxWidth: .infinity)
                 .disabled(!navigationState.canGoForward)
@@ -89,10 +91,10 @@ struct NavBarView: View {
                     Image(systemName: "slider.vertical.3")
                 }).frame(maxWidth: .infinity)
             }
-            .foregroundColor(Color.gray)
+            .foregroundColor(Color("ButtonTextColor"))
             .padding()
             .padding(.horizontal)
-            .background(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
+            .background(Color("BackgroundColor"))
             .frame(height:50)
         }
         .frame(maxHeight:50)

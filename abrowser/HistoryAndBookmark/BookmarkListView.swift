@@ -17,6 +17,7 @@ struct BookmarkListView : View{
     @State var text = ""
     
     func deleteRow(at offsets:IndexSet){
+        print(offsets.count)
         data.remove(atOffsets: offsets)
         //        print(offsets.first)
         //        offsets.in
@@ -28,7 +29,7 @@ struct BookmarkListView : View{
                 List{
                     ForEach(data){ item in
                         if(item.children != nil){
-                            NavigationLink(destination: BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, data: item.children!)){
+                            NavigationLink(destination: BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing,  data: item.children!)){
                                 Text(item.description)
                                     .lineLimit(1)
                             }

@@ -60,7 +60,7 @@ struct SearchView: View {
                     .zIndex(1)
                     if(SearchIsPresented){
                         RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
-                            .fill(Color.white)
+                            .fill(Color("AddressBarColor"))
                             .frame(maxHeight:36)
                             .shadow(radius: 1)
                             .matchedGeometryEffect(id: "addressbar", in: addressbar)
@@ -77,11 +77,11 @@ struct SearchView: View {
             }
             .padding(.horizontal)
             .padding(.vertical, 5)
-            if ((navigationState.image) != nil){
-                Image(uiImage: navigationState.image!)
-            }else{
-                Rectangle()
-            }
+//            if ((navigationState.image) != nil){
+//                Image(uiImage: navigationState.image!)
+//            }else{
+//                Rectangle()
+//            }
 
             Spacer()
         }

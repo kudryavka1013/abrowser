@@ -14,7 +14,7 @@ struct ContentView: View {
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
     @Namespace var addressbar
-
+    
     @State var MenuIsPresented = false
     @State var TabManagementIsPresented = false
     @State var SearchIsPresented = false
@@ -24,25 +24,18 @@ struct ContentView: View {
         ZStack{
             // 主页面
             VStack(spacing:0){
-                if(!SearchIsPresented){
-                    AddressBarView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented ,addressbar: addressbar)
-                        .animation(.easeOut(duration: 0.2))
-                                        .transition(.opacity)
-                }
+                AddressBarView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented ,addressbar: addressbar)
+                    .background(Color("BackgroundColor"))
+
+                    .animation(.easeOut(duration: 0.2))
+                    .transition(.opacity)
                 
                 ZStack{
-//                    WebViewContainer(navigationState: navigationState)
-//                        .frame(maxWidth: .infinity,maxHeight: .infinity)
                     WebViewContainer(navigationState: navigationState,historyState: historyState)
-//                    WebView(navigationState: navigationState)
-//                        .frame(maxWidth: .infinity,maxHeight: .infinity)
-                    
-//                    if(!NavViewIsPresented){
-//                        NavView(NavViewIsPresented: $NavViewIsPresented)
-//                            .frame(maxWidth: .infinity,maxHeight: .infinity)
-//                    }
-                    
+
+                    // 遮罩
                     Rectangle()
+                        .fill(Color.black)
                         .opacity(MenuIsPresented ? 0.4 : 0)
                         .animation(.easeOut(duration: 0.2))
                         .onTapGesture {
@@ -56,13 +49,13 @@ struct ContentView: View {
             // 标签页管理页面
             if(TabManagementIsPresented){
                 TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
-                    .background(Color.white)
+                    .background(Color("BackgroundColor"))
                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             }
             // 搜索
             if(SearchIsPresented){
                 SearchView(navigationState: navigationState, userPreferences: userPreferences, SearchIsPresented: $SearchIsPresented, NavViewIsPresented: $NavViewIsPresented, addressbar: addressbar)
-                    .background(Color.white)
+                    .background(Color("BackgroundColor"))
                     .animation(.easeOut(duration: 0.2))
                     .transition(.opacity)
             }
