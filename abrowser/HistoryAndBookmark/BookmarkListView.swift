@@ -12,24 +12,22 @@ struct BookmarkListView : View{
     @ObservedObject var bookmarkState : BookmarkState
     @Binding var isPresented : Bool
     @Binding var isEditing : Bool
-    @State var data : [Bookmark]
+    @State var bookmarkList : [Bookmark]
     @State private var showAlert = false
     @State var text = ""
     
     func deleteRow(at offsets:IndexSet){
-        print(offsets.count)
-        data.remove(atOffsets: offsets)
-        //        print(offsets.first)
-        //        offsets.in
+        bookmarkList.remove(atOffsets: offsets)
     }
     
     var body: some View {
         ZStack{
             VStack{
                 List{
-                    ForEach(data){ item in
+                    ForEach(bookmarkList){ item in
                         if(item.children != nil){
-                            NavigationLink(destination: BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing,  data: item.children!)){
+
+                            NavigationLink(destination: BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, bookmarkList: item.children!)){
                                 Text(item.description)
                                     .lineLimit(1)
                             }
@@ -49,11 +47,11 @@ struct BookmarkListView : View{
                         self.showAlert.toggle()
                     }, label: {
                         Text("新建文件夹")
-                    })
+                    }).disabled(true)
                     Spacer()
                     
                     Button(action: {
-                        // 编辑
+                        //编辑
                         isEditing.toggle()
                     }, label: {
                         Text("编辑")
@@ -70,31 +68,6 @@ struct BookmarkListView : View{
                 .animation(.easeIn(duration: 0.1))
         
         }
-    }
-}
-
-//extension View {
-//    func showAlert(isPresented: Binding<Bool>) -> some View {
-//        self.modifier (TextAlertVM (bookmarkState: bookmarkState, isPresented: isPresented))
-//    }
-//}
-
-struct TextAlertVM: ViewModifier {
-    @ObservedObject var bookmarkState : BookmarkState
-    @Binding var isPresented: Bool
-    
-    func body(content: Content) -> some View {
-        ZStack {
-            content
-                .disabled(self.isPresented)
-                .blur(radius: self.isPresented ? 6 : 0)
-            if isPresented {
-                BookmarkAddView(bookmarkState: bookmarkState, isPresented: $isPresented)
-                    
-                    .zIndex(1)
-            }
-        }
-        
     }
 }
 

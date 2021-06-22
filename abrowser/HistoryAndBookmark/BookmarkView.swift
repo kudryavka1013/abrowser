@@ -17,7 +17,7 @@ struct BookmarkView: View {
 
     
     var body: some View {
-        BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, data: bookmarkState.data)
+        BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, bookmarkList: bookmarkState.bookmarkList)
     }
     
     

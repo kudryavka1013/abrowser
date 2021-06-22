@@ -55,9 +55,13 @@ class HistoryState : NSObject , ObservableObject {
     func getHistoryFromLocal(){
         do{
             let tempdata = UserDefaults.standard.data(forKey: "history") //Data取出
-//            let jsonString = String.init(data: tempdata!, encoding: String.Encoding.utf8)
-            let tempArray = try JSONDecoder().decode([HistoryModel].self, from: tempdata!)
-            history = tempArray
+            if(tempdata != nil){
+                let tempArray = try JSONDecoder().decode([HistoryModel].self, from: tempdata!)
+                history = tempArray
+            }else{
+                history = []
+            }
+
         }catch{
             print(error)
         }
