@@ -15,6 +15,7 @@ struct NavBarView: View {
     @Binding var MenuIsPresented : Bool
     @Binding var TabManagementIsPresented : Bool
     @Binding var NavViewIsPresented : Bool
+
     
     @State var MenuPosition = CGSize.zero
     var body: some View {

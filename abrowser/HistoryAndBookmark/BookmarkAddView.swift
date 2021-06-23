@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BookmarkAddView: View {
     @ObservedObject var bookmarkState : BookmarkState
-    @Binding var isPresented:Bool
+    @Binding var isPresented : Bool
     @State var text = ""
     
     var body: some View {
@@ -32,7 +32,7 @@ struct BookmarkAddView: View {
                 Divider()
                 Button(action: {
                     if (text != ""){
-                        bookmarkState.addFolder(name: text)
+//                        bookmarkState.addFolder(name: text)
                     }
                     self.isPresented.toggle()
                 }, label: {
