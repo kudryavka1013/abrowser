@@ -24,7 +24,18 @@ struct HistoryModel : Identifiable, Hashable, Codable{
 }
 
 //本地历史数据
-class HistoryState : NSObject , ObservableObject {
+class HistoryState : NSObject ,ObservableObject ,StateProtocol{
+    var mediator: Mediator
+    
+    required init(mediator: Mediator) {
+        self.mediator = mediator
+        super.init()
+        // jiedang
+        self.date = currentTime()
+        self.getHistoryFromLocal()
+        self.classification()
+    }
+    
     @Published var history : [HistoryModel] = []
     @Published var historytoday : [HistoryModel] = []
     @Published var historyyesterday : [HistoryModel] = []
@@ -111,14 +122,14 @@ class HistoryState : NSObject , ObservableObject {
         historyyesterday.removeAll()
     }
     
-    override init() {
-        super.init()
-        // jiedang
-        self.date = currentTime()
-        self.getHistoryFromLocal()
-        self.classification()
-
-    }
+//    override init() {
+//        super.init()
+//        // jiedang
+//        self.date = currentTime()
+//        self.getHistoryFromLocal()
+//        self.classification()
+//
+//    }
 }
 
 

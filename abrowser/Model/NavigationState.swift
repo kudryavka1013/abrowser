@@ -8,7 +8,37 @@
 import SwiftUI
 import WebKit
 
-class NavigationState : NSObject, ObservableObject{
+protocol NavigationProtocol {
+    var
+}
+
+class NavigationState : NSObject, ObservableObject, StateProtocol{
+    var mediator: Mediator
+    
+    //    override init() {
+    //        super.init()
+    //        let wv = WKWebView()
+    //        wv.navigationDelegate = self
+    //        webViews.append(wv)
+    //        let bundlePath = Bundle.main.bundlePath
+    //        let path = "file://\(bundlePath)/html/nav.html"
+    //        wv.load(URLRequest(url: URL(string: path)!))
+    //        selectedWebView = wv
+    //    }
+    
+    required init(mediator: Mediator) {
+        self.mediator = mediator
+        super.init()
+        
+        let wv = WKWebView()
+        wv.navigationDelegate = self
+        webViews.append(wv)
+        let bundlePath = Bundle.main.bundlePath
+        let path = "file://\(bundlePath)/html/nav.html"
+        wv.load(URLRequest(url: URL(string: path)!))
+        selectedWebView = wv
+    }
+    
     @Published var currentURL : URL?
     @Published var webViews : [WKWebView] = []
     @Published var selectedWebView : WKWebView?
@@ -31,16 +61,6 @@ class NavigationState : NSObject, ObservableObject{
         return wv
     }
     
-    override init() {
-        super.init()
-        let wv = WKWebView()
-        wv.navigationDelegate = self
-        webViews.append(wv)
-        let bundlePath = Bundle.main.bundlePath
-        let path = "file://\(bundlePath)/html/nav.html"
-        wv.load(URLRequest(url: URL(string: path)!))
-        selectedWebView = wv
-    }
     
     func deleteWebView(){}
     
@@ -104,6 +124,7 @@ extension NavigationState : WKNavigationDelegate{
         if webView == selectedWebView {
             // 页面标题
             self.currentTitle = webView.title
+            self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
         }
     }
     //页面加载失败时调用

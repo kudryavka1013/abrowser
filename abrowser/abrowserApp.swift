@@ -11,11 +11,14 @@ import SwiftUI
 struct abrowserApp: App {
     @Environment(\.scenePhase) var scenePhase
 
+    var mediator = Mediator()
     @StateObject var userPreferences = UserPreferences()
-    @StateObject var navigationState = NavigationState()
+    @StateObject var navigationState = NavigationState(mediator: mediator)
     @StateObject var bookmarkState = BookmarkState()
-    @StateObject var historyState = HistoryState()
-    
+    @StateObject var historyState = HistoryState(mediator: mediator)
+    init(){
+        
+    }
     var body: some Scene {
         
         WindowGroup {

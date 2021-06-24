@@ -13,6 +13,7 @@ struct ContentView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
+    
     @Namespace var addressbar
     
     @State var MenuIsPresented = false
