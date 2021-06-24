@@ -10,19 +10,63 @@ import SwiftUI
 struct TabManagementView: View {
     @ObservedObject var navigationState: NavigationState
     @Binding var TabManagementIsPresented : Bool
+    @State var moveState = CGSize.zero
     var body: some View {
         VStack{
             // 将list替换为界面
-            List {
+            Spacer()
+            ZStack {
                 ForEach(navigationState.webViews, id: \.self) { tab in
-                    Button(action: {
+                    
+//                    Button(action: {
+//                        navigationState.selectedWebView = tab
+//                        TabManagementIsPresented = false
+//                    }) {
+//                        Text(tab.url?.absoluteString ?? "?")
+//                    }
+                    let a = tab.screenshot
+                    VStack(spacing: 0.0) {
+                        HStack {
+                            Text(tab.url?.absoluteString ?? "?").lineLimit(1)
+                            Spacer()
+                            Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(Color.black)
+                            }
+                        }
+                        .padding(.all,8)
+                        .background(Color.gray)
+//                        Spacer()
+                        Image( uiImage : a()!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }
+                    .frame(width: 280.0, height: 400.0)
+                    .offset(x: moveState.width * 2 , y: 0)
+                    .opacity(1 - Double(abs(moveState.width / 200)))
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                if abs(value.translation.height) < abs(value.translation.width) {
+                                    self.moveState.height = .zero
+                                    self.moveState.width = value.translation.width
+                                }
+                                }
+                            .onEnded { _ in
+                                if abs(self.moveState.width) > 100 {
+            //                        self.removal?()
+                                } else {
+                                    self.moveState = .zero
+                                }
+                            }
+                    )
+                    .onTapGesture {
                         navigationState.selectedWebView = tab
                         TabManagementIsPresented = false
-                    }) {
-                        Text(tab.url?.absoluteString ?? "?")
                     }
                 }
             }
+            Spacer()
 //            .frame(height: .infinity)
             HStack{
                 Button(action: {
@@ -57,4 +101,47 @@ struct TabManagementView: View {
 //    static var previews: some View {
 //        TabManagementView()
 //    }
+//}
+
+//struct Tab: View {
+//    @State var moveState = CGSize.zero
+//    var body: some View {
+//        VStack {
+//            HStack {
+//                Text("Title")
+//                Spacer()
+//                Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
+//                    Image(systemName: "xmark")
+//                        .foregroundColor(Color.black)
+//                }
+//            }
+//            .padding(.horizontal)
+//            .padding(.top,8)
+//            .padding(.bottom,8)
+//            .background(Color.gray)
+//            Spacer()
+//            Image("screen1")
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//        }
+//        .frame(width: 240.0, height: 360.0)
+//        .offset(x: moveState.width * 2 , y: 0)
+//        .opacity(1 - Double(abs(moveState.width / 200)))
+//        .gesture(
+//            DragGesture()
+//                .onChanged { value in
+//                    if abs(value.translation.height) < abs(value.translation.width) {
+//                        self.moveState.height = .zero
+//                        self.moveState.width = value.translation.width
+//                    }
+//                    }
+//                .onEnded { _ in
+//                    if abs(self.moveState.width) > 100 {
+////                        self.removal?()
+//                    } else {
+//                        self.moveState = .zero
+//                    }
+//                }
+//        )
+//}
 //}
