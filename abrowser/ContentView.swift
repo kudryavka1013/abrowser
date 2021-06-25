@@ -20,37 +20,34 @@ struct ContentView: View {
     @State var TabManagementIsPresented = false
     @State var SearchIsPresented = false
     @State var NavViewIsPresented = true
-    
+    @State var FromNavView = true
+    var defaultUrl = URL(string: "about:blank")
     var body: some View {
         ZStack{
             // 主页面
             VStack(spacing:0){
                 ZStack{
                     VStack(spacing:0){
-                    AddressBarView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented ,addressbar: addressbar)
-                        .background(Color("BackgroundColor"))
-
-                        .animation(.easeOut(duration: 0.2))
-                        .transition(.opacity)
-                    
-                    ZStack{
-                        
-                        WebViewContainer(navigationState: navigationState,historyState: historyState)
-                        // 遮罩
-                        Rectangle()
-                            .fill(Color.black)
-                            .opacity(MenuIsPresented ? 0.4 : 0)
+                        // AddressBar
+                        AddressBarView(navigationState: navigationState, SearchIsPresented: $SearchIsPresented ,addressbar: addressbar)
+                            .background(Color("BackgroundColor"))
                             .animation(.easeOut(duration: 0.2))
-                            .onTapGesture {
-                                MenuIsPresented = false
-                            }
-                        //                        .zIndex(1.0)
-                    }
+                            .transition(.opacity)
+                        // WebView
+                        WebViewContainer(navigationState: navigationState,historyState: historyState)
                     }
                     if(NavViewIsPresented){
-                        NavView(NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, addressbar: addressbar)
+                        NavView(NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
                             .background(Color("PageBackgroundColor"))
                     }
+                    // 遮罩
+                    Rectangle()
+                        .fill(Color.black)
+                        .opacity(MenuIsPresented ? 0.4 : 0)
+                        .animation(.easeOut(duration: 0.2))
+                        .onTapGesture {
+                            MenuIsPresented = false
+                        }
                 }
                 
                 NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
@@ -59,12 +56,12 @@ struct ContentView: View {
             // 标签页管理页面
             if(TabManagementIsPresented){
                 TabManagementView(navigationState: navigationState, TabManagementIsPresented: $TabManagementIsPresented)
-                    .background(Color("HomePageBackgroundColor"))
+                    .background(Color("PageBackgroundColor"))
                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
             }
             // 搜索
             if(SearchIsPresented){
-                SearchView(navigationState: navigationState, userPreferences: userPreferences, SearchIsPresented: $SearchIsPresented, NavViewIsPresented: $NavViewIsPresented, addressbar: addressbar)
+                SearchView(navigationState: navigationState, userPreferences: userPreferences, SearchIsPresented: $SearchIsPresented, NavViewIsPresented: $NavViewIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
                     .background(Color("BackgroundColor"))
                     .animation(.easeOut(duration: 0.2))
                     .transition(.opacity)
