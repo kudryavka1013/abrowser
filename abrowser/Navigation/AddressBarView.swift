@@ -26,14 +26,14 @@ struct AddressBarView: View {
                             .padding(.horizontal,32)
                             .zIndex(1)
                             .lineLimit(1)
-                            RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
-                                .fill(Color("AddressBarColor"))
-                                .frame(maxHeight:36)
-                                .shadow(radius: 1)
-                                .matchedGeometryEffect(id: "addressbar", in: addressbar)
-                                .onTapGesture {
-                                    SearchIsPresented = true
-                                }
+                        RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
+                            .fill(Color("AddressBarColor"))
+                            .frame(maxHeight:36)
+                            .shadow(radius: 1)
+                            .matchedGeometryEffect(id: "addressbar", in: addressbar)
+                            .onTapGesture {
+                                SearchIsPresented = true
+                            }
                         HStack{
                             Spacer()
                             Button(action: {
@@ -41,10 +41,10 @@ struct AddressBarView: View {
                             }, label: {
                                 if(navigationState.selectedWebView?.isLoading == true){
                                     Image(systemName:"xmark")
-                                        .matchedGeometryEffect(id: "refreshbtn", in: addressbar)
+                                    //                                        .matchedGeometryEffect(id: "refreshbtn", in: addressbar)
                                 }else{
                                     Image(systemName: "arrow.triangle.2.circlepath")
-                                        .matchedGeometryEffect(id: "refreshbtn", in: addressbar)
+                                    //                                        .matchedGeometryEffect(id: "refreshbtn", in: addressbar)
                                 }
                             })
                             .zIndex(1.0)

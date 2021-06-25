@@ -11,6 +11,7 @@ struct NavView: View {
 //    @ObservedObject var navigationState : NavigationState
     @Binding var NavViewIsPresented : Bool
     @Binding var SearchIsPresented : Bool
+    @Binding var FromNavView : Bool
     let addressbar: Namespace.ID
     var body: some View {
        //
@@ -22,22 +23,30 @@ struct NavView: View {
             ZStack{
                 
                 RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
-                    .stroke(Color("PageButtonTextColor"),lineWidth: 1)
+//                    .stroke(Color("PageButtonTextColor"),lineWidth: 1)
+                    .fill(Color("AddressBarColor"))
                     .frame(width: 350, height: 50)
-                    .shadow(radius: 1)
+//                    .shadow(radius: 1)
+                    .shadow(color: Color.black, radius: 1, x: 0, y: 0)
                     .padding()
 //                    .matchedGeometryEffect(id: "addressbar", in: addressba)
-                    .onTapGesture {
-                        NavViewIsPresented = false
+                    .onTapGesture(perform: {
                         SearchIsPresented = true
-                    }
+                        FromNavView = true
+                    })
                 HStack{
                     Spacer()
                     Image(systemName: "magnifyingglass")
                         .frame(width: 20, height:20)
-                        .padding(.trailing,32)
+                        .padding(.trailing,36)
                 }.padding()
-            }.offset(x: 0, y: -10)
+            }
+//            .offset(x: 0, y: -10)
+            .onTapGesture {
+                print("tap")
+                NavViewIsPresented = false
+                SearchIsPresented = true
+            }
             HStack{
                 NavBtn(name: "百度",icon: "百度",url: "https://www.baidu.com")
                     .padding(8)
@@ -51,7 +60,7 @@ struct NavView: View {
                 NavBtn(name: "京东",icon:"京东", url: "https://www.jd.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-            }
+            }.padding(.horizontal)
             
             HStack{
                 NavBtn(name: "微博",icon:"微博", url: "https://weibo.com")
@@ -66,7 +75,7 @@ struct NavView: View {
                 NavBtn(name: "美团",icon:"美团", url: "https://www.meituan.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-            }
+            }.padding(.horizontal)
             Spacer()
         }
     }

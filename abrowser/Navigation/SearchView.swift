@@ -12,6 +12,7 @@ struct SearchView: View {
     @ObservedObject var userPreferences : UserPreferences
     @Binding var SearchIsPresented : Bool
     @Binding var NavViewIsPresented : Bool
+    @Binding var FromNavView : Bool
     let addressbar: Namespace.ID
     @State var addressInput = ""
     @State var currentURL = ""
@@ -69,6 +70,11 @@ struct SearchView: View {
                 }
                 Button(action: {
                     SearchIsPresented = false
+                    if(FromNavView){
+                        NavViewIsPresented = true
+                    }else{
+                        NavViewIsPresented = false
+                    }
                 }, label: {
                     Text("取消")
                 })

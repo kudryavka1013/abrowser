@@ -28,7 +28,7 @@ final class Mediator{
     
     func addHistory(title: String,url: String){
         print("mediator addhistory")
-        if(historyState == nil){print("historyState is nil")}
+//        if(historyState == nil){print("historyState is nil")}
         historyState?.addhistory(newtitle: title, newUrl: url)
     }
 }
