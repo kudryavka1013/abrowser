@@ -8,78 +8,93 @@
 import SwiftUI
 
 struct NavView: View {
+//    @ObservedObject var navigationState : NavigationState
     @Binding var NavViewIsPresented : Bool
-    
+    @Binding var SearchIsPresented : Bool
+    let addressbar: Namespace.ID
     var body: some View {
+       //
+        
         VStack{
+            Spacer()
+            Image("主页").frame(width: 350, height:130).offset(x: 0, y: -15)
+            //sousuokuang
+            ZStack{
+                
+                RoundedRectangle(cornerRadius: 18,style: RoundedCornerStyle.continuous)
+                    .stroke(Color("PageButtonTextColor"),lineWidth: 1)
+                    .frame(width: 350, height: 50)
+                    .shadow(radius: 1)
+                    .padding()
+//                    .matchedGeometryEffect(id: "addressbar", in: addressba)
+                    .onTapGesture {
+                        NavViewIsPresented = false
+                        SearchIsPresented = true
+                    }
+                HStack{
+                    Spacer()
+                    Image(systemName: "magnifyingglass")
+                        .frame(width: 20, height:20)
+                        .padding(.trailing,32)
+                }.padding()
+            }.offset(x: 0, y: -10)
             HStack{
-                NavBtn(name: "百度", url: "https://www.baidu.com")
+                NavBtn(name: "百度",icon: "百度",url: "https://www.baidu.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "京东", url: "https://www.baidu.com")
+                NavBtn(name: "淘宝",icon:"淘宝", url: "https://www.taobao.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "淘宝", url: "https://www.baidu.com")
+                NavBtn(name: "GitHub",icon:"GitHub", url: "https://github.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "搜狐", url: "https://www.baidu.com")
+                NavBtn(name: "京东",icon:"京东", url: "https://www.jd.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
             }
             
             HStack{
-                NavBtn(name: "爱奇艺", url: "https://www.baidu.com")
+                NavBtn(name: "微博",icon:"微博", url: "https://weibo.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "58同城", url: "https://www.baidu.com")
+                NavBtn(name: "哔哩哔哩",icon:"哔哩哔哩", url: "https://www.bilibili.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "虎扑", url: "https://www.baidu.com")
+                NavBtn(name: "知乎",icon:"知乎", url: "https://www.zhihu.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "哔哩哔哩", url: "https://www.baidu.com")
-                    .padding(8)
-                    .frame(maxWidth: .infinity)
-            }
-            
-            HStack{
-                NavBtn(name: "知乎", url: "https://www.baidu.com")
-                    .padding(8)
-                    .frame(maxWidth: .infinity)
-                NavBtn(name: "携程", url: "https://www.baidu.com")
-                    .padding(8)
-                    .frame(maxWidth: .infinity)
-                NavBtn(name: "美团", url: "https://www.baidu.com")
-                    .padding(8)
-                    .frame(maxWidth: .infinity)
-                NavBtn(name: "优酷", url: "https://www.baidu.com")
+                NavBtn(name: "美团",icon:"美团", url: "https://www.meituan.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
             }
+            Spacer()
         }
     }
 }
-
 struct NavBtn: View{
     
     var name : String
-//    var icon : Image
+    var icon : String
     var url : String
     
     var body: some View{
         Button(action: {
-            //跳转
+//                navigationState.navGoTo(addressInput: url)
         }, label: {
             VStack{
-                Rectangle().frame(width: 50, height:50)
-                Text(name).font(.footnote).lineLimit(1)
-            }
+                Image(icon).frame(width: 50, height:50)
+                Text(name).font(.footnote).lineLimit(1)//.colorMultiply(.black)
+            }.foregroundColor(Color("PageButtonTextColor"))
         })
     }
 }
 
-struct NavView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavView(NavViewIsPresented: .constant(true))
-    }
-}
+//struct NavView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavView( NavViewIsPresented: .constant(true), SearchIsPresented: <#Binding<Bool>#>)
+//    }
+//}
+
+//magnifyingglass
+//magnifyingglass.circle
+//magnifyingglass.circle.fill

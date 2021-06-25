@@ -11,11 +11,22 @@ import SwiftUI
 struct abrowserApp: App {
     @Environment(\.scenePhase) var scenePhase
 
-    @StateObject var userPreferences = UserPreferences()
-    @StateObject var navigationState = NavigationState()
-    @StateObject var bookmarkState = BookmarkState()
-    @StateObject var historyState = HistoryState()
-    
+    var mediator = Mediator()
+    @ObservedObject var userPreferences : UserPreferences
+    @ObservedObject var navigationState : NavigationState
+    @ObservedObject var bookmarkState : BookmarkState
+    @ObservedObject var historyState : HistoryState
+    init(){
+        navigationState = NavigationState(mediator: mediator)
+        historyState = HistoryState(mediator: mediator)
+        bookmarkState = BookmarkState(mediator: mediator)
+        userPreferences = UserPreferences(mediator: mediator)
+        mediator.setNav(navigationState)
+        mediator.setHis(historyState)
+        mediator.setPref(userPreferences)
+        mediator.setBook(bookmarkState)
+   
+    }
     var body: some Scene {
         
         WindowGroup {
@@ -23,9 +34,11 @@ struct abrowserApp: App {
         }.onChange(of: scenePhase){ newScenePhase in
             switch (newScenePhase) {
             case .background:
+                print("App is background")
                 historyState.saveHistoryToLocal()
                 bookmarkState.saveBookmarkToLocal()
             case .inactive:
+                print("App is inactive")
                 historyState.saveHistoryToLocal()
                 bookmarkState.saveBookmarkToLocal()
             case .active:
