@@ -8,35 +8,45 @@
 import SwiftUI
 import WebKit
 
-protocol NavigationProtocol {
-    var
+protocol NavigationProtocol : AnyObject{
+    var mediator: Mediator{ get }
+    
+//    var currentURL : URL? { get set }
+//    var webViews : [WKWebView] { get set }
+//    var selectedWebView : WKWebView? { get set }
+//    var currentTitle : String? { get set }
+//    var canGoBack : Bool  { get set }
+//    var canGoForward : Bool { get set }
+//
+//    var image : UIImage? { get set }
+//    var images : [UIImage] { get set }
 }
 
-class NavigationState : NSObject, ObservableObject, StateProtocol{
+class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     var mediator: Mediator
     
-    //    override init() {
-    //        super.init()
-    //        let wv = WKWebView()
-    //        wv.navigationDelegate = self
-    //        webViews.append(wv)
-    //        let bundlePath = Bundle.main.bundlePath
-    //        let path = "file://\(bundlePath)/html/nav.html"
-    //        wv.load(URLRequest(url: URL(string: path)!))
-    //        selectedWebView = wv
-    //    }
+//        override init() {
+//            super.init()
+//            let wv = WKWebView()
+//            wv.navigationDelegate = self
+//            webViews.append(wv)
+//            let bundlePath = Bundle.main.bundlePath
+//            let path = "file://\(bundlePath)/html/nav.html"
+//            wv.load(URLRequest(url: URL(string: path)!))
+//            selectedWebView = wv
+//        }
     
     required init(mediator: Mediator) {
         self.mediator = mediator
         super.init()
-        
-        let wv = WKWebView()
-        wv.navigationDelegate = self
-        webViews.append(wv)
-        let bundlePath = Bundle.main.bundlePath
-        let path = "file://\(bundlePath)/html/nav.html"
-        wv.load(URLRequest(url: URL(string: path)!))
-        selectedWebView = wv
+//        self.createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
+//        let wv = WKWebView()
+//        wv.navigationDelegate = self
+//        webViews.append(wv)
+//        let bundlePath = Bundle.main.bundlePath
+//        let path = "file://\(bundlePath)/html/nav.html"
+//        wv.load(URLRequest(url: URL(string: path)!))
+//        selectedWebView = wv
     }
     
     @Published var currentURL : URL?

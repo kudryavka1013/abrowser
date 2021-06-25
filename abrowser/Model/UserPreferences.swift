@@ -7,13 +7,20 @@
 
 import SwiftUI
 
-class UserPreferences: NSObject, ObservableObject{
+protocol UserPreferencesProtocol: AnyObject {
+    var mediator: Mediator { get }
+}
+class UserPreferences: NSObject, ObservableObject,UserPreferencesProtocol{
+    var mediator : Mediator
+    
     @Published var searchEngineType: Int
     @Published var searchEngine: String
     @Published var homePageType : Int
     @Published var homePage: String
 
-    override init() {
+    required init(mediator: Mediator) {
+        self.mediator = mediator
+//        super.init()
         // get data from local storage
         searchEngineType = 0
         searchEngine = "https://cn.bing.com/search?q="

@@ -28,7 +28,20 @@ struct Folder: Identifiable{
     
 }
 
-class BookmarkState : NSObject, ObservableObject{
+protocol BookmarkProtocol : AnyObject{
+    var mediator : Mediator { get }
+    
+}
+class BookmarkState : NSObject, ObservableObject,BookmarkProtocol{
+    var mediator : Mediator
+    
+    required init(mediator: Mediator){
+        self.mediator = mediator
+        super.init()
+        //解档
+        self.getBookmarkFromLocal()
+    }
+
     @Published var bookmarkList:[Bookmark] = []
     
     func addBookmark(name: String, url: String){
@@ -67,11 +80,6 @@ class BookmarkState : NSObject, ObservableObject{
         }
     }
     
-    override init(){
-        super.init()
-        //解档
-        self.getBookmarkFromLocal()
-    }
     
 
     

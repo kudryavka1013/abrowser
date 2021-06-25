@@ -23,8 +23,14 @@ struct HistoryModel : Identifiable, Hashable, Codable{
     }
 }
 
+protocol HistoryProtocol : AnyObject{
+    var mediator : Mediator { get }
+    
+    func addhistory(newtitle : String,newUrl : String)
+}
+
 //本地历史数据
-class HistoryState : NSObject ,ObservableObject ,StateProtocol{
+class HistoryState : NSObject ,ObservableObject ,HistoryProtocol{
     var mediator: Mediator
     
     required init(mediator: Mediator) {
@@ -101,6 +107,7 @@ class HistoryState : NSObject ,ObservableObject ,StateProtocol{
     }
     
     func addhistory(newtitle : String,newUrl : String) {
+        print("historystate addhistory")
         let newresponse = currentTime()
         let item = HistoryModel(websitename: newtitle, websiteURL: newUrl, responsetime: newresponse)
         //historytoday.append(item)

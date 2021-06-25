@@ -12,12 +12,20 @@ struct abrowserApp: App {
     @Environment(\.scenePhase) var scenePhase
 
     var mediator = Mediator()
-    @StateObject var userPreferences = UserPreferences()
-    @StateObject var navigationState = NavigationState(mediator: mediator)
-    @StateObject var bookmarkState = BookmarkState()
-    @StateObject var historyState = HistoryState(mediator: mediator)
+    @ObservedObject var userPreferences : UserPreferences
+    @ObservedObject var navigationState : NavigationState
+    @ObservedObject var bookmarkState : BookmarkState
+    @ObservedObject var historyState : HistoryState
     init(){
-        
+        navigationState = NavigationState(mediator: mediator)
+        historyState = HistoryState(mediator: mediator)
+        bookmarkState = BookmarkState(mediator: mediator)
+        userPreferences = UserPreferences(mediator: mediator)
+        mediator.setNav(navigationState)
+        mediator.setHis(historyState)
+        mediator.setPref(userPreferences)
+        mediator.setBook(bookmarkState)
+   
     }
     var body: some Scene {
         

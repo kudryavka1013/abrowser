@@ -7,46 +7,28 @@
 
 import SwiftUI
 
-protocol StateProtocol {
-    var mediator : Mediator { get }
-    init(mediator : Mediator)
-    
-//    func operation()
-}
-
 final class Mediator{
-    var navigationState : StateProtocol?
-    var bookmarkState : StateProtocol?
-    var historyState : StateProtocol?
-    var userPreferences : StateProtocol?
+    weak var navigationState : NavigationProtocol?
+    weak var bookmarkState : BookmarkProtocol?
+    weak var historyState : HistoryProtocol?
+    weak var userPreferences : UserPreferencesProtocol?
     
-//    func addHistory(title: String,url: String){
-//        historyState?.addhistory(newtitle: title, newUrl: url)
-//    }
-}
-
-class n : StateProtocol{
-    var mediator: Mediator
-    
-    required init(mediator: Mediator) {
-        self.mediator = mediator
+    func setNav(_ nav : NavigationProtocol){
+        navigationState = nav
+    }
+    func setHis(_ his: HistoryProtocol){
+        historyState = his
+    }
+    func setPref(_ pref : UserPreferencesProtocol){
+        userPreferences = pref
+    }
+    func setBook(_ book: BookmarkProtocol){
+        bookmarkState = book
     }
     
-    func operation() {
-        print("n")
+    func addHistory(title: String,url: String){
+        print("mediator addhistory")
+        if(historyState == nil){print("historyState is nil")}
+        historyState?.addhistory(newtitle: title, newUrl: url)
     }
-    
-}
-
-class h : StateProtocol{
-    var mediator: Mediator
-    
-    required init(mediator: Mediator) {
-        self.mediator = mediator
-    }
-    
-    func operation() {
-        print("h")
-    }
-    
 }
