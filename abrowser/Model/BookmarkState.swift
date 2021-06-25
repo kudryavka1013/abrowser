@@ -10,31 +10,36 @@ struct Bookmark: Identifiable, Hashable, Codable{
     var id = UUID()
     var name = ""
     var url = ""
-    var children: [Bookmark]? = nil
-    var description: String {
-        switch children {
-        case nil:
-            return "🔖 \(name)"
-        case .some(let children):
-            return children.isEmpty ? "📂 \(name)" : "📁 \(name)"
-        }
-    }
+//    var children: [Bookmark]? = nil
+//    var description: String {
+//        switch children {
+//        case nil:
+//            return "🔖 \(name)"
+//        case .some(let children):
+//            return children.isEmpty ? "📂 \(name)" : "📁 \(name)"
+//        }
+//    }
+}
+
+struct Folder: Identifiable{
+    var id = UUID()
+    var name = ""
+    var bookmarks : [Bookmark]
+    
 }
 
 class BookmarkState : NSObject, ObservableObject{
-    
     @Published var bookmarkList:[Bookmark] = []
     
-    
     func addBookmark(name: String, url: String){
-        let bm = Bookmark(name: name == "" ? url : name , url: url, children: nil)
+        let bm = Bookmark(name: name == "" ? url : name , url: url)
         bookmarkList.append(bm)
     }
     
-    func addFolder(name: String){
-        let folder = Bookmark(name: name, children:[])
-        bookmarkList.append(folder)
-    }
+//    func addFolder(name: String){
+//        let folder = Folder(name: name, bookmarks: [])
+//        bookmarkList.append(folder)
+//    }
     
     func saveBookmarkToLocal(){
         do{

@@ -14,13 +14,10 @@ struct BookmarkView: View {
     
     @State var isEditing = false
     
-
     
     var body: some View {
         BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, bookmarkList: bookmarkState.bookmarkList)
     }
-    
-    
 }
 
 

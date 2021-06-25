@@ -27,8 +27,10 @@ struct abrowserApp: App {
             switch (newScenePhase) {
             case .background:
                 historyState.saveHistoryToLocal()
+                bookmarkState.saveBookmarkToLocal()
             case .inactive:
                 historyState.saveHistoryToLocal()
+                bookmarkState.saveBookmarkToLocal()
             case .active:
                 print("App is active")
             @unknown default:
