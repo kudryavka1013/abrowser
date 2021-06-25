@@ -10,9 +10,10 @@ import SwiftUI
 struct BookmarkEditView: View {
     @ObservedObject var bookmarkState : BookmarkState
     @Binding var EditViewIsPresented : Bool
-    var item : Bookmark
+    @State var showAlert = false
     @State var nameInput = ""
     @State var urlInput = ""
+    var item : Bookmark
     
     var body: some View {
         VStack{
@@ -24,9 +25,21 @@ struct BookmarkEditView: View {
             
             Text("编辑").padding(10)
             Divider()
-            TextField("标题",text: $nameInput).padding(10)
+            TextField("标题",text: $nameInput)
+                .onAppear(){
+                    nameInput = item.name
+                }
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .padding(10)
             Divider()
-            TextField("网址",text: $urlInput).padding(10)
+            TextField("网址",text: $urlInput)
+                .onAppear(){
+                    urlInput = item.url
+                }
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .padding(10)
             Divider()
             
             HStack{
@@ -36,10 +49,27 @@ struct BookmarkEditView: View {
                 .frame(maxWidth:.infinity, maxHeight: 32)
                 Spacer()
                 Divider()
-                Button("确定"){
-                    
-                    EditViewIsPresented = false
-                }.buttonStyle(PlainButtonStyle())
+                Button("保存"){
+                    if (nameInput != "" && urlInput != ""){
+                        bookmarkState.editBookmark(name: nameInput, url: urlInput, item: item)
+                        self.showAlert = true
+                    }
+                    else {
+                        self.showAlert = true
+                    }
+                }
+                .alert(isPresented: $showAlert){
+                    Alert(
+                        title: (nameInput != "" && urlInput != "") ? Text("保存成功") : Text("保存失败") ,
+                        message: (nameInput != "" && urlInput != "") ? Text("") : Text("内容不能为空"),
+                        dismissButton:.default(Text("OK"), action: {
+                            if (nameInput != "" && urlInput != ""){
+                                EditViewIsPresented = false
+                            }
+                        })
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
                 .frame(maxWidth:.infinity, maxHeight: 32)
             }
         }.frame(height: 280)

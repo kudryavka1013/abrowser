@@ -25,17 +25,21 @@ struct Folder: Identifiable{
     var id = UUID()
     var name = ""
     var bookmarks : [Bookmark]
-    
 }
 
 class BookmarkState : NSObject, ObservableObject{
     @Published var bookmarkList:[Bookmark] = []
     
     func addBookmark(name: String, url: String){
-        let bm = Bookmark(name: name == "" ? url : name , url: url)
-        bookmarkList.append(bm)
+        let add_bm = Bookmark(name: name == "" ? url : name , url: url)
+        bookmarkList.append(add_bm)
     }
     
+    func editBookmark(name: String, url: String,item: Bookmark){
+        let editItem = Bookmark(name: name, url: url)
+        let i = bookmarkList.firstIndex(of: item)
+        bookmarkList[i!] = editItem
+    }
 //    func addFolder(name: String){
 //        let folder = Folder(name: name, bookmarks: [])
 //        bookmarkList.append(folder)
