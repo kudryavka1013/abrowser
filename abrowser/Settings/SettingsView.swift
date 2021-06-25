@@ -14,21 +14,29 @@ struct SettingsView: View {
         
         NavigationView{
             List{
+                Section{
+                    NavigationLink(destination:SelectView())
+                        {
+                        Text("用户管理")
+                        
+                    }//需添加用户管理功能
+                }
+                Section{
                 NavigationLink(destination:homePageSettings()){
                     Text("主页设置")
                 }//需添加主页设置功能
               
-                NavigationLink(destination:Text("usermanage")){Text("用户管理")}//需添加用户管理功能
+                
                 NavigationLink(destination:searchEngineSettings()){Text("搜索引擎设置")}//需添加搜索引擎功能
                 NavigationLink(destination:Text("downLoadSettings"))
                     {Text("下载设置")}//需添加下载设置功能
+                }
             }
             .navigationBarTitle(Text("设置"),displayMode:.inline)
-            .navigationBarItems(leading:Button("返回"){})//需添加返回功能
+//            .navigationBarItems(leading:Button("返回"){})//需添加返回功能
+            .listStyle(InsetGroupedListStyle())
         }
-        
-        
-        
+ 
     }
 }
 
@@ -47,7 +55,6 @@ struct homePageSettings: View {
     @State var newURL : String = "www.baidu.com"
 
     var body: some View{
-        ZStack{
             List {
                 HStack{
                     Button(action:{
@@ -92,7 +99,7 @@ struct homePageSettings: View {
                 .opacity(showAlert ? 1:0)
         }
     }
-}
+
 //主页设置/自定义页面弹窗
 struct constumURL: View{
     

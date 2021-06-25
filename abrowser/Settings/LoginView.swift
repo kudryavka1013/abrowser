@@ -16,59 +16,151 @@ extension View {
 struct LoginView : View {
     
     //@ObservedObject var registerView : RegisterView
+    @State private var isDispaly: Bool = false
     @State var username: String = ""
     @State var password: String = ""
     
-    
     var body: some View {
+        
+    VStack {
+        Spacer().frame(width: 100, height: 50)
         VStack {
-            Spacer().frame(width: 100, height: 60)
-            VStack {
-                Text("账号")
-                    .font(.callout)
-                    .offset(x: 2)
-                   // .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                TextField("请输入账号", text: $username)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .stroke(Color.black, lineWidth: 1)
-                    )
-                    .padding(10)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(width:300)
-                    .padding(.vertical,8)
-                    Spacer()
-                    .frame(width: 100, height: 25, alignment: .center)
-                Text("密码")
-                    .font(.callout)
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                SecureField("请输入密码", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-            }.padding()
-                    
-//            Spacer().frame(width: 100, height: 60)
-                    
-            Button(action: {
-                    }) {
-                            Text("登录")
-                            .fontWeight(.bold)
-                            .bold()
-                            .foregroundColor(.white)
+            
+//                Text("Login")
+//                    .font(.title)
+//                    .fontWeight(.bold)
+//                    .foregroundColor(.black)
+//
+//
+                VStack {
+                    HStack {
+                        Image("用户")
+                            .frame(width: 40, height:40)
+                        Rectangle()
+                            .fill(Color.white)
+                            .frame(width: 1, height: 18)
+                        TextField("请输入账号", text: $username)
+                            .frame(width: 309, height: 40)
+                            .background(Color.white)
                     }
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 44, alignment: .center)
-                    .background(Color.blue)
-                    .cornerRadius(22)
-
-                    Spacer()
+                    Divider()
+                        .frame(width: 350)
+                        .background(Color.gray)
                 }
-                .onTapGesture {
-                    print("tap")
-                    self.hideKeyboard()
+                .padding(.vertical)
+                
+                
+                VStack {
+                    HStack{
+                        Image("密码")
+                            .frame(width: 40, height:40)
+                        Rectangle()
+                            .fill(Color.white)
+                            .frame(width: 1, height: 18)
+                        HStack {
+                                if isDispaly {
+                                    TextField("请输入密码", text: $password)
+                                        .frame(width: 260, height: 40)
+                                }
+                                else {
+                                    SecureField("请输入密码", text: $password)
+                                        .frame(width: 260, height: 40)
+                                }
+                            Button(action: {
+                                isDispaly = !isDispaly
+                            }) {
+                                Image(systemName: self.isDispaly ? "eye.slash" : "eye")
+                                    .frame(width: 40, height:40)
+                                    .accentColor(.gray)
+                            }
+                        }
+//                            .frame(width: 350, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                                .background(Color.white)
+                    }
+                    Divider()
+                        .frame(width: 350)
+                        .background(Color.gray)
                 }
+                .padding(.vertical)
+                
+                Spacer().frame(width: 100, height: 60)
+                
+                Button(action: {
+                        }) {
+                    Text("登录")
+                        .fontWeight(.bold)
+                        .bold()
+                        .foregroundColor(.white)
+                }
+                .frame(width: UIScreen.main.bounds.width - 60, height: 50, alignment: .center)
+                        .background(Color.blue)
+                        .cornerRadius(22)
+                
+            }
+            .onTapGesture {
+                print("tap")
+                self.hideKeyboard()
+            }
+            .padding()
+                //.background(Color.white)
+                //.cornerRadius(20)
+                //.padding()
+        Spacer()
         }
+    }
+    
 }
+        
+        
+        
+//        VStack {
+//            Spacer().frame(width: 100, height: 60)
+//            VStack {
+//                Text("账号")
+//                    .font(.callout)
+//                    .offset(x: 2)
+//                   // .bold()
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                TextField("请输入账号", text: $username)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+//                        .stroke(Color.black, lineWidth: 1)
+//                    )
+//                    .padding(10)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    .frame(width:300)
+//                    .padding(.vertical,8)
+//                    Spacer()
+//                    .frame(width: 100, height: 25, alignment: .center)
+//                Text("密码")
+//                    .font(.callout)
+//                    .bold()
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                SecureField("请输入密码", text: $password)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//            }.padding()
+//
+////            Spacer().frame(width: 100, height: 60)
+//
+//            Button(action: {
+//                    }) {
+//                            Text("登录")
+//                            .fontWeight(.bold)
+//                            .bold()
+//                            .foregroundColor(.white)
+//                    }
+//                    .frame(width: UIScreen.main.bounds.width - 32, height: 44, alignment: .center)
+//                    .background(Color.blue)
+//                    .cornerRadius(22)
+//
+//                    Spacer()
+//                }
+//                .onTapGesture {
+//                    print("tap")
+//                    self.hideKeyboard()
+//                }
+//        }
+//}
 //    var body: some View{
 //        Form{
 //

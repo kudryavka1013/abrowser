@@ -109,9 +109,11 @@ class HistoryState : NSObject ,ObservableObject ,HistoryProtocol{
     func addhistory(newtitle : String,newUrl : String) {
         print("historystate addhistory")
         let newresponse = currentTime()
-        let item = HistoryModel(websitename: newtitle, websiteURL: newUrl, responsetime: newresponse)
+        if (newUrl != "about:blank") {
+            let item = HistoryModel(websitename: newtitle, websiteURL: newUrl, responsetime: newresponse)
         //historytoday.append(item)
-        historytoday.insert(item, at: 0)
+            historytoday.insert(item, at: 0)
+        }
     }
     
     func deleteAllHistory(){
