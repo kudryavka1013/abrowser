@@ -39,7 +39,9 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     required init(mediator: Mediator) {
         self.mediator = mediator
         super.init()
+//        初始化第一个webview，触发tap时会崩溃
 //        self.createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
+        
 //        let wv = WKWebView()
 //        wv.navigationDelegate = self
 //        webViews.append(wv)
@@ -60,7 +62,7 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     @Published var images : [UIImage] = []
     
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
-        let config = WKWebViewConfiguration()
+//        let config = WKWebViewConfiguration()
         let wv = WKWebView()
         wv.allowsBackForwardNavigationGestures = true
         wv.allowsLinkPreview = true
@@ -134,7 +136,9 @@ extension NavigationState : WKNavigationDelegate{
         if webView == selectedWebView {
             // 页面标题
             self.currentTitle = webView.title
-            self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
+            if(currentURL?.absoluteString != "about:blank" && currentURL?.absoluteString != "about:newtab"){
+                self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
+            }
         }
     }
     //页面加载失败时调用

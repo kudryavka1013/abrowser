@@ -36,7 +36,8 @@ struct ContentView: View {
                         // WebView
                         WebViewContainer(navigationState: navigationState,historyState: historyState)
                     }
-                    if(NavViewIsPresented){
+//                    if(NavViewIsPresented){
+                    if(navigationState.currentURL?.absoluteString == "about:newtab"){
                         NavView(NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
                             .background(Color("PageBackgroundColor"))
                     }
@@ -50,7 +51,7 @@ struct ContentView: View {
                         }
                 }
                 
-                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
+                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, userPreferences: userPreferences, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
             }
             
             // 标签页管理页面

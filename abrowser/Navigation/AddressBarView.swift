@@ -30,7 +30,7 @@ struct AddressBarView: View {
                             .fill(Color("AddressBarColor"))
                             .frame(maxHeight:36)
                             .shadow(radius: 1)
-                            .matchedGeometryEffect(id: "addressbar", in: addressbar)
+                            .matchedGeometryEffect(id: "addressbar", in: addressbar,isSource: true)
                             .onTapGesture {
                                 SearchIsPresented = true
                             }

@@ -12,6 +12,7 @@ struct MenuView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
+    @ObservedObject var userPreferences : UserPreferences
     @Binding var MenuIsPresented : Bool
     
     @State var HistoryOrBookmarkIsPresented = false
@@ -112,7 +113,7 @@ struct MenuView: View {
                 
                 // 新建标签页
                 Button(action: {
-                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:blank")!))
+                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
                     MenuIsPresented = false
                 }, label: {
                     VStack{
@@ -162,7 +163,7 @@ struct MenuView: View {
                     .foregroundColor(Color("ButtonTextColor"))
 
                 }).sheet(isPresented: $SettingsIsPresented, content: {
-                    SettingsView()
+                    SettingsView(isPresented: $SettingsIsPresented, userPreferences: userPreferences)
                 })
                 .frame(maxWidth:.infinity)
                 
