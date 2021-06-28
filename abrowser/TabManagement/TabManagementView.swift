@@ -92,7 +92,7 @@ struct TabManagementView: View {
                 }).frame(minWidth: 80,alignment: .leading)
                 Spacer()
                 Button(action: {
-                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:blank")!))
+                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
                     TabManagementIsPresented = false
                 }, label: {
                     Image(systemName: "plus")

@@ -19,14 +19,14 @@ struct BookmarkListView : View{
     @State var text = ""
     
     func deleteRow(at offsets:IndexSet){
-        bookmarkList.remove(atOffsets: offsets)
+        bookmarkState.bookmarkList.remove(atOffsets: offsets)
     }
     
     var body: some View {
         ZStack{
             VStack{
                 List{
-                    ForEach(bookmarkList){ item in
+                    ForEach(bookmarkState.bookmarkList){ item in
                         HStack{
                             Button(action: {
                                 navigationState.navGoTo(addressInput: item.url)

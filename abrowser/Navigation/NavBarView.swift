@@ -12,6 +12,7 @@ struct NavBarView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
+    @ObservedObject var userPreferences : UserPreferences
     @Binding var MenuIsPresented : Bool
     @Binding var TabManagementIsPresented : Bool
     @Binding var NavViewIsPresented : Bool
@@ -20,7 +21,7 @@ struct NavBarView: View {
     @State var MenuPosition = CGSize.zero
     var body: some View {
         ZStack{
-            MenuView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, MenuIsPresented: $MenuIsPresented)
+            MenuView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, userPreferences: userPreferences, MenuIsPresented: $MenuIsPresented)
                 .offset(y: MenuIsPresented ? -25 : 200)
                 .offset(y: MenuPosition.height)
                 .animation(.easeOut(duration: 0.2))
@@ -72,7 +73,7 @@ struct NavBarView: View {
                 //            主页
                 Button(action: {
 //                    NavViewIsPresented = true
-                    navigationState.navGoTo(addressInput: "https://www.baidu.com")
+                    navigationState.navGoTo(addressInput: userPreferences.homePage)
                 }, label: {
                     Image(systemName: "house")
                 }).frame(maxWidth: .infinity)

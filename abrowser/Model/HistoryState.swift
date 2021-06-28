@@ -23,8 +23,25 @@ struct HistoryModel : Identifiable, Hashable, Codable{
     }
 }
 
+protocol HistoryProtocol : AnyObject{
+    var mediator : Mediator { get }
+    
+    func addhistory(newtitle : String,newUrl : String)
+}
+
 //本地历史数据
-class HistoryState : NSObject , ObservableObject {
+class HistoryState : NSObject ,ObservableObject ,HistoryProtocol{
+    var mediator: Mediator
+    
+    required init(mediator: Mediator) {
+        self.mediator = mediator
+        super.init()
+        // jiedang
+        self.date = currentTime()
+        self.getHistoryFromLocal()
+        self.classification()
+    }
+    
     @Published var history : [HistoryModel] = []
     @Published var historytoday : [HistoryModel] = []
     @Published var historyyesterday : [HistoryModel] = []
@@ -90,10 +107,13 @@ class HistoryState : NSObject , ObservableObject {
     }
     
     func addhistory(newtitle : String,newUrl : String) {
+        print("historystate addhistory")
         let newresponse = currentTime()
-        let item = HistoryModel(websitename: newtitle, websiteURL: newUrl, responsetime: newresponse)
+        if (newUrl != "about:blank") {
+            let item = HistoryModel(websitename: newtitle, websiteURL: newUrl, responsetime: newresponse)
         //historytoday.append(item)
-        historytoday.insert(item, at: 0)
+            historytoday.insert(item, at: 0)
+        }
     }
     
     func deleteAllHistory(){
@@ -111,14 +131,14 @@ class HistoryState : NSObject , ObservableObject {
         historyyesterday.removeAll()
     }
     
-    override init() {
-        super.init()
-        // jiedang
-        self.date = currentTime()
-        self.getHistoryFromLocal()
-        self.classification()
-
-    }
+//    override init() {
+//        super.init()
+//        // jiedang
+//        self.date = currentTime()
+//        self.getHistoryFromLocal()
+//        self.classification()
+//
+//    }
 }
 
 

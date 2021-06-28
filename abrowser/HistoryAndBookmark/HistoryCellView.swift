@@ -12,9 +12,9 @@ struct HistoryCellViewSearch: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(model.websitename).lineLimit(1).offset(x: 20, y: 2)
-                Text(model.websiteURL).lineLimit(1).offset(x: 20, y: 1)
-            }
+                Text(model.websitename).lineLimit(1).offset( y: 2)
+                Text(model.websiteURL).lineLimit(1).offset( y: 1)
+            }.padding(.leading, 20)
             Spacer()
         }.frame(height: 45)
     }
