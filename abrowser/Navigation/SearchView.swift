@@ -85,11 +85,10 @@ struct SearchView: View {
             .padding(.horizontal)
             .padding(.vertical, 5)
 //            if ((navigationState.image) != nil){
-//                Image(uiImage: navigationState.image!)
+//                Image(uiImage: navigationState.image)
 //            }else{
 //                Rectangle()
 //            }
-
             Spacer()
         }
     }

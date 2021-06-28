@@ -58,8 +58,9 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     @Published var canGoBack : Bool = false
     @Published var canGoForward : Bool = false
     
-    @Published var image : UIImage?
+    @Published var image : UIImage = UIImage(named: "WhiteBackground")!
     @Published var images : [UIImage] = []
+//    @Published var 
     
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
 //        let config = WKWebViewConfiguration()
@@ -68,6 +69,7 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
         wv.allowsLinkPreview = true
         wv.navigationDelegate = self
         webViews.append(wv)
+        images.append(image)
         selectedWebView = wv
         wv.load(request)
         return wv
@@ -75,7 +77,10 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     
     
     func deleteWebView(tab: WKWebView){
-        guard let idx = webViews.firstIndex(of: tab) else { return }
+        guard let idx = webViews.firstIndex(of: tab) else {
+            print("noindex")
+            return
+        }
         if(webViews[idx] == selectedWebView){
             if(webViews.count == 1){
                 navGoTo(addressInput: "about:newtab")
@@ -87,16 +92,20 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
                 }
                 webViews.remove(at: idx)
             }
+        }else{
+            webViews.remove(at: idx)
         }
     }
     
     func deleteAllWebViews(){
-        webViews.removeAll()
-        createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
+        for wv in webViews {
+            deleteWebView(tab: wv)
+        }
+//        createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
     }
     
     func screenshot(){
-        image = self.selectedWebView?.screenshot()
+        image = self.selectedWebView?.screenshot() ?? UIImage(ciImage: .gray)
     }
     
     func navGoBack(){
@@ -150,10 +159,16 @@ extension NavigationState : WKNavigationDelegate{
         if webView == selectedWebView {
             // 页面标题
             self.currentTitle = webView.title
-            if(currentURL?.absoluteString != "about:blank" && currentURL?.absoluteString != "about:newtab"){
-                self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
-            }
         }
+        if(currentURL?.absoluteString != "about:blank" && currentURL?.absoluteString != "about:newtab"){
+            self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
+        }
+        let tempImage = webView.screenshot()
+        let idx = webViews.firstIndex(of: webView)!
+//        print(idx)
+        images[idx] = tempImage!
+//        print("idx: \(idx)")
+//        images[0] = tempImage ?? UIImage(ciImage: .gray)
     }
     //页面加载失败时调用
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error){

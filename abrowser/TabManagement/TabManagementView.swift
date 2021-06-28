@@ -9,9 +9,11 @@ import SwiftUI
 
 struct TabManagementView: View {
     @ObservedObject var navigationState: NavigationState
+//    @Binding var images : [UIImage]
     @Binding var TabManagementIsPresented : Bool
     @State var moveState = CGSize.zero
     @State var viewState = CGSize.zero
+//    var count = 0
     var body: some View {
         VStack(spacing:0){
             // 将list替换为界面
@@ -19,15 +21,16 @@ struct TabManagementView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     //                Spacer()
-                    ForEach(navigationState.webViews, id: \.self) { tab in
-                        
+                    ForEach(navigationState.webViews,id:\.self) { tab in
+                        let idx = navigationState.webViews.firstIndex(of: tab)
                         //                    Button(action: {
                         //                        navigationState.selectedWebView = tab
                         //                        TabManagementIsPresented = false
                         //                    }) {
                         //                        Text(tab.url?.absoluteString ?? "?")
                         //                    }
-                        let a = tab.screenshot
+//                        let a = tab.screenshot
+//                        count = count + 1
                         VStack(spacing: 0.0) {
                             HStack {
                                 Text(tab.url?.absoluteString ?? "?").lineLimit(1)
@@ -47,7 +50,8 @@ struct TabManagementView: View {
                             .padding(.all,8)
                             .background(Color.gray)
                             //                        Spacer()
-                            Image( uiImage: a()!)
+//                            Image("WhiteBackground")
+                            Image(uiImage: navigationState.images[idx!])
                                 .resizable()
 //                                .aspectRatio(contentMode: .fill)
                             //                            .scaledToFit()
