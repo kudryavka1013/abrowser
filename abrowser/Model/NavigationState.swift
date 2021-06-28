@@ -8,7 +8,49 @@
 import SwiftUI
 import WebKit
 
-class NavigationState : NSObject, ObservableObject{
+protocol NavigationProtocol : AnyObject{
+    var mediator: Mediator{ get }
+    
+//    var currentURL : URL? { get set }
+//    var webViews : [WKWebView] { get set }
+//    var selectedWebView : WKWebView? { get set }
+//    var currentTitle : String? { get set }
+//    var canGoBack : Bool  { get set }
+//    var canGoForward : Bool { get set }
+//
+//    var image : UIImage? { get set }
+//    var images : [UIImage] { get set }
+}
+
+class NavigationState : NSObject, ObservableObject, NavigationProtocol{
+    var mediator: Mediator
+    
+//        override init() {
+//            super.init()
+//            let wv = WKWebView()
+//            wv.navigationDelegate = self
+//            webViews.append(wv)
+//            let bundlePath = Bundle.main.bundlePath
+//            let path = "file://\(bundlePath)/html/nav.html"
+//            wv.load(URLRequest(url: URL(string: path)!))
+//            selectedWebView = wv
+//        }
+    
+    required init(mediator: Mediator) {
+        self.mediator = mediator
+        super.init()
+//        初始化第一个webview，触发tap时会崩溃
+//        self.createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
+        
+//        let wv = WKWebView()
+//        wv.navigationDelegate = self
+//        webViews.append(wv)
+//        let bundlePath = Bundle.main.bundlePath
+//        let path = "file://\(bundlePath)/html/nav.html"
+//        wv.load(URLRequest(url: URL(string: path)!))
+//        selectedWebView = wv
+    }
+    
     @Published var currentURL : URL?
     @Published var webViews : [WKWebView] = []
     @Published var selectedWebView : WKWebView?
@@ -20,7 +62,7 @@ class NavigationState : NSObject, ObservableObject{
     @Published var images : [UIImage] = []
     
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
-        let config = WKWebViewConfiguration()
+//        let config = WKWebViewConfiguration()
         let wv = WKWebView()
         wv.allowsBackForwardNavigationGestures = true
         wv.allowsLinkPreview = true
@@ -31,19 +73,21 @@ class NavigationState : NSObject, ObservableObject{
         return wv
     }
     
-    override init() {
-        super.init()
-        let wv = WKWebView()
-        wv.navigationDelegate = self
-        webViews.append(wv)
-        let bundlePath = Bundle.main.bundlePath
-        let path = "file://\(bundlePath)/html/nav.html"
-        wv.load(URLRequest(url: URL(string: path)!))
-        selectedWebView = wv
-    }
     
     func deleteWebView(tab: WKWebView){
-        
+        guard let idx = webViews.firstIndex(of: tab) else { return }
+        if(webViews[idx] == selectedWebView){
+            if(webViews.count == 1){
+                navGoTo(addressInput: "about:newtab")
+            }else{
+                if(idx == webViews.count - 1){
+                    selectedWebView = webViews[idx - 1]
+                }else{
+                    selectedWebView = webViews[idx + 1]
+                }
+                webViews.remove(at: idx)
+            }
+        }
     }
     
     func deleteAllWebViews(){
@@ -106,6 +150,9 @@ extension NavigationState : WKNavigationDelegate{
         if webView == selectedWebView {
             // 页面标题
             self.currentTitle = webView.title
+            if(currentURL?.absoluteString != "about:blank" && currentURL?.absoluteString != "about:newtab"){
+                self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
+            }
         }
     }
     //页面加载失败时调用
