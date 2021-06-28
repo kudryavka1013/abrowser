@@ -42,7 +42,9 @@ class NavigationState : NSObject, ObservableObject{
         selectedWebView = wv
     }
     
-    func deleteWebView(){}
+    func deleteWebView(tab: WKWebView){
+        
+    }
     
     func deleteAllWebViews(){
         webViews.removeAll()
