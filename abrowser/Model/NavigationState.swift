@@ -74,7 +74,21 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     }
     
     
-    func deleteWebView(){}
+    func deleteWebView(tab: WKWebView){
+        guard let idx = webViews.firstIndex(of: tab) else { return }
+        if(webViews[idx] == selectedWebView){
+            if(webViews.count == 1){
+                navGoTo(addressInput: "about:newtab")
+            }else{
+                if(idx == webViews.count - 1){
+                    selectedWebView = webViews[idx - 1]
+                }else{
+                    selectedWebView = webViews[idx + 1]
+                }
+                webViews.remove(at: idx)
+            }
+        }
+    }
     
     func deleteAllWebViews(){
         webViews.removeAll()
