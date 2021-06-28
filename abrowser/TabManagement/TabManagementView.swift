@@ -33,10 +33,16 @@ struct TabManagementView: View {
                                 Text(tab.url?.absoluteString ?? "?").lineLimit(1)
                                 //                                .font(.system(size: 13))
                                 Spacer()
-                                Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
+//                                Button(action: navigationState.deleteWebView(tab: tab)) {
+//                                    Image(systemName: "xmark")
+//                                        .foregroundColor(Color.black)
+//                                }
+                                Button(action: {
+                                    navigationState.deleteWebView(tab: tab)
+                                }, label: {
                                     Image(systemName: "xmark")
                                         .foregroundColor(Color.black)
-                                }
+                                })
                             }
                             .padding(.all,8)
                             .background(Color.gray)
