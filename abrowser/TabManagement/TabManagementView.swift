@@ -12,7 +12,6 @@ struct TabManagementView: View {
 //    @Binding var images : [UIImage]
     @Binding var TabManagementIsPresented : Bool
     @State var moveState = CGSize.zero
-    @State var viewState = CGSize.zero
 //    var count = 0
     var body: some View {
         VStack(spacing:0){
@@ -56,8 +55,9 @@ struct TabManagementView: View {
 //                                .aspectRatio(contentMode: .fill)
                             //                            .scaledToFit()
                         }
-                        .frame(width: 300.0)
+                        .frame(width: UIScreen.main.bounds.width * 0.8)
 //                        .padding(.leading,50)
+                        .offset(x: UIScreen.main.bounds.width * 0.1, y: 0)
                         .offset(x: 0 , y: moveState.height * 2)
                         .opacity(1 - Double(abs(moveState.height / 200)))
                         .animation(
@@ -86,7 +86,7 @@ struct TabManagementView: View {
                 }
             }
             .padding(.vertical,72)
-            .background(Color.black)
+            .background(Color("ViewColor"))
 //            Spacer()
             //            .frame(height: .infinity)
             
