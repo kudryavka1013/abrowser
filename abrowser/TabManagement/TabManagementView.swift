@@ -115,6 +115,11 @@ struct TabManagementView: View {
                 }).frame(minWidth: 80 ,alignment: .trailing)
             }.padding()
         }
+        .onAppear{
+            if(navigationState.webViews.count == 0){
+                navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
+            }
+        }
     }
     
     

@@ -91,9 +91,11 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
                     selectedWebView = webViews[idx + 1]
                 }
                 webViews.remove(at: idx)
+                images.remove(at: idx)
             }
         }else{
             webViews.remove(at: idx)
+            images.remove(at: idx)
         }
     }
     

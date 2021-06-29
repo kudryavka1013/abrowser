@@ -70,6 +70,10 @@ class UserPreferences: NSObject, ObservableObject,UserPreferencesProtocol{
         }
     }
     
+    func setCustomPage(newURL:String){
+        self.customPage = newURL
+    }
+    
     func loadPreferencesFromLocal(){
 //        do{
 //            let searchEngineTypeData = try JSONEncoder().encode(searchEngineType)
