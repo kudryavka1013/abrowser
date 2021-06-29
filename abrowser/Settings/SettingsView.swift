@@ -162,10 +162,10 @@ struct editConstumURL: View{
     var body: some View{
         VStack{
             Text("自定义网址")
-                .foregroundColor(.accentColor)
+//                .foregroundColor(.accentColor)
                 .fontWeight(.bold)
                 .padding(.top,12)
-                .accentColor(.black)
+//                .accentColor(.black)
             
             TextField("请输入网址", text:$newURL)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -193,7 +193,7 @@ struct editConstumURL: View{
             
         }
         .frame(width: 260, height:140)
-        .background(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
+        .background(Color("BackgroundColor"))
         .cornerRadius(12.0)
         
     }
