@@ -73,7 +73,11 @@ struct NavBarView: View {
                 //            主页
                 Button(action: {
 //                    NavViewIsPresented = true
-                    navigationState.navGoTo(addressInput: userPreferences.homePage)
+                    if(navigationState.webViews.count == 0){
+                        navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: userPreferences.homePage)!))
+                    }else{
+                        navigationState.navGoTo(addressInput: userPreferences.homePage)
+                    }
                 }, label: {
                     Image(systemName: "house")
                 }).frame(maxWidth: .infinity)

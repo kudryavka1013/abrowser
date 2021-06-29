@@ -32,6 +32,9 @@
 		0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DD266A5C5C00BA805F /* HistoryState.swift */; };
 		0CDB9946266F9B11003A1DCB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB9945266F9B11003A1DCB /* SearchView.swift */; };
 		1817B637266F8F8600C7B4FE /* BookmarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817B636266F8F8600C7B4FE /* BookmarkListView.swift */; };
+		59434FCF26897D8B0083B337 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FCE26897D8B0083B337 /* AccountView.swift */; };
+		59434FD12689CE800083B337 /* userImformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FD02689CE800083B337 /* userImformationView.swift */; };
+		59434FD32689CF0C0083B337 /* passwordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FD22689CF0C0083B337 /* passwordView.swift */; };
 		5985BA342682CEA30019D9EB /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985BA332682CEA30019D9EB /* RegisterView.swift */; };
 		5985BA362682CEC30019D9EB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985BA352682CEC30019D9EB /* LoginView.swift */; };
 		5985BA3A268311F00019D9EB /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985BA39268311F00019D9EB /* SelectView.swift */; };
@@ -88,6 +91,9 @@
 		0CA146DD266A5C5C00BA805F /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
 		0CDB9945266F9B11003A1DCB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		1817B636266F8F8600C7B4FE /* BookmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListView.swift; sourceTree = "<group>"; };
+		59434FCE26897D8B0083B337 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		59434FD02689CE800083B337 /* userImformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userImformationView.swift; sourceTree = "<group>"; };
+		59434FD22689CF0C0083B337 /* passwordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwordView.swift; sourceTree = "<group>"; };
 		5985BA332682CEA30019D9EB /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		5985BA352682CEC30019D9EB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5985BA39268311F00019D9EB /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
@@ -243,6 +249,9 @@
 			isa = PBXGroup;
 			children = (
 				7384DB6A26799E75004225CD /* SettingsView.swift */,
+				59434FCE26897D8B0083B337 /* AccountView.swift */,
+				59434FD22689CF0C0083B337 /* passwordView.swift */,
+				59434FD02689CE800083B337 /* userImformationView.swift */,
 				5985BA332682CEA30019D9EB /* RegisterView.swift */,
 				5985BA352682CEC30019D9EB /* LoginView.swift */,
 				5985BA39268311F00019D9EB /* SelectView.swift */,
@@ -384,12 +393,14 @@
 				0C5CE5942678C441009CE5EE /* BookmarkEditView.swift in Sources */,
 				5985BA3A268311F00019D9EB /* SelectView.swift in Sources */,
 				0C5CE5AE268041E2009CE5EE /* UserPreferences.swift in Sources */,
+				59434FD32689CF0C0083B337 /* passwordView.swift in Sources */,
 				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
 				0CA146CA266863C800BA805F /* NavigationState.swift in Sources */,
 				5985BA362682CEC30019D9EB /* LoginView.swift in Sources */,
 				1817B637266F8F8600C7B4FE /* BookmarkListView.swift in Sources */,
 				0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */,
 				0CA146C4266725C900BA805F /* MenuView.swift in Sources */,
+				59434FD12689CE800083B337 /* userImformationView.swift in Sources */,
 				0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */,
 				0CDB9946266F9B11003A1DCB /* SearchView.swift in Sources */,
 				0CA1468D2664F44500BA805F /* ContentView.swift in Sources */,
@@ -399,6 +410,7 @@
 				0CA146D42669C6D200BA805F /* HistoryView.swift in Sources */,
 				0CA146D62669C6DB00BA805F /* BookmarkView.swift in Sources */,
 				0C5CE5B02682C9C0009CE5EE /* Mediator.swift in Sources */,
+				59434FCF26897D8B0083B337 /* AccountView.swift in Sources */,
 				0CA146D12668869A00BA805F /* HistoryAndBookmarkView.swift in Sources */,
 				0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */,
 				59BD4C30266E4B9700851029 /* HistoryCellView.swift in Sources */,
