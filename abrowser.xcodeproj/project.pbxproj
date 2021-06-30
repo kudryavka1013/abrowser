@@ -35,6 +35,7 @@
 		59434FCF26897D8B0083B337 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FCE26897D8B0083B337 /* AccountView.swift */; };
 		59434FD12689CE800083B337 /* userImformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FD02689CE800083B337 /* userImformationView.swift */; };
 		59434FD32689CF0C0083B337 /* passwordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FD22689CF0C0083B337 /* passwordView.swift */; };
+		597C95FC268ACED200B6753E /* homePageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597C95FB268ACED200B6753E /* homePageSettings.swift */; };
 		5985BA342682CEA30019D9EB /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985BA332682CEA30019D9EB /* RegisterView.swift */; };
 		5985BA362682CEC30019D9EB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985BA352682CEC30019D9EB /* LoginView.swift */; };
 		5985BA3A268311F00019D9EB /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5985BA39268311F00019D9EB /* SelectView.swift */; };
@@ -94,6 +95,7 @@
 		59434FCE26897D8B0083B337 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		59434FD02689CE800083B337 /* userImformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userImformationView.swift; sourceTree = "<group>"; };
 		59434FD22689CF0C0083B337 /* passwordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passwordView.swift; sourceTree = "<group>"; };
+		597C95FB268ACED200B6753E /* homePageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePageSettings.swift; sourceTree = "<group>"; };
 		5985BA332682CEA30019D9EB /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		5985BA352682CEC30019D9EB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5985BA39268311F00019D9EB /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				7384DB6A26799E75004225CD /* SettingsView.swift */,
 				59434FCE26897D8B0083B337 /* AccountView.swift */,
+				597C95FB268ACED200B6753E /* homePageSettings.swift */,
 				59434FD22689CF0C0083B337 /* passwordView.swift */,
 				59434FD02689CE800083B337 /* userImformationView.swift */,
 				5985BA332682CEA30019D9EB /* RegisterView.swift */,
@@ -407,6 +410,7 @@
 				0C5CE5A8267C2ACD009CE5EE /* BookmarkAddView.swift in Sources */,
 				5985BA342682CEA30019D9EB /* RegisterView.swift in Sources */,
 				0CA146BC2665D61E00BA805F /* WebViewContainer.swift in Sources */,
+				597C95FC268ACED200B6753E /* homePageSettings.swift in Sources */,
 				0CA146D42669C6D200BA805F /* HistoryView.swift in Sources */,
 				0CA146D62669C6DB00BA805F /* BookmarkView.swift in Sources */,
 				0C5CE5B02682C9C0009CE5EE /* Mediator.swift in Sources */,

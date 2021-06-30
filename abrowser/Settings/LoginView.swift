@@ -36,12 +36,13 @@ struct LoginView : View {
                     HStack {
                         Image("用户")
                             .frame(width: 40, height:40)
-                        Rectangle()
-                            .fill(Color.white)
-                            .frame(width: 1, height: 18)
+//                        Rectangle()
+//                            .fill(Color("ButtonTextColor"))
+//                            .frame(width: 1, height: 18)
                         TextField("请输入账号", text: $username)
+                            .offset(x : 2)
                             .frame(width: 309, height: 40)
-                            .background(Color.white)
+                            //.fill(Color("PageButtonTextColor"))
                     }
                     Divider()
                         .frame(width: 350)
@@ -54,16 +55,18 @@ struct LoginView : View {
                     HStack{
                         Image("密码")
                             .frame(width: 40, height:40)
-                        Rectangle()
-                            .fill(Color.white)
-                            .frame(width: 1, height: 18)
+//                        Rectangle()
+//                            .fill(Color("ButtonTextColor"))
+//                            .frame(width: 1, height: 18)
                         HStack {
                                 if isDispaly {
                                     TextField("请输入密码", text: $password)
+                                        .offset(x : 2)
                                         .frame(width: 260, height: 40)
                                 }
                                 else {
                                     SecureField("请输入密码", text: $password)
+                                        .offset(x : 2)
                                         .frame(width: 260, height: 40)
                                 }
                             Button(action: {

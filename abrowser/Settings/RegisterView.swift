@@ -42,7 +42,7 @@ struct RegisterView: View {
                 VStack {
                     TextField("请输入账号", text: $username)
                         .frame(width: 350, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .background(Color.white)
+                           // .background(Color.white)
                     Divider()
                         .frame(width: 350)
                         .background(Color.gray)
@@ -65,7 +65,7 @@ struct RegisterView: View {
                         }
                     }
                         .frame(width: 350, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .background(Color.white)
+                          //  .background(Color.white)
                     Divider()
                         .frame(width: 350)
                         .background(Color.gray)
@@ -75,7 +75,7 @@ struct RegisterView: View {
                 VStack {
                     SecureField("请再次输入密码", text: $password2.text)
                         .frame(width: 350, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .background(Color.white)
+                           // .background(Color.white)
                     Divider()
                         .frame(width: 350)
                         .background(Color.gray)
