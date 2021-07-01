@@ -1,24 +1,25 @@
 //
-//  homePageSettings.swift
+//  HomePageSettings.swift
 //  abrowser
 //
 //  Created by YJY on 2021/6/29.
 //
 
 import SwiftUI
-
-struct homePageSettings: View {
+//主页设置
+struct HomePageSettings: View {
     @ObservedObject var userPreferences : UserPreferences
     
     @State private var showAlert = false
-//    @State var linkIsSelected = 0
-    @State var newURL: String = "www.baidu.com"
+    //    @State var linkIsSelected = 0
     
     var body: some View{
+        ZStack{
+            
         List {
             HStack{
                 Button(action:{
-//                    linkIsSelected = 0
+                    //                    linkIsSelected = 0
                     userPreferences.setHomePageType(type: 0)
                 }){
                     Text("默认主页")
@@ -31,7 +32,7 @@ struct homePageSettings: View {
             }
             HStack{
                 Button(action:{
-//                    linkIsSelected = 1
+                    //                    linkIsSelected = 1
                     userPreferences.setHomePageType(type: 1)
                 }){Text("空白页")}
                 Spacer()
@@ -42,7 +43,7 @@ struct homePageSettings: View {
             }
             HStack{
                 Button(action:{
-//                    linkIsSelected = 2
+                    //                    linkIsSelected = 2
                     userPreferences.setHomePageType(type: 2)
                     self.showAlert.toggle()
                 }){
@@ -61,55 +62,66 @@ struct homePageSettings: View {
                 }
             }
             
-        }.navigationBarTitle(Text("主页设置"),displayMode: .inline)
+        }
+        .navigationBarTitle(Text("主页设置"),displayMode: .inline)
         
-        constumURL(isPresented: $showAlert, newURL: $newURL)
-            .opacity(showAlert ? 1:0)
+        Rectangle()
+                .fill(Color.black)
+                .opacity(showAlert ? 0.4 : 0)
+                .animation(.easeOut(duration: 0.1))
+            
+            editConstumURL(userPreferences: userPreferences, isPresented: $showAlert)
+            .opacity(showAlert ? 1 : 0)
+            .animation(.easeIn(duration: 0.1))
+        }
+        .onDisappear(){
+            print("save userPreferences")
+            userPreferences.savePreferencesToLocal()
+        }
     }
 }
 
 //主页设置/自定义页面弹窗
-struct constumURL: View{
-    
+struct editConstumURL: View{
+    @ObservedObject var userPreferences : UserPreferences
     @Binding var isPresented: Bool
-    @State var text = ""
-    @Binding var newURL : String
+    @State var newURL : String = ""
     var body: some View{
         VStack{
             Text("自定义网址")
-                .foregroundColor(.accentColor)
+//                .foregroundColor(.accentColor)
                 .fontWeight(.bold)
                 .padding(.top,12)
-                .accentColor(.black)
+//                .accentColor(.black)
             
-            TextField("请输入网址", text:$text)
+            TextField("请输入网址", text:$newURL)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width:230)
                 .padding(.vertical,8)
+                .onAppear{
+                    newURL = userPreferences.customPage
+                }
             Divider()
             HStack(){
                 Button("取消"){
-                    self.isPresented.toggle()
+                    self.isPresented = false
                 }.frame(maxWidth:.infinity)
                 Divider()
                 Button(action:{
-                    newURL = text
-                    self.isPresented.toggle()
-                },label:{Text("保存")}).frame(maxWidth:.infinity)
+                    userPreferences.setCustomPage(newURL: newURL)
+                    userPreferences.changeHomePage()
+                    self.isPresented = false
+                },label:{
+                    Text("保存")
+                }).frame(maxWidth:.infinity)
                 
             }.padding(.bottom,12)
             
             
         }
         .frame(width: 260, height:140)
-        .background(Color(red: 235/255, green: 235/255, blue: 235/255, opacity: 1.0))
+        .background(Color("BackgroundColor"))
         .cornerRadius(12.0)
         
     }
 }
-//
-//struct homePageSettings_Previews: PreviewProvider {
-//    static var previews: some View {
-//        homePageSettings(userPreferences: <#UserPreferences#>)
-//    }
-//}

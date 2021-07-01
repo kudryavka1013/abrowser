@@ -1,5 +1,5 @@
 //
-//  userImformationView.swift
+//  UserImformationView.swift
 //  abrowser
 //
 //  Created by YJY on 2021/6/28.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct userImformationView: View {
+struct UserImformationView: View {
     @State private var name: String = ""
     @State private var phone: String = ""
     @State private var email: String = ""
@@ -29,8 +29,8 @@ struct userImformationView: View {
 }
 
 
-struct userImformationView_Previews: PreviewProvider {
+struct UserImformationView_Previews: PreviewProvider {
     static var previews: some View {
-        userImformationView()
+        UserImformationView()
     }
 }
