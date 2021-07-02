@@ -44,10 +44,10 @@ struct TabManagementView: View {
                                     navigationState.deleteWebView(tab: tab)
                                 }, label: {
                                     Image(systemName: "xmark")
-                                        .foregroundColor(Color.black)
+                                        .foregroundColor(Color("PageButtonTextColor"))
                                 })
                             }
-                            .padding(.all,8)
+                            .padding(8)
                             .background(Color("TabManagementBarColor"))
                             //                        Spacer()
 //                            Image("WhiteBackground")

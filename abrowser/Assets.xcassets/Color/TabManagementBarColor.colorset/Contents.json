@@ -16,7 +16,7 @@
       ],
       "color" : {
         "platform" : "ios",
-        "reference" : "darkTextColor"
+        "reference" : "systemGray4Color"
       },
       "idiom" : "universal"
     }
