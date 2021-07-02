@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct passwordView: View {
+struct PasswordView: View {
     
     @State var oldpassword : String = "123456"
     @State var password: String = ""
@@ -39,8 +39,8 @@ struct passwordView: View {
     }
 }
 
-struct passwordView_Previews: PreviewProvider {
+struct PasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        passwordView()
+        PasswordView()
     }
 }

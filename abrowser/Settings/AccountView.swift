@@ -25,10 +25,10 @@ struct AccountView: View {
                 Spacer()
             }
             Section{
-                NavigationLink (destination:userImformationView()){
+                NavigationLink (destination:UserImformationView()){
                     Text("姓名·电话·邮箱")
                 }
-                NavigationLink (destination:passwordView()){
+                NavigationLink (destination:PasswordView()){
                     Text("更改密码")
                 }
             }

@@ -41,6 +41,9 @@ struct ContentView: View {
                         NavView(navigationState: navigationState, NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
                             .background(Color("PageBackgroundColor"))
                     }
+                    
+                 
+                    
                     // 遮罩
                     Rectangle()
                         .fill(Color.black)
@@ -66,6 +69,10 @@ struct ContentView: View {
                     .background(Color("BackgroundColor"))
                     .animation(.easeOut(duration: 0.2))
                     .transition(.opacity)
+            }
+            
+            if(navigationState.isPreviewing){
+                ImagePreviewView(navigationState: navigationState)
             }
         }
     }

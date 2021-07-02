@@ -11,44 +11,44 @@ import WebKit
 protocol NavigationProtocol : AnyObject{
     var mediator: Mediator{ get }
     
-//    var currentURL : URL? { get set }
-//    var webViews : [WKWebView] { get set }
-//    var selectedWebView : WKWebView? { get set }
-//    var currentTitle : String? { get set }
-//    var canGoBack : Bool  { get set }
-//    var canGoForward : Bool { get set }
-//
-//    var image : UIImage? { get set }
-//    var images : [UIImage] { get set }
+    //    var currentURL : URL? { get set }
+    //    var webViews : [WKWebView] { get set }
+    //    var selectedWebView : WKWebView? { get set }
+    //    var currentTitle : String? { get set }
+    //    var canGoBack : Bool  { get set }
+    //    var canGoForward : Bool { get set }
+    //
+    //    var image : UIImage? { get set }
+    //    var images : [UIImage] { get set }
 }
 
 class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     var mediator: Mediator
     
-//        override init() {
-//            super.init()
-//            let wv = WKWebView()
-//            wv.navigationDelegate = self
-//            webViews.append(wv)
-//            let bundlePath = Bundle.main.bundlePath
-//            let path = "file://\(bundlePath)/html/nav.html"
-//            wv.load(URLRequest(url: URL(string: path)!))
-//            selectedWebView = wv
-//        }
+    //        override init() {
+    //            super.init()
+    //            let wv = WKWebView()
+    //            wv.navigationDelegate = self
+    //            webViews.append(wv)
+    //            let bundlePath = Bundle.main.bundlePath
+    //            let path = "file://\(bundlePath)/html/nav.html"
+    //            wv.load(URLRequest(url: URL(string: path)!))
+    //            selectedWebView = wv
+    //        }
     
     required init(mediator: Mediator) {
         self.mediator = mediator
         super.init()
-//        初始化第一个webview，触发tap时会崩溃
-//        self.createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
+        //        初始化第一个webview，触发tap时会崩溃
+        //        self.createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
         
-//        let wv = WKWebView()
-//        wv.navigationDelegate = self
-//        webViews.append(wv)
-//        let bundlePath = Bundle.main.bundlePath
-//        let path = "file://\(bundlePath)/html/nav.html"
-//        wv.load(URLRequest(url: URL(string: path)!))
-//        selectedWebView = wv
+        //        let wv = WKWebView()
+        //        wv.navigationDelegate = self
+        //        webViews.append(wv)
+        //        let bundlePath = Bundle.main.bundlePath
+        //        let path = "file://\(bundlePath)/html/nav.html"
+        //        wv.load(URLRequest(url: URL(string: path)!))
+        //        selectedWebView = wv
     }
     
     @Published var currentURL : URL?
@@ -60,11 +60,49 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     
     @Published var image : UIImage = UIImage(named: "WhiteBackground")!
     @Published var images : [UIImage] = []
-//    @Published var 
+    @Published var webImageListArray: [Any] = []
+    @Published var imgStr : String = ""
+    @Published var currentIndex : Int = 0
+    @Published var isPreviewing: Bool = false
+    @Published var previewImages: [UIImage] = []
     
     @discardableResult func createNewWebView(withRequest request: URLRequest) -> WKWebView {
-//        let config = WKWebViewConfiguration()
-        let wv = WKWebView()
+        // js代码
+        // getImages: 获取每张图片的src
+        // register： 给图片注册点击事件
+        let jsGetImageFunc = """
+            function getImages(){
+                var objs = document.getElementsByTagName('img');
+                var imgSrc = '';
+                for(var i=0;i<objs.length;i++){
+                    imgSrc = imgSrc + objs[i].src + "+";
+                };
+                alert("getImages")
+                return imgSrc;
+            };
+            function registerImageClickAction(){
+                var imgs=document.getElementsByTagName('img');
+                for(var i=0;i<imgs.length;i++){
+                    img=imgs[i];
+                    img.onclick=function(){
+                        window.location.href='image-preview:'+this.src
+                    }
+                }
+                alert("registerImageClickAction")
+            };
+            """
+        // 根据JS字符串初始化WKUserScript对象
+        let userScript = WKUserScript(source: jsGetImageFunc, injectionTime:.atDocumentEnd, forMainFrameOnly: true)
+        let userContentController = WKUserContentController()
+        userContentController.addUserScript(userScript)
+        
+        // 根据生成的WKUserScript对象，初始化WKWebViewConfiguration
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.userContentController = userContentController
+        webConfiguration.allowsInlineMediaPlayback = true
+        
+        // 初始化WKWebView，传入config
+        let wv = WKWebView(frame: CGRect.zero, configuration: webConfiguration)
         wv.allowsBackForwardNavigationGestures = true
         wv.allowsLinkPreview = true
         wv.navigationDelegate = self
@@ -103,7 +141,7 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
         for wv in webViews {
             deleteWebView(tab: wv)
         }
-//        createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
+        //        createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
     }
     
     func screenshot(){
@@ -167,13 +205,65 @@ extension NavigationState : WKNavigationDelegate{
         }
         let tempImage = webView.screenshot()
         let idx = webViews.firstIndex(of: webView)!
-//        print(idx)
+        //        print(idx)
         images[idx] = tempImage!
-//        print("idx: \(idx)")
-//        images[0] = tempImage ?? UIImage(ciImage: .gray)
+        //        print("idx: \(idx)")
+        //        images[0] = tempImage ?? UIImage(ciImage: .gray)
+        webView.evaluateJavaScript("getImages()", completionHandler: { (object, error) in
+            let str = String.init(describing: object!)
+            self.webImageListArray = str.components(separatedBy: "+")
+            print(self.webImageListArray)
+        })
+        webView.evaluateJavaScript("registerImageClickAction()", completionHandler: nil)
+        
     }
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if (navigationAction.request.url?.scheme == "image-preview") {
+            let miu = String.init(describing: "image-preview:")
+            let preview = String.init(describing: navigationAction.request.url!.absoluteString)
+            let path = preview.suffix(from:(miu.index(miu.startIndex, offsetBy: 14)))
+            imgStr = String(path)
+            self.previewPicture()
+        }
+        decisionHandler(.allow)
+    }
+    
+    func previewPicture(){
+        print("previewPicture")
+        self.currentIndex = 0
+        for section in 0..<webImageListArray.count{
+            let path = String(describing: webImageListArray[section])
+            if path == imgStr{
+                currentIndex = section
+            }
+        }
+        // 启动大图查看
+        self.loadImages()
+        self.isPreviewing = true
+    }
+    
+    func loadImages(){
+        previewImages.removeAll()
+        for idx in 0..<webImageListArray.count - 1{
+            let url = URL(string: webImageListArray[idx] as! String)
+            do {
+                let data = try Data(contentsOf: url!)
+                let image = UIImage(data: data)
+                previewImages.append(image ?? self.image)
+            }catch let error as NSError {
+                print(error)
+            }
+        }
+    }
+    
     //页面加载失败时调用
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error){
         print("didFail")
+    }
+}
+
+extension NavigationState : WKScriptMessageHandler{
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        
     }
 }
