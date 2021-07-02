@@ -77,7 +77,7 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
                 for(var i=0;i<objs.length;i++){
                     imgSrc = imgSrc + objs[i].src + "+";
                 };
-                alert("getImages")
+                // alert("getImages")
                 return imgSrc;
             };
             function registerImageClickAction(){
@@ -88,7 +88,7 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
                         window.location.href='image-preview:'+this.src
                     }
                 }
-                alert("registerImageClickAction")
+                // alert("registerImageClickAction")
             };
             """
         // 根据JS字符串初始化WKUserScript对象

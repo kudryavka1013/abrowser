@@ -11,43 +11,92 @@ import WebKit
 struct WebViewContainer: UIViewRepresentable {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var historyState : HistoryState
-    
     class Coordinator: NSObject, WKUIDelegate {
         var parent: WebViewContainer
         
         init(_ parent: WebViewContainer) {
             self.parent = parent
         }
-
+        
         // Delegate methods go here
-
+        
         func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-//                    let alertViewController = UIAlertController(title: "提示", message:message, preferredStyle: UIAlertController.Style.alert)
-//                    alertViewController.addAction(UIAlertAction(title: "确认", style: UIAlertAction.Style.default, handler: { (action) in
-//                    }))
-            print(message)
-            completionHandler()
+            let alertController = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
+            alertController.addAction(
+                UIAlertAction(title: "确定", style: .default, handler: { (action) in completionHandler() })
+            )
+            if let controller = topMostViewController() {
+                controller.present(alertController, animated: true, completion: nil)
+            }
         }
         
         func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
-//            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
-//            alertController.addAction(
-//                UIAlertAction(title: "OK", style: .default, handler: { (action) in completionHandler(true) })
-//            )
-//            alertController.addAction(
-//                UIAlertAction(title: "Cancel", style: .default, handler: { (action) in completionHandler(false) })
-//            )
-            print(message)
-            completionHandler(true)
-        }
-        func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
-            print(prompt)
-            completionHandler("abc")
+            let alertController = UIAlertController(title: "提示", message: message, preferredStyle: .alert)
+            
+            alertController.addAction(
+                UIAlertAction(title: "取消", style: .destructive, handler: { (action) in completionHandler(false) })
+            )
+            alertController.addAction(
+                UIAlertAction(title: "确定", style: .default, handler: { (action) in completionHandler(true) })
+            )
+            if let controller = topMostViewController() {
+                controller.present(alertController, animated: true, completion: nil)
+            }
         }
         
+        func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+            let alertController = UIAlertController(title: "提示", message: prompt, preferredStyle: .alert)
+            alertController.addTextField{ textField in
+                textField.placeholder = defaultText }
+            alertController.addAction(
+                UIAlertAction(title: "取消", style: .destructive, handler: { (action) in
+                                completionHandler(nil) }))
+            alertController.addAction(
+                UIAlertAction(title: "确定", style: .default, handler: { (action) in
+                                if let text = alertController.textFields?.first?.text {
+                                    completionHandler(text)
+                                } else {
+                                    completionHandler(defaultText)
+                                }})
+            )
+            if let controller = topMostViewController() {
+                controller.present(alertController, animated: true, completion: nil)
+            }
+        }
+        
+        private func topMostViewController() -> UIViewController? {
+            guard let rootController = keyWindow()?.rootViewController else {
+                return nil
+            }
+            return topMostViewController(for: rootController)
+        }
+        
+        private func keyWindow() -> UIWindow? {
+            return UIApplication.shared.connectedScenes
+                .filter {$0.activationState == .foregroundActive}
+                .compactMap {$0 as? UIWindowScene}
+                .first?.windows.filter {$0.isKeyWindow}.first
+        }
+        
+        private func topMostViewController(for controller: UIViewController) -> UIViewController {
+            if let presentedController = controller.presentedViewController {
+                return topMostViewController(for: presentedController)
+            } else if let navigationController = controller as? UINavigationController {
+                guard let topController = navigationController.topViewController else {
+                    return navigationController
+                }
+                return topMostViewController(for: topController)
+            } else if let tabController = controller as? UITabBarController {
+                guard let topController = tabController.selectedViewController else {
+                    return tabController
+                }
+                return topMostViewController(for: topController)
+            }
+            return controller
+        }
         
     }
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -75,7 +124,7 @@ struct WebViewContainer: UIViewRepresentable {
             navigationState.canGoForward = webView!.canGoForward
         }
     }
-        
+    
     typealias UIViewType = UIView
 }
 //

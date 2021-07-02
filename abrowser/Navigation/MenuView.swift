@@ -38,12 +38,12 @@ struct MenuView: View {
                     VStack{
                         Image(systemName: "bookmark")
                             .padding(.bottom, 1)
-                            
+                        
                         Text("添加书签")
                             .font(.footnote)
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-
+                    
                 }).frame(maxWidth:.infinity)
                 .alert(isPresented: $test, content: {
                     Alert(title: Text("添加成功"))
@@ -62,7 +62,7 @@ struct MenuView: View {
                             .font(.footnote)
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-
+                    
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
@@ -83,7 +83,7 @@ struct MenuView: View {
                         
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-
+                    
                 })
                 .frame(maxWidth:.infinity)
                 .sheet(isPresented: $HistoryOrBookmarkIsPresented, content: {
@@ -105,7 +105,7 @@ struct MenuView: View {
                             .font(.footnote)
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-
+                    
                 }).frame(maxWidth:.infinity)
             }
             .padding()
@@ -113,6 +113,9 @@ struct MenuView: View {
                 
                 // 新建标签页
                 Button(action: {
+//                    let bundlePath = Bundle.main.bundlePath
+//                    let path = "file://\(bundlePath)/html/nav.html"
+//                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: path)!))
                     navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
                     MenuIsPresented = false
                 }, label: {
@@ -136,7 +139,7 @@ struct MenuView: View {
                                 .padding(.bottom, 1)
                             Text("深色模式")
                                 .font(.footnote)
-
+                            
                         }else{
                             Image(systemName: "sun.max")
                                 .padding(.bottom, 1)
@@ -145,7 +148,7 @@ struct MenuView: View {
                         }
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-
+                    
                 })
                 .frame(maxWidth:.infinity)
                 
@@ -161,7 +164,7 @@ struct MenuView: View {
                             .font(.footnote)
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-
+                    
                 }).sheet(isPresented: $SettingsIsPresented, content: {
                     SettingsView(isPresented: $SettingsIsPresented, userPreferences: userPreferences)
                 })
@@ -182,10 +185,10 @@ struct MenuView: View {
                             .padding(.bottom, 1)
                         Text("分享")
                             .font(.footnote)
-                            
+                        
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-
+                    
                 })
                 .frame(maxWidth:.infinity)
                 
