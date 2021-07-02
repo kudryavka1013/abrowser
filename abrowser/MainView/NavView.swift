@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NavView: View {
-//    @ObservedObject var navigationState : NavigationState
+    @ObservedObject var navigationState : NavigationState
     @Binding var NavViewIsPresented : Bool
     @Binding var SearchIsPresented : Bool
     @Binding var FromNavView : Bool
@@ -48,31 +48,31 @@ struct NavView: View {
                 SearchIsPresented = true
             }
             HStack{
-                NavBtn(name: "百度",icon: "百度",url: "https://www.baidu.com")
+                NavBtn(navigationState: navigationState, name: "百度",icon: "百度",url: "https://www.baidu.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "淘宝",icon:"淘宝", url: "https://www.taobao.com")
+                NavBtn(navigationState: navigationState, name: "淘宝",icon:"淘宝", url: "https://www.taobao.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "GitHub",icon:"GitHub", url: "https://github.com")
+                NavBtn(navigationState: navigationState, name: "GitHub",icon:"GitHub", url: "https://github.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "京东",icon:"京东", url: "https://www.jd.com")
+                NavBtn(navigationState: navigationState, name: "京东",icon:"京东", url: "https://www.jd.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
             }.padding(.horizontal)
             
             HStack{
-                NavBtn(name: "微博",icon:"微博", url: "https://weibo.com")
+                NavBtn(navigationState: navigationState, name: "微博",icon:"微博", url: "https://weibo.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "哔哩哔哩",icon:"哔哩哔哩", url: "https://www.bilibili.com")
+                NavBtn(navigationState: navigationState, name: "哔哩哔哩",icon:"哔哩哔哩", url: "https://www.bilibili.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "知乎",icon:"知乎", url: "https://www.zhihu.com")
+                NavBtn(navigationState: navigationState, name: "知乎",icon:"知乎", url: "https://www.zhihu.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
-                NavBtn(name: "美团",icon:"美团", url: "https://www.meituan.com")
+                NavBtn(navigationState: navigationState, name: "美团",icon:"美团", url: "https://www.meituan.com")
                     .padding(8)
                     .frame(maxWidth: .infinity)
             }.padding(.horizontal)
@@ -81,14 +81,19 @@ struct NavView: View {
     }
 }
 struct NavBtn: View{
-    
+    @ObservedObject var navigationState: NavigationState
     var name : String
     var icon : String
     var url : String
     
     var body: some View{
         Button(action: {
-//                navigationState.navGoTo(addressInput: url)
+            if navigationState.webViews.count == 0 {
+                navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: url)!))
+            }
+            else {
+                navigationState.navGoTo(addressInput: url)
+            }
         }, label: {
             VStack{
                 Image(icon).frame(width: 50, height:50)

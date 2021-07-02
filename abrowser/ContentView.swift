@@ -38,7 +38,7 @@ struct ContentView: View {
                     }
 //                    if(NavViewIsPresented){
                     if(navigationState.currentURL?.absoluteString == "about:newtab" || navigationState.webViews.count == 0){
-                        NavView(NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
+                        NavView(navigationState: navigationState, NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
                             .background(Color("PageBackgroundColor"))
                     }
                     // 遮罩

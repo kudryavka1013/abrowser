@@ -33,6 +33,7 @@ struct TabManagementView: View {
                         VStack(spacing: 0.0) {
                             HStack {
                                 Text(tab.url?.absoluteString ?? "?").lineLimit(1)
+                                    .foregroundColor(Color("PageButtonTextColor"))
                                 //                                .font(.system(size: 13))
                                 Spacer()
 //                                Button(action: navigationState.deleteWebView(tab: tab)) {
@@ -47,7 +48,7 @@ struct TabManagementView: View {
                                 })
                             }
                             .padding(.all,8)
-                            .background(Color.gray)
+                            .background(Color("TabManagementBarColor"))
                             //                        Spacer()
 //                            Image("WhiteBackground")
                             Image(uiImage: navigationState.images[idx!])
@@ -55,29 +56,29 @@ struct TabManagementView: View {
 //                                .aspectRatio(contentMode: .fill)
                             //                            .scaledToFit()
                         }
-                        .frame(width: UIScreen.main.bounds.width * 0.8)
-//                        .padding(.leading,50)
-                        .offset(x: UIScreen.main.bounds.width * 0.1, y: 0)
+                        .frame(width: UIScreen.main.bounds.width * 0.8).cornerRadius(8).shadow(radius: 5)
+                        .padding(.leading,idx == 0 ? UIScreen.main.bounds.width * 0.1 : 0)
+                        .padding(.trailing,idx == navigationState.webViews.count - 1 ? UIScreen.main.bounds.width * 0.1 : 0)
                         .offset(x: 0 , y: moveState.height * 2)
                         .opacity(1 - Double(abs(moveState.height / 200)))
                         .animation(
                             .spring(response: 0.3, dampingFraction: 0.7, blendDuration: 0))
-                        //                    .gesture(
-                        //                        DragGesture()
-                        //                            .onChanged { value in
-                        //                                if abs(value.translation.width) < abs(value.translation.height) {
-                        //                                    self.moveState.width = .zero
-                        //                                    self.moveState.height = value.translation.height
-                        //                                }
-                        //                                }
-                        //                            .onEnded { _ in
-                        //                                if abs(self.moveState.height) > 150 {
-                        //            //                        self.removal?()
-                        //                                } else {
-                        //                                    self.moveState = .zero
-                        //                                }
-                        //                            }
-                        //                    )
+                                            .gesture(
+                                                DragGesture()
+                                                    .onChanged { value in
+                                                        if abs(value.translation.width) < abs(value.translation.height) {
+                                                            self.moveState.width = .zero
+                                                            self.moveState.height = value.translation.height
+                                                        }
+                                                        }
+                                                    .onEnded { _ in
+                                                        if abs(self.moveState.height) > 150 {
+                                    //                        self.removal?()
+                                                        } else {
+                                                            self.moveState = .zero
+                                                        }
+                                                    }
+                                            )
                         .onTapGesture {
                             navigationState.selectedWebView = tab
                             TabManagementIsPresented = false
@@ -99,6 +100,7 @@ struct TabManagementView: View {
                     TabManagementIsPresented = false
                 }, label: {
                     Text("全部关闭")
+//                        .foregroundColor(Color("ButtonTextColor"))
                 }).frame(minWidth: 80,alignment: .leading)
                 Spacer()
                 Button(action: {
@@ -106,14 +108,19 @@ struct TabManagementView: View {
                     TabManagementIsPresented = false
                 }, label: {
                     Image(systemName: "plus")
-                })
+//                        .foregroundColor(Color("ButtonTextColor"))
+                }
+                )
                 Spacer()
                 Button(action: {
                     TabManagementIsPresented = false
                 }, label: {
                     Text("返回")
+//                        .foregroundColor(Color("ButtonTextColor"))
                 }).frame(minWidth: 80 ,alignment: .trailing)
-            }.padding()
+            }
+            .padding()
+            .background(Color("ViewColor"))
         }
         .onAppear{
             if(navigationState.webViews.count == 0){
