@@ -136,6 +136,10 @@
                 .padding(.bottom)
                 //.listStyle(GroupedListStyle())
                 //            .background(Color.white)
+            }.onAppear{
+                if(navigationState.webViews.count == 0){
+                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
+                }
             }
         }
     }

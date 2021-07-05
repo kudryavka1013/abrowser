@@ -14,11 +14,18 @@ struct ImagePreviewView: View {
             Rectangle()
                 .fill(Color.black)
                 .opacity(0.8)
+            
+            Image(uiImage: navigationState.previewImages[navigationState.currentIndex])
+                .resizable()
+                .scaledToFit()
+                .frame(width:UIScreen.main.bounds.width, alignment: .center)
+
             VStack{
                 ZStack{
                     HStack{
                         Spacer()
                         Text("\(navigationState.currentIndex + 1) / \(navigationState.previewImages.count)")
+                            .foregroundColor(.white)
                         Spacer()
                     }
                     .padding(.top,16)
@@ -97,11 +104,7 @@ struct ImagePreviewView: View {
                 
             }
             
-            Image(uiImage: navigationState.previewImages[navigationState.currentIndex])
-                .resizable()
-                .scaledToFit()
-                .frame(width:UIScreen.main.bounds.width, alignment: .center)
-                .onDrag({ /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Item Provider@*/NSItemProvider()/*@END_MENU_TOKEN@*/ })
+            
         }
     }
 }

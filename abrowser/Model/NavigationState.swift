@@ -39,6 +39,7 @@ class NavigationState : NSObject, ObservableObject, NavigationProtocol{
     required init(mediator: Mediator) {
         self.mediator = mediator
         super.init()
+        previewImages = [image]
         //        初始化第一个webview，触发tap时会崩溃
         //        self.createNewWebView(withRequest: URLRequest(url: URL(string: "https://www.baidu.com")!))
         
@@ -262,8 +263,8 @@ extension NavigationState : WKNavigationDelegate{
     }
 }
 
-extension NavigationState : WKScriptMessageHandler{
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        
-    }
-}
+//extension NavigationState : WKScriptMessageHandler{
+//    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+//
+//    }
+//}

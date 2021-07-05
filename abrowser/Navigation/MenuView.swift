@@ -31,6 +31,9 @@ struct MenuView: View {
             HStack{
                 // 添加书签
                 Button(action: {
+                    if(navigationState.webViews.count == 0){
+                        navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
+                    }
                     bookmarkState.addBookmark(name: navigationState.currentTitle!, url: navigationState.currentURL!.absoluteString)
                     MenuIsPresented = false
                     test = true
@@ -113,9 +116,9 @@ struct MenuView: View {
                 
                 // 新建标签页
                 Button(action: {
-//                    let bundlePath = Bundle.main.bundlePath
-//                    let path = "file://\(bundlePath)/html/nav.html"
-//                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: path)!))
+                    //                    let bundlePath = Bundle.main.bundlePath
+                    //                    let path = "file://\(bundlePath)/html/nav.html"
+                    //                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: path)!))
                     navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
                     MenuIsPresented = false
                 }, label: {
@@ -129,26 +132,20 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 
-                // 浅色/深色模式
+                // 看图模式
                 Button(action: {
-                    darkMode.toggle()
+                    if(navigationState.webViews.count == 0){
+                        navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
+                    }
+                    navigationState.isPreviewing = true
                 }, label: {
                     VStack{
-                        if(darkMode){
-                            Image(systemName: "moon")
-                                .padding(.bottom, 1)
-                            Text("深色模式")
-                                .font(.footnote)
-                            
-                        }else{
-                            Image(systemName: "sun.max")
-                                .padding(.bottom, 1)
-                            Text("浅色模式")
-                                .font(.footnote)
-                        }
+                        Image(systemName: "sun.max")
+                            .padding(.bottom, 1)
+                        Text("看图模式")
+                            .font(.footnote)
                     }
                     .foregroundColor(Color("ButtonTextColor"))
-                    
                 })
                 .frame(maxWidth:.infinity)
                 
@@ -170,9 +167,7 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 
-                
-                
-                
+
                 // 分享
                 Button(action: {
                     guard let urlShare = navigationState.currentURL else { return }

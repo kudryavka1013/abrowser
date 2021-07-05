@@ -17,6 +17,11 @@ struct BookmarkView: View {
     
     var body: some View {
         BookmarkListView(navigationState: navigationState, bookmarkState: bookmarkState, isPresented: $isPresented, isEditing: $isEditing, bookmarkList: bookmarkState.bookmarkList)
+            .onAppear{
+                if(navigationState.webViews.count == 0){
+                    navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
+                }
+            }
     }
 }
 
