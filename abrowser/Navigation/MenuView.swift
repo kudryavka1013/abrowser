@@ -138,6 +138,8 @@ struct MenuView: View {
                         navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
                     }
                     navigationState.isPreviewing = true
+                    MenuIsPresented = false
+
                 }, label: {
                     VStack{
                         Image(systemName: "sun.max")
