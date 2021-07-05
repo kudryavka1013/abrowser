@@ -16,11 +16,13 @@ struct abrowserApp: App {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
+    @ObservedObject var informationState : InformationState
     init(){
         navigationState = NavigationState(mediator: mediator)
         historyState = HistoryState(mediator: mediator)
         bookmarkState = BookmarkState(mediator: mediator)
         userPreferences = UserPreferences(mediator: mediator)
+        informationState = InformationState()
         mediator.setNav(navigationState)
         mediator.setHis(historyState)
         mediator.setPref(userPreferences)
@@ -30,7 +32,7 @@ struct abrowserApp: App {
     var body: some Scene {
         
         WindowGroup {
-            ContentView(userPreferences: userPreferences, navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState)
+            ContentView(userPreferences: userPreferences, navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, informationState: informationState)
         }.onChange(of: scenePhase){ newScenePhase in
             switch (newScenePhase) {
             case .background:
