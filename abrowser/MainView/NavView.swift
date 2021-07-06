@@ -41,7 +41,7 @@ struct NavView: View {
                         Spacer()
                         Image(systemName: "magnifyingglass")
                             .frame(width: 20, height:20)
-                            .padding(.trailing,36)
+                            .padding(.trailing,32)
                     }.padding()
                 }
                 //            .offset(x: 0, y: -10)

@@ -246,9 +246,9 @@ extension NavigationState : WKNavigationDelegate{
     func loadImages(){
         previewImages.removeAll()
         for idx in 0..<webImageListArray.count - 1{
-            let url = URL(string: webImageListArray[idx] as! String)
+            guard let url = URL(string: webImageListArray[idx] as! String) else { return }
             do {
-                let data = try Data(contentsOf: url!)
+                let data = try Data(contentsOf: url)
                 let image = UIImage(data: data)
                 previewImages.append(image ?? self.image)
             }catch let error as NSError {
