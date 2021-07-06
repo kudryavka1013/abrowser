@@ -13,6 +13,7 @@ struct ContentView: View {
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
+    @ObservedObject var informationState : InformationState
     
     @Namespace var addressbar
     
@@ -38,7 +39,7 @@ struct ContentView: View {
                     }
 //                    if(NavViewIsPresented){
                     if(navigationState.currentURL?.absoluteString == "about:newtab" || navigationState.webViews.count == 0){
-                        NavView(navigationState: navigationState, NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
+                        NavView(navigationState: navigationState, informationState: informationState, NavViewIsPresented: $NavViewIsPresented, SearchIsPresented: $SearchIsPresented, FromNavView: $FromNavView, addressbar: addressbar)
                             .background(Color("PageBackgroundColor"))
                     }
                     

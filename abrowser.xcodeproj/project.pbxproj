@@ -32,6 +32,8 @@
 		0CA146DC266A586F00BA805F /* BookmarkState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DB266A586F00BA805F /* BookmarkState.swift */; };
 		0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA146DD266A5C5C00BA805F /* HistoryState.swift */; };
 		0CDB9946266F9B11003A1DCB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB9945266F9B11003A1DCB /* SearchView.swift */; };
+		0CF31BFB2692980800A802D8 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF31BFA2692980800A802D8 /* InformationView.swift */; };
+		0CF31BFD26929D0E00A802D8 /* InformationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF31BFC26929D0E00A802D8 /* InformationState.swift */; };
 		1817B637266F8F8600C7B4FE /* BookmarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817B636266F8F8600C7B4FE /* BookmarkListView.swift */; };
 		59434FCF26897D8B0083B337 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FCE26897D8B0083B337 /* AccountView.swift */; };
 		59434FD12689CE800083B337 /* UserImformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59434FD02689CE800083B337 /* UserImformationView.swift */; };
@@ -95,6 +97,8 @@
 		0CA146DB266A586F00BA805F /* BookmarkState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkState.swift; sourceTree = "<group>"; };
 		0CA146DD266A5C5C00BA805F /* HistoryState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryState.swift; sourceTree = "<group>"; };
 		0CDB9945266F9B11003A1DCB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		0CF31BFA2692980800A802D8 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		0CF31BFC26929D0E00A802D8 /* InformationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationState.swift; sourceTree = "<group>"; };
 		1817B636266F8F8600C7B4FE /* BookmarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListView.swift; sourceTree = "<group>"; };
 		59434FCE26897D8B0083B337 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		59434FD02689CE800083B337 /* UserImformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImformationView.swift; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 				0C5CE5AD268041E2009CE5EE /* UserPreferences.swift */,
 				59C0D2BC268D5101008E2C73 /* UserState.swift */,
 				0C5CE5AF2682C9C0009CE5EE /* Mediator.swift */,
+				0CF31BFC26929D0E00A802D8 /* InformationState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				0CA146BB2665D61E00BA805F /* WebViewContainer.swift */,
 				0CA146D7266A3F8E00BA805F /* NavView.swift */,
 				0C6B2439268EA66100308487 /* ImagePreviewView.swift */,
+				0CF31BFA2692980800A802D8 /* InformationView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -408,12 +414,14 @@
 				0C5CE5AE268041E2009CE5EE /* UserPreferences.swift in Sources */,
 				59434FD32689CF0C0083B337 /* PasswordView.swift in Sources */,
 				0CA146BE26664DBF00BA805F /* AddressBarView.swift in Sources */,
+				0CF31BFD26929D0E00A802D8 /* InformationState.swift in Sources */,
 				0CA146CA266863C800BA805F /* NavigationState.swift in Sources */,
 				5985BA362682CEC30019D9EB /* LoginView.swift in Sources */,
 				1817B637266F8F8600C7B4FE /* BookmarkListView.swift in Sources */,
 				0CA146DE266A5C5C00BA805F /* HistoryState.swift in Sources */,
 				0CA146C4266725C900BA805F /* MenuView.swift in Sources */,
 				59434FD12689CE800083B337 /* UserImformationView.swift in Sources */,
+				0CF31BFB2692980800A802D8 /* InformationView.swift in Sources */,
 				0CA146D8266A3F8E00BA805F /* NavView.swift in Sources */,
 				0CDB9946266F9B11003A1DCB /* SearchView.swift in Sources */,
 				0CA1468D2664F44500BA805F /* ContentView.swift in Sources */,
