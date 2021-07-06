@@ -24,6 +24,7 @@ struct abrowserApp: App {
         bookmarkState = BookmarkState(mediator: mediator)
         userPreferences = UserPreferences(mediator: mediator)
         informationState = InformationState()
+        userState = UserState()
         mediator.setNav(navigationState)
         mediator.setHis(historyState)
         mediator.setPref(userPreferences)
