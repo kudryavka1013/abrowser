@@ -9,46 +9,44 @@ import SwiftUI
 
 struct InformationView: View {
     @ObservedObject var informationState : InformationState
+    @ObservedObject var navigationState : NavigationState
     var body: some View {
-        List{
-            VStack{
-                InformationCard()
-                InformationCard()
-                InformationCard()
+        VStack{
+//            Text("新闻资讯")
+            ForEach(informationState.info){ item in
+                InformationCard(item:item)
+                    .onTapGesture {
+                        navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: item.url)!))
+                    }
             }
             
-        }.onAppear{
-            informationState.getInfomation()
         }
     }
 }
 
 struct InformationCard : View{
+    var item: InfoItem
+    
     var body: some View{
         HStack(spacing:0){
-            Image("screen1")
-                .resizable()
-                .frame(width: 120)
-                .padding(8)
             VStack(alignment:.leading){
-                Text("标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题")
+                Text(item.title)
                     .lineLimit(1)
-                    Spacer()
+                Spacer()
                 HStack{
-                    Text("来自：")
+                    Text("来自：\(item.source)")
                         .font(.caption)
                     Spacer()
-                    Text("20-1-26")
-                        .font(.caption2)
+                    Text(item.createdate)
+                        .font(.caption)
                 }
             }
-            .padding(.vertical,8)
-            .padding(.trailing,8)
+            .padding(8)
         }
-        .frame(height:70)
-        .background(Color.gray)
+        .frame(height:60)
+        .background(Color("AddressBarColor"))
         .cornerRadius(6.0)
-        .shadow(radius: 2)
+        .shadow(radius: 1)
         .padding(.horizontal,16)
     }
 }

@@ -18,7 +18,10 @@ struct NavView: View {
         //
         ScrollView{
             VStack{
-                Image("主页").frame(width: 350, height:130).offset(x: 0, y: -15)
+                Image("主页")
+                    .frame(width: 350, height:130)
+                    .padding(.bottom,16)
+                    .padding(.top,96)
                 //sousuokuang
                 ZStack{
                     
@@ -76,8 +79,11 @@ struct NavView: View {
                         .padding(8)
                         .frame(maxWidth: .infinity)
                 }.padding(.horizontal)
-                InformationView(informationState: informationState)
-//                InformationCard()
+                
+                if(informationState.info.count != 0){
+                    InformationView(informationState: informationState, navigationState: navigationState)
+                        .padding(.top,32)
+                }
             }
         }
     }
