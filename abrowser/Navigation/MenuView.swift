@@ -13,6 +13,7 @@ struct MenuView: View {
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
     @ObservedObject var userPreferences : UserPreferences
+    @ObservedObject var userState : UserState
     @Binding var MenuIsPresented : Bool
     
     @State var HistoryOrBookmarkIsPresented = false
@@ -165,7 +166,7 @@ struct MenuView: View {
                     .foregroundColor(Color("ButtonTextColor"))
                     
                 }).sheet(isPresented: $SettingsIsPresented, content: {
-                    SettingsView(isPresented: $SettingsIsPresented, userPreferences: userPreferences)
+                    SettingsView(isPresented: $SettingsIsPresented, userPreferences: userPreferences, userState: userState)
                 })
                 .frame(maxWidth:.infinity)
                 

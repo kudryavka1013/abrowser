@@ -15,15 +15,18 @@ extension View {
 
 struct LoginView : View {
     
+    @ObservedObject var userState : UserState
+    @ObservedObject var userPreferences: UserPreferences
     //@ObservedObject var registerView : RegisterView
     @State private var isDispaly: Bool = false
     @State var username: String = ""
     @State var password: String = ""
     
+    @Binding var selectIsPresented : Bool
     var body: some View {
         
     VStack {
-        Spacer().frame(width: 100, height: 50)
+        Spacer().frame(width: 100, height: 20)
         VStack {
             
 //                Text("Login")
@@ -88,16 +91,19 @@ struct LoginView : View {
                 
                 Spacer().frame(width: 100, height: 60)
                 
-                Button(action: {
-                        }) {
+            Button(action: {selectIsPresented = false ; userState.Login()}
+                ){
+              
                     Text("登录")
                         .fontWeight(.bold)
                         .bold()
                         .foregroundColor(.white)
+                
                 }
-                .frame(width: UIScreen.main.bounds.width - 60, height: 50, alignment: .center)
-                        .background(Color.blue)
-                        .cornerRadius(22)
+            .frame(width: UIScreen.main.bounds.width - 60, height: 50, alignment: .center)
+            .background(Color.blue)
+            .cornerRadius(22)
+                
                 
             }
             .onTapGesture {
@@ -229,10 +235,10 @@ struct LoginView : View {
 //    }
 //
 //}
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
+//
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//    }
+//}
 

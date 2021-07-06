@@ -12,15 +12,17 @@ struct UserImformationView: View {
     @State private var phone: String = ""
     @State private var email: String = ""
     
+    @ObservedObject var userState : UserState
+    
     var body: some View {
         List {
             Section(header: Text("账号")) {
-                TextField("用户名",text:$name)
+                TextField(userState.username,text:$name)
                 
             }
             Section(header: Text("联络方式")) {
-                TextField("电话",text:$phone)
-                TextField("邮箱",text:$email)
+                TextField(userState.phonenumber,text:$phone)
+                TextField(userState.useremail,text:$email)
             }
         }
         .navigationBarTitle(Text("姓名·电话·邮箱"))
@@ -28,9 +30,9 @@ struct UserImformationView: View {
     }
 }
 
-
-struct UserImformationView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserImformationView()
-    }
-}
+//
+//struct UserImformationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserImformationView()
+//    }
+//}

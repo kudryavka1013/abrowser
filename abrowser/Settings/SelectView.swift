@@ -9,6 +9,10 @@ import SwiftUI
 
 struct SelectView: View {
     
+    @ObservedObject var userState : UserState
+    @ObservedObject var userPreferences: UserPreferences
+   
+    @Binding var selectIsPresented : Bool
     @State var viewSelected : Int = 1
     
     var body: some View {
@@ -77,10 +81,10 @@ struct SelectView: View {
         
             ZStack{
                 if (viewSelected == 1) {
-                    LoginView()
+                    LoginView(userState: userState, userPreferences: userPreferences, selectIsPresented: $selectIsPresented)
                 }
                 else {
-                    RegisterView()
+                    RegisterView(userState: userState, viewSelected: $viewSelected)
                 }
             }
         }

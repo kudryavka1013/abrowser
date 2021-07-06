@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct AccountView: View {
+    
+    @ObservedObject var userState : UserState
+    
+    
+    @Binding var selectIsPresented : Bool
     @State var name: String = ""
     @State var password: String = ""
     @State var email: String = ""
@@ -18,14 +23,14 @@ struct AccountView: View {
                 Spacer()
                 VStack (alignment: .center) {
                     Spacer().frame(width: 100, height: 30)
-                    Image("登陆").frame(width: 100, height: 100)
-                    Text("张三").font(.title).offset(y : 3)
+                    Image("登录成功2").frame(width: 100, height: 100)
+                    Text(userState.username).font(.title).offset(y : 3)
                     Spacer().frame(width: 100, height: 30)
                 }
                 Spacer()
             }
             Section{
-                NavigationLink (destination:UserImformationView()){
+                NavigationLink (destination:UserImformationView(userState: userState)){
                     Text("姓名·电话·邮箱")
                 }
                 NavigationLink (destination:PasswordView()){
@@ -35,7 +40,7 @@ struct AccountView: View {
             Section{
                 HStack{
                     Spacer()
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Button(action: { userState.isLogin=false ; selectIsPresented = false}, label: {
                         Text("退出登录")
                     })
                     Spacer()
@@ -46,9 +51,9 @@ struct AccountView: View {
         .listStyle(GroupedListStyle())
     }
 }
-
-struct AccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        AccountView()
-    }
-}
+//
+//struct AccountView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AccountView()
+//    }
+//}

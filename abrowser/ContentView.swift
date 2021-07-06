@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var userPreferences : UserPreferences
+    @ObservedObject var userState : UserState
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
@@ -55,7 +56,7 @@ struct ContentView: View {
                         }
                 }
                 
-                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, userPreferences: userPreferences, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
+                NavBarView(navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, userPreferences: userPreferences, userState: userState, MenuIsPresented: $MenuIsPresented, TabManagementIsPresented: $TabManagementIsPresented, NavViewIsPresented: $NavViewIsPresented)
             }
             
             // 标签页管理页面

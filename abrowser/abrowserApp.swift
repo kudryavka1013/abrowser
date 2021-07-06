@@ -13,6 +13,7 @@ struct abrowserApp: App {
 
     var mediator = Mediator()
     @ObservedObject var userPreferences : UserPreferences
+    @ObservedObject var userState : UserState
     @ObservedObject var navigationState : NavigationState
     @ObservedObject var bookmarkState : BookmarkState
     @ObservedObject var historyState : HistoryState
@@ -27,12 +28,11 @@ struct abrowserApp: App {
         mediator.setHis(historyState)
         mediator.setPref(userPreferences)
         mediator.setBook(bookmarkState)
-   
     }
     var body: some Scene {
         
         WindowGroup {
-            ContentView(userPreferences: userPreferences, navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, informationState: informationState)
+            ContentView(userPreferences: userPreferences,userState: userState, navigationState: navigationState, bookmarkState: bookmarkState, historyState: historyState, informationState: informationState)
         }.onChange(of: scenePhase){ newScenePhase in
             switch (newScenePhase) {
             case .background:

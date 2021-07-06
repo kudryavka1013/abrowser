@@ -12,21 +12,22 @@ import UIKit
 struct SettingsView: View {
     
     @Binding var isPresented: Bool
+    @State var selectIsPresented: Bool = false
     @ObservedObject var userPreferences: UserPreferences
+    @ObservedObject var userState : UserState
     
-    @State var loginSelected : Int = 2
+//    @State var loginSelected : Int = 1
     
     var body: some View {
         
         NavigationView{
             List{
-                
-                if (loginSelected == 1){
+                if (userState.isLogin == false){
                     Section{
-                        NavigationLink(destination:SelectView())
+                        NavigationLink(destination:SelectView(userState: userState, userPreferences: userPreferences,selectIsPresented: $selectIsPresented),isActive:$selectIsPresented)
                         {
                             HStack {
-                                Image("登陆").frame(width: 60, height: 60)
+                                Image("登录").frame(width: 60, height: 60)
                                 
                                 Text("未登录").font(.title).offset( x: 20)
                             }
@@ -34,14 +35,14 @@ struct SettingsView: View {
                     }
                     //                    loginSelected = 2
                 }
-                else if (loginSelected == 2) {
+                else if (userState.isLogin == true) {
                     Section{
-                        NavigationLink(destination: AccountView())
+                        NavigationLink(destination: AccountView(userState: userState,selectIsPresented: $selectIsPresented),isActive:$selectIsPresented)
                         {
                             HStack {
-                                Image("登陆").frame(width: 60, height: 60)
+                                Image("登录成功").frame(width: 60, height: 60)
                                 VStack {
-                                    Text("张三").bold().font(.system(size:20)).offset( x : 20)
+                                    Text(userState.username).bold().font(.system(size:20)).offset( x : 20)
                                     Text("用户设置").font(.system(size:15)).offset( x : 30)
                                 }
                             }
@@ -53,9 +54,9 @@ struct SettingsView: View {
                     NavigationLink(destination:HomePageSettings(userPreferences: userPreferences)){
                         Text("主页设置")
                     }
-                    NavigationLink(destination:Text("usermanage")){
-                        Text("用户管理")
-                    }
+//                    NavigationLink(destination:Text("usermanage")){
+//                        Text("用户管理")
+//                    }
                     NavigationLink(destination:SearchEngineSettings(userPreferences: userPreferences)){
                         Text("搜索引擎设置")
                     }
