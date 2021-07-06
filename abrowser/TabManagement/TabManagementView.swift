@@ -33,7 +33,7 @@ struct TabManagementView: View {
                             Image(uiImage: navigationState.images[idx!])
                                 .resizable()
                         }
-                        .frame(width: UIScreen.main.bounds.width * 0.8).cornerRadius(8).shadow(radius: 5)
+                        .frame(width: UIScreen.main.bounds.width * 0.8).cornerRadius(10).shadow(radius: 3)
                         .padding(.leading,idx == 0 ? UIScreen.main.bounds.width * 0.1 : 0)
                         .padding(.trailing,idx == navigationState.webViews.count - 1 ? UIScreen.main.bounds.width * 0.1 : 0)
                         .padding(.vertical, 8)
