@@ -142,7 +142,7 @@ struct MenuView: View {
 
                 }, label: {
                     VStack{
-                        Image(systemName: "sun.max")
+                        Image(systemName: "photo.on.rectangle")
                             .padding(.bottom, 1)
                         Text("看图模式")
                             .font(.footnote)
