@@ -14,12 +14,14 @@ struct ImagePreviewView: View {
             Rectangle()
                 .fill(Color.black)
                 .opacity(0.8)
-            
-            Image(uiImage: navigationState.previewImages[navigationState.currentIndex])
-                .resizable()
-                .scaledToFit()
-                .frame(width:UIScreen.main.bounds.width, alignment: .center)
-
+            if(navigationState.previewImages.count != 0){
+                if(navigationState.previewImages.count >= navigationState.currentIndex){
+                    Image(uiImage: navigationState.previewImages[navigationState.currentIndex])
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:UIScreen.main.bounds.width, alignment: .center)
+                }
+            }
             VStack{
                 ZStack{
                     HStack{

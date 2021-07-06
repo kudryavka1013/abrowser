@@ -95,7 +95,7 @@ struct NavBarView: View {
                 Button(action: {
                     self.MenuIsPresented.toggle()
                 }, label: {
-                    Image(systemName: "slider.vertical.3")
+                    Image(systemName: "slider.horizontal.3")
                 }).frame(maxWidth: .infinity)
             }
             .foregroundColor(Color("ButtonTextColor"))

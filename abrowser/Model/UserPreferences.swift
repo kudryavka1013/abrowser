@@ -9,6 +9,8 @@ import SwiftUI
 
 protocol UserPreferencesProtocol: AnyObject {
     var mediator: Mediator { get }
+    var isSaveHistory : Bool { get  }
+    func changeSaveHistory()
 }
 class UserPreferences: NSObject, ObservableObject,UserPreferencesProtocol{
     var mediator : Mediator
@@ -18,12 +20,17 @@ class UserPreferences: NSObject, ObservableObject,UserPreferencesProtocol{
     @Published var homePageType : Int = 0
     @Published var homePage: String = ""
     @Published var customPage: String = ""
+    @Published var isSaveHistory: Bool = true
     
     required init(mediator: Mediator){
         self.mediator = mediator
         super.init()
         // get data from local storage
         loadPreferencesFromLocal()
+    }
+    
+    func changeSaveHistory(){
+        isSaveHistory.toggle()
     }
     
     func setSearchEngineType(type: Int){

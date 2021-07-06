@@ -201,9 +201,13 @@ extension NavigationState : WKNavigationDelegate{
             // 页面标题
             self.currentTitle = webView.title
         }
-        if(currentURL?.absoluteString != "about:blank" && currentURL?.absoluteString != "about:newtab"){
-            self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
+        
+        if(mediator.getIsSaveHistory()!){
+            if(currentURL?.absoluteString != "about:blank" && currentURL?.absoluteString != "about:newtab"){
+                self.mediator.addHistory(title: currentTitle!, url: currentURL!.absoluteString)
+            }
         }
+        
         let tempImage = webView.screenshot()
         let idx = webViews.firstIndex(of: webView)!
         //        print(idx)

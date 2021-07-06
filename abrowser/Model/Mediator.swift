@@ -31,4 +31,12 @@ final class Mediator{
 //        if(historyState == nil){print("historyState is nil")}
         historyState?.addhistory(newtitle: title, newUrl: url)
     }
+    
+    func changeSaveHistory(){
+        userPreferences?.changeSaveHistory()
+    }
+    
+    func getIsSaveHistory() -> Bool?{
+        return userPreferences?.isSaveHistory
+    }
 }

@@ -17,6 +17,9 @@ struct HistoryCellViewSearch: View {
             }.padding(.leading, 20)
             Spacer()
         }.frame(height: 45)
+        Divider()
+            .frame(width: 380)
+            .background(Color.gray)
     }
 }
 

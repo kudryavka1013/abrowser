@@ -133,20 +133,23 @@ struct MenuView: View {
                 })
                 .frame(maxWidth:.infinity)
                 
-                // 看图模式
+                // 无痕模式
                 Button(action: {
-                    if(navigationState.webViews.count == 0){
-                        navigationState.createNewWebView(withRequest: URLRequest(url: URL(string: "about:newtab")!))
-                    }
-                    navigationState.isPreviewing = true
-                    MenuIsPresented = false
-
+                    userPreferences.changeSaveHistory()
+//                    MenuIsPresented = false
                 }, label: {
                     VStack{
-                        Image(systemName: "photo.on.rectangle")
-                            .padding(.bottom, 1)
-                        Text("看图模式")
-                            .font(.footnote)
+                        if(userPreferences.isSaveHistory){
+                            Image(systemName: "rectangle.dashed")
+                                .padding(.bottom, 1)
+                            Text("无痕模式")
+                                .font(.footnote)
+                        }else{
+                            Image(systemName: "rectangle")
+                                .padding(.bottom, 1)
+                            Text("退出无痕")
+                                .font(.footnote)
+                        }
                     }
                     .foregroundColor(Color("ButtonTextColor"))
                 })

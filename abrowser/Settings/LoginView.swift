@@ -48,7 +48,7 @@ struct LoginView : View {
                             //.fill(Color("PageButtonTextColor"))
                     }
                     Divider()
-                        .frame(width: 350)
+                        .frame(width: 380)
                         .background(Color.gray)
                 }
                 .padding(.vertical)
